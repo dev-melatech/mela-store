@@ -1,6 +1,6 @@
 {
   "name": "components-library-melatech",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "main": "./dist/components_library_melatech.common.js",
   "files": [
