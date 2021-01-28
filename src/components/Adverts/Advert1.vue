@@ -1,34 +1,27 @@
 <template>
-  <b-container>
-    <b-row>
-      <b-col lg="12" class="text-center">
-        <button @click="onClick" class="btn btn-primary">
-          {{ label }}
-        </button>
-      </b-col>
-    </b-row>
-  </b-container>
+  <div class="mt-5 mb-5" :class="classes">
+    <b-container>
+      <b-row>
+        <b-col cols="12">
+          <img :src="img" class="w-100" alt="" />
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "TestButton",
+  name: "Advert",
   props: {
-    label: {
+    img: {
       type: String,
-      default: "Hello World",
+      default: "",
       required: true
     },
-    primary: {
-      type: Boolean,
-      default: false,
-      required: true
-    }
-  },
-  methods: {
-    onClick() {
-      return "d   gghggg ffg gfigfijfg";
-      // alert("clicked");
+    classes: {
+      type: String,
+      default: ""
     }
   }
 };

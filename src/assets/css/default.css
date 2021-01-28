@@ -1,0 +1,29 @@
+body {
+  font-family: "Nunito", sans-serif !important;
+}
+.mt-20px {
+  margin-top: 20px;
+}
+.mb-20px {
+  margin-bottom: 20px;
+}
+.section-title h3 {
+  color: #333;
+  font-weight: 600;
+}
+.section-title hr {
+  width: 80px;
+  border: 1px solid #333;
+}
+.product-title {
+  font-weight: 600;
+  color: var(--title-color);
+}
+.product-title:hover {
+  color: var(--title-hover-color);
+  text-decoration: none;
+}
+.product-price {
+  color: var(--price-color);
+  font-weight: 600;
+}

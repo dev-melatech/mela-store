@@ -32,15 +32,18 @@ export default {
   props: {
     img1: {
       type: String,
-      default: require("../../../static/images/lander/1.jpg")
+      default: "",
+      required: true
     },
     img2: {
       type: String,
-      default: require("../../../static/images/lander/2.jpg")
+      default: "",
+      required: true
     },
     img3: {
       type: String,
-      default: require("../../../static/images/lander/2.jpg")
+      default: "",
+      required: true
     },
     classes: {
       type: String,

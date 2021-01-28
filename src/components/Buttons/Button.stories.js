@@ -5,24 +5,28 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 
 Vue.use(BootstrapVue);
 
-// import { withKnobs, boolean } from "@storybook/addon-knobs";
-import { action } from "@storybook/addon-actions";
+// import { action } from "@storybook/addon-actions";
 import TestButton from "@/components/Buttons/TestButton";
 
 export default {
   component: TestButton,
-  title: "Components/Button"
+  title: "Components/Button",
+  argTypes: {
+    label: { control: "text" },
+    primary: { control: "boolean" }
+  }
 };
 
-export const regular = () => ({
+// We create a “template” of how args map to rendering
+const Template = (args, { argTypes }) => ({
   components: { TestButton },
-  template: "<TestButton :disabled='disabled' :text='text' @click='click'/>",
-  props: {
-    text: {
-      default: String("Hello World")
-    },
-    methods: {
-      click: action("onClick")
-    }
-  }
+  props: Object.keys(argTypes),
+  template: '<TestButton :primary="primary" :label="label" />'
 });
+
+// Each story then reuses that template
+export const Primary = Template.bind({});
+Primary.args = {
+  primary: true,
+  label: "Primary"
+};
