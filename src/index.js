@@ -5,6 +5,7 @@ import Products from "@/components/Products/Products";
 import ProductCard from "@/components/Products/ProductCard";
 import ProductActions from "@/components/Products/ProductActions";
 
+// bootstrap
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -14,6 +15,7 @@ import "@/assets/css/color-scheme.css";
 
 Vue.use(BootstrapVue);
 
+// fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
@@ -26,6 +28,8 @@ library.add(faHeart);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
+
+// components
 const Components = {
   Lander1,
   TestButton,
