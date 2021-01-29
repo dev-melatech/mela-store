@@ -1,15 +1,22 @@
 <template>
   <div class="mt-5 mb-5" :class="classes">
     <b-container>
-      <b-row>
-        <b-col lg="4" sm="12">
-          <img :src="img1" class="w-100 mb-4" alt="" />
+      <!--dingle view-->
+      <b-row v-if="view === 'single'">
+        <b-col cols="12">
+          <img :src="images[0]" class="w-100" alt="" />
         </b-col>
-        <b-col lg="4" sm="12">
-          <img :src="img2" class="w-100 mb-4" alt="" />
-        </b-col>
-        <b-col lg="4" sm="12">
-          <img :src="img3" class="w-100 mb-4" alt="" />
+      </b-row>
+      <!--triple view-->
+      <b-row v-if="view === 'triple'">
+        <b-col
+          lg="4"
+          md="4"
+          sm="12"
+          v-for="(image, index) in images"
+          :key="index"
+        >
+          <img :src="image" class="w-100 mb-4" alt="" />
         </b-col>
       </b-row>
     </b-container>
@@ -18,26 +25,21 @@
 
 <script>
 export default {
-  name: "Advert2",
+  name: "Advert",
   props: {
-    img1: {
-      type: String,
-      default: "",
-      required: true
-    },
-    img2: {
-      type: String,
-      default: "",
-      required: true
-    },
-    img3: {
-      type: String,
-      default: "",
+    images: {
+      type: Array,
+      default: () => [],
       required: true
     },
     classes: {
       type: String,
       default: ""
+    },
+    view: {
+      type: String,
+      default: "single",
+      required: true
     }
   }
 };

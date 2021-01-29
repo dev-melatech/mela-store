@@ -28,17 +28,16 @@ library.add(faHeart);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
-
 // components
-const Components = {
+const MelaTechComponents = {
   Lander1,
   TestButton,
   Products,
   ProductActions,
   ProductCard
 };
-Object.keys(Components).forEach(name => {
-  Vue.component(name, Components[name]);
+Object.keys(MelaTechComponents).forEach(name => {
+  Vue.component(name, MelaTechComponents[name]);
 });
 
-export default Components;
+export default MelaTechComponents;
