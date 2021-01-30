@@ -23,6 +23,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { faShippingFast } from "@fortawesome/free-solid-svg-icons";
 // regular
 import { faMoneyBillAlt } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -33,6 +35,8 @@ library.add(faEye);
 library.add(faHeart);
 library.add(faLongArrowAltUp);
 library.add(faMoneyBillAlt);
+library.add(faLock);
+library.add(faShippingFast);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

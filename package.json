@@ -1,6 +1,6 @@
 {
-  "name": "MelaTechUI",
-  "version": "0.1.7",
+  "name": "melatech-ui",
+  "version": "0.1.0",
   "private": false,
   "repository": "https://github.com/dev-melatech/MelaTechUI",
   "homepage": "https://dev-melatech.github.io",
@@ -12,8 +12,7 @@
   ],
   "main": "./dist/melatech_ui.common.js",
   "files": [
-    "dist/*",
-    "static/*"
+    "dist/*"
   ],
   "scripts": {
     "serve": "vue-cli-service serve",

@@ -9,32 +9,26 @@ import "@/assets/css/color-scheme.css";
 Vue.use(BootstrapVue);
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faMoneyBillAlt } from "@fortawesome/free-regular-svg-icons";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { faShippingFast } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faShoppingCart);
-library.add(faEye);
-library.add(faHeart);
+library.add(faMoneyBillAlt);
+library.add(faLock);
+library.add(faShippingFast);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
-
-import testData from "../../../testData";
 
 import Info from "@/components/Info/Info";
 
 export default {
   component: Info,
-  title: "E-commerce/Info",
+  title: "E-commerce/Components/Info",
   argTypes: {
-    label: {
-      control: {
-        type: "select",
-        options: ["featured", "new_arrivals", "best_deals"]
-      }
-    },
-    products: { control: "array" }
+    infoData: { control: "array" },
+    backgroundColor: { control: "color" },
+    iconColor: { control: "color" }
   }
 };
 
@@ -42,11 +36,51 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { Info },
   props: Object.keys(argTypes),
-  template: "<Info />"
+  template:
+    '<Info  :info-data="infoData" :background-color="backgroundColor" :icon-color="iconColor"/>'
 });
 
-export const ProductsList = Template.bind({});
-ProductsList.args = {
-  label: "featured",
-  products: testData.setFeaturedProducts()
+export const Default = Template.bind({});
+
+Default.args = {
+  infoData: [
+    {
+      title: "Money Back Guarantee",
+      subText:
+        "There are many variations of passages of Lorem Ipsum available, but the majority",
+      icon: {
+        class: "far",
+        name: "money-bill-alt"
+      }
+    },
+    {
+      title: "Free Shipping",
+      subText:
+        "There are many variations of passages of Lorem Ipsum available, but the majority",
+      icon: {
+        class: "fas",
+        name: "shipping-fast"
+      }
+    },
+    {
+      title: "Secure Payment",
+      subText:
+        "There are many variations of passages of Lorem Ipsum available, but the majority",
+      icon: {
+        class: "fas",
+        name: "lock"
+      }
+    },
+    {
+      title: "24/7 Customer Service",
+      subText:
+        "There are many variations of passages of Lorem Ipsum available, but the majority",
+      icon: {
+        class: "far",
+        name: "money-bill-alt"
+      }
+    }
+  ],
+  backgroundColor: "#ece5e5",
+  iconColor: "#333"
 };
