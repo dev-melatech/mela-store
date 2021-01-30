@@ -24,7 +24,7 @@ import Info from "@/components/Info/Info";
 
 export default {
   component: Info,
-  title: "E-commerce/Components/Info",
+  title: "E-commerce/Info",
   argTypes: {
     infoData: { control: "array" },
     backgroundColor: { control: "color" },
