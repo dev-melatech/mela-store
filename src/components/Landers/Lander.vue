@@ -1,5 +1,5 @@
 <template>
-  <div class="lander-1 mb-3 mt-3" :class="classes">
+  <div class="lander-1 mb-5 mt-5" :class="classes">
     <b-container>
       <b-row>
         <b-col lg="5" md="5">
