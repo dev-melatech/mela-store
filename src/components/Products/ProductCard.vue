@@ -2,7 +2,7 @@
   <div class="product-wrap" :class="classes">
     <div class="position-relative product-img">
       <img :src="product.image_link" alt="" class="w-100" />
-      <product-actions />
+      <product-actions :product="product" />
     </div>
     <div class="product-details mt-2">
       <b-row>
