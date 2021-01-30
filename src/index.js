@@ -3,7 +3,7 @@ import Lander1 from "@/components/Landers/Lander1";
 import TestButton from "@/components/Buttons/TestButton";
 import Products from "@/components/Products/Products";
 import ProductCard from "@/components/Products/ProductCard";
-import ProductActions from "@/components/Products/ProductActions";
+import ProductActions from "@/components/ProductAction/ProductActions";
 
 // bootstrap
 import BootstrapVue from "bootstrap-vue";

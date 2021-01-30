@@ -10,9 +10,11 @@ const testData = {
   setProduct() {
     return {
       id: 1,
-      title: `Item 1`,
+      title: `Sample Item 1`,
       price: 3000,
-      image_link: ImageFile
+      image_link: ImageFile,
+      slug: `sample-item-1`,
+      discount: getRandomIntInclusive(0, 100)
     };
   },
   setProducts() {
