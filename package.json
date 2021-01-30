@@ -1,8 +1,16 @@
 {
-  "name": "components-library-melatech",
+  "name": "MelaTechUI",
   "version": "0.1.7",
   "private": false,
-  "main": "./dist/components_library_melatech.common.js",
+  "repository": "https://github.com/dev-melatech/MelaTechUI",
+  "homepage": "https://dev-melatech.github.io",
+  "contributors": [
+    {
+      "name": "Anthony Akro",
+      "url": "https://github.com/a4anthony"
+    }
+  ],
+  "main": "./dist melatech_ui.common.js",
   "files": [
     "dist/*",
     "static/*"
@@ -10,7 +18,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-bundle": "vue-cli-service build --target lib --name components_library_melatech ./src/index.js",
+    "build-bundle": "vue-cli-service build --target lib --name melatech_ui ./src/index.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "storybook:build": "vue-cli-service storybook:build -c config/storybook",
