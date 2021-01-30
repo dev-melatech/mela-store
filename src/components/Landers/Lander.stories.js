@@ -9,10 +9,10 @@ import imageFile1 from "../../../static/images/lander/1.jpg";
 import imageFile2 from "../../../static/images/lander/2.jpg";
 import imageFile3 from "../../../static/images/lander/2.jpg";
 
-import Lander1 from "@/components/Landers/Lander1";
+import Lander from "@/components/Landers/Lander";
 
 export default {
-  component: Lander1,
+  component: Lander,
   title: "E-commerce/Landers",
   argTypes: {
     img1: { control: "text" },
@@ -23,7 +23,7 @@ export default {
 };
 
 const Template = (args, { argTypes }) => ({
-  components: { Lander1 },
+  components: { Lander },
   props: Object.keys(argTypes),
   template:
     '<Lander1 :img1="img1" :img2="img2" :img3="img3" :classes="classes"/>'

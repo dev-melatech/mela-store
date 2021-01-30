@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Lander1 from "@/components/Landers/Lander1";
+import Lander1 from "@/components/Landers/Lander";
 import TestButton from "@/components/Buttons/TestButton";
 import Products from "@/components/Products/Products";
 import ProductCard from "@/components/Products/ProductCard";
