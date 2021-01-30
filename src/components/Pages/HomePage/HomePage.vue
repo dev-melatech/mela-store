@@ -19,6 +19,7 @@
       :view="advertConfig.advert2.view"
     />
     <products label="best_deals" :products="productsData.best_deals.products" />
+    <scroll-to-top />
   </div>
 </template>
 
@@ -26,13 +27,14 @@
 import Lander from "@/components/Landers/Lander";
 import Products from "@/components/Products/Products";
 import Advert from "@/components/Adverts/Advert";
-
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 export default {
   name: "HomePage",
   components: {
     Lander,
     Products,
-    Advert
+    Advert,
+    ScrollToTop
   },
   props: {
     landerConfig: {

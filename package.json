@@ -1,6 +1,6 @@
 {
   "name": "components-library-melatech",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "private": false,
   "main": "./dist/components_library_melatech.common.js",
   "files": [
@@ -20,17 +20,18 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/vue-fontawesome": "^2.0.2",
-    "@rollup/plugin-buble": "^0.21.3",
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@storybook/addon-knobs": "^6.1.15",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "np": "^7.2.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@storybook/addon-knobs": "^6.1.15",
     "@storybook/addon-actions": "^6.1.15",
     "@storybook/addon-controls": "^6.1.15",
     "@storybook/addon-essentials": "^6.0.26",
