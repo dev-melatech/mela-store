@@ -1,8 +1,16 @@
 {
-  "name": "components-library-melatech",
-  "version": "0.1.4",
+  "name": "MelaTechUI",
+  "version": "0.1.7",
   "private": false,
-  "main": "./dist/components_library_melatech.common.js",
+  "repository": "https://github.com/dev-melatech/MelaTechUI",
+  "homepage": "https://dev-melatech.github.io",
+  "contributors": [
+    {
+      "name": "Anthony Akro",
+      "url": "https://github.com/a4anthony"
+    }
+  ],
+  "main": "./dist melatech_ui.common.js",
   "files": [
     "dist/*",
     "static/*"
@@ -10,7 +18,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-bundle": "vue-cli-service build --target lib --name components_library_melatech ./src/index.js",
+    "build-bundle": "vue-cli-service build --target lib --name melatech_ui ./src/index.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "storybook:build": "vue-cli-service storybook:build -c config/storybook",
@@ -20,17 +28,18 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/vue-fontawesome": "^2.0.2",
-    "@rollup/plugin-buble": "^0.21.3",
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@storybook/addon-knobs": "^6.1.15",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "np": "^7.2.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@storybook/addon-knobs": "^6.1.15",
     "@storybook/addon-actions": "^6.1.15",
     "@storybook/addon-controls": "^6.1.15",
     "@storybook/addon-essentials": "^6.0.26",

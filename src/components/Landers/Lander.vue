@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: "Lander1",
+  name: "Lander",
   props: {
     img1: {
       type: String,

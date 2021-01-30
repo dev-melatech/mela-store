@@ -1,5 +1,5 @@
 <template>
-  <ul class="product-actions-icons">
+  <ul class="product-actions-icons" :class="classes">
     <li>
       <button class="btn">
         <font-awesome-icon :icon="['fas', 'shopping-cart']" />
@@ -23,7 +23,25 @@
 
 <script>
 export default {
-  name: "ProductActions"
+  name: "ProductActions",
+  props: {
+    product: {
+      type: Object,
+      default: () => ({
+        id: 1,
+        title: `Sample Item 1`,
+        price: 3000,
+        image_link: "/image-path",
+        discount: 40,
+        slug: "sample-item-1"
+      }),
+      required: true
+    },
+    classes: {
+      type: String,
+      default: ""
+    }
+  }
 };
 </script>
 

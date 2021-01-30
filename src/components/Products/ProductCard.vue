@@ -1,8 +1,8 @@
 <template>
-  <div class="product-wrap">
+  <div class="product-wrap" :class="classes">
     <div class="position-relative product-img">
       <img :src="product.image_link" alt="" class="w-100" />
-      <product-actions />
+      <product-actions :product="product" />
     </div>
     <div class="product-details mt-2">
       <b-row>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import ProductActions from "@/components/Products/ProductActions";
+import ProductActions from "@/components/ProductAction/ProductActions";
 export default {
   name: "ProductCard",
   components: { ProductActions },
@@ -28,6 +28,10 @@ export default {
       type: Object,
       default: () => {},
       required: true
+    },
+    classes: {
+      type: String,
+      default: ""
     }
   }
 };

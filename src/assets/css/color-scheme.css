@@ -3,4 +3,7 @@
   --price-color: #666 !important;
   --title-color: #333 !important;
   --title-hover-color: #666 !important;
+
+  /*button*/
+  --scroll-to-top-bg-color: #333 !important;
 }
