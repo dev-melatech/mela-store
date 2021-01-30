@@ -10,7 +10,7 @@
       "url": "https://github.com/a4anthony"
     }
   ],
-  "main": "./dist melatech_ui.common.js",
+  "main": "./dist/melatech_ui.common.js",
   "files": [
     "dist/*",
     "static/*"
