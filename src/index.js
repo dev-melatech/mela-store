@@ -8,8 +8,7 @@ import Products from "@/components/Products/Products";
 import ProductCard from "@/components/Products/ProductCard";
 import ProductActions from "@/components/ProductAction/ProductActions";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
-import HomePage from "@/components/Pages/HomePage/HomePage";
-
+import Info from "@/components/Info/Info";
 // Bootstrap
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
@@ -43,7 +42,7 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 // Custom CSS
 import "@/assets/css/default.css";
 import "@/assets/css/color-scheme.css";
-
+import "@/assets/fonts/nunito/stylesheet.css";
 // Components
 const MelaTechUI = {
   Lander,
@@ -53,7 +52,7 @@ const MelaTechUI = {
   ProductCard,
   ScrollToTop,
   Advert,
-  HomePage
+  Info
 };
 
 Object.keys(MelaTechUI).forEach(name => {

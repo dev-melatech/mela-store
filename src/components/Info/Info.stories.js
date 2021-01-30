@@ -3,6 +3,7 @@ import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
+import "@/assets/fonts/nunito/stylesheet.css";
 import "@/assets/css/default.css";
 import "@/assets/css/color-scheme.css";
 
@@ -26,7 +27,8 @@ export default {
   component: Info,
   title: "E-commerce/Info",
   argTypes: {
-    infoData: { control: "array" },
+    // infoData: { control: "array" },
+    infoData: { table: { expanded: true } },
     backgroundColor: { control: "color" },
     iconColor: { control: "color" }
   }
@@ -37,7 +39,7 @@ const Template = (args, { argTypes }) => ({
   components: { Info },
   props: Object.keys(argTypes),
   template:
-    '<Info  :info-data="infoData" :background-color="backgroundColor" :icon-color="iconColor"/>'
+    '<Info  :info-data="infoData" :background-color="backgroundColor" :icon-color="iconColor" :classes="classes"/>'
 });
 
 export const Default = Template.bind({});
