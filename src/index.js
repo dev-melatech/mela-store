@@ -41,7 +41,7 @@ import "@/assets/css/default.css";
 import "@/assets/css/color-scheme.css";
 
 // Components
-const MelaTechComponents = {
+const MelaTechUI = {
   Lander,
   TestButton,
   Products,
@@ -52,8 +52,8 @@ const MelaTechComponents = {
   HomePage
 };
 
-Object.keys(MelaTechComponents).forEach(name => {
-  Vue.component(name, MelaTechComponents[name]);
+Object.keys(MelaTechUI).forEach(name => {
+  Vue.component(name, MelaTechUI[name]);
 });
 
-export default MelaTechComponents;
+export default MelaTechUI;
