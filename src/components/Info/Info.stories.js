@@ -27,10 +27,37 @@ export default {
   component: Info,
   title: "E-commerce/Info",
   argTypes: {
-    // infoData: { control: "array" },
-    infoData: { table: { expanded: true } },
+    data: {
+      table: {
+        defaultValue: {
+          summary: "See default json structure",
+          detail:
+            "[\n" +
+            "    {\n" +
+            '      title: "24/7 Customer Service",\n' +
+            "      subText:\n" +
+            '        "There are many variations of passages of Lorem Ipsum available, but the majority",\n' +
+            "      icon: {\n" +
+            '        class: "far",\n' +
+            '        name: "money-bill-alt"\n' +
+            "      }\n" +
+            "    }\n" +
+            "]"
+        }
+      },
+      control: {
+        type: null
+      }
+    },
     backgroundColor: { control: "color" },
     iconColor: { control: "color" }
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: '_```import Info from "melatech_ui"```_'
+      }
+    }
   }
 };
 
@@ -39,13 +66,13 @@ const Template = (args, { argTypes }) => ({
   components: { Info },
   props: Object.keys(argTypes),
   template:
-    '<Info  :info-data="infoData" :background-color="backgroundColor" :icon-color="iconColor" :classes="classes"/>'
+    '<Info  :data="data" :background-color="backgroundColor" :icon-color="iconColor" :classes="classes"/>'
 });
 
 export const Default = Template.bind({});
 
 Default.args = {
-  infoData: [
+  data: [
     {
       title: "Money Back Guarantee",
       subText:

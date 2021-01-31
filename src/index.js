@@ -3,7 +3,6 @@ import Vue from "vue";
 // Components
 import Lander from "@/components/Landers/Lander";
 import Advert from "@/components/Adverts/Advert";
-import TestButton from "@/components/Buttons/TestButton";
 import Products from "@/components/Products/Products";
 import ProductCard from "@/components/Products/ProductCard";
 import ProductActions from "@/components/ProductAction/ProductActions";
@@ -46,7 +45,6 @@ import "@/assets/fonts/nunito/stylesheet.css";
 // Components
 const MelaTechUI = {
   Lander,
-  TestButton,
   Products,
   ProductActions,
   ProductCard,

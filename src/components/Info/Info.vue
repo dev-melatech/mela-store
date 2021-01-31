@@ -2,7 +2,7 @@
   <div class="info mt-5 mb-5 text-center" :class="classes">
     <b-container>
       <b-row>
-        <b-col lg="3" md="6" v-for="(info, index) in infoData" :key="index">
+        <b-col lg="3" md="6" v-for="(info, index) in data" :key="index">
           <div class="info-section mb-3" :class="'info-section-' + (index + 1)">
             <div
               class="info-icon-box"
@@ -27,7 +27,7 @@
 export default {
   name: "Info",
   props: {
-    infoData: {
+    data: {
       type: Array,
       default: () => [
         {
