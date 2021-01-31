@@ -1,16 +1,46 @@
 <template>
-  <button>
-    Hello
-  </button>
+  <div id="melatech_ui_footer" :class="classes">
+    <footer>
+      <div class="footer-top">
+        <slot></slot>
+      </div>
+      <div class="footer-bottom text-center">
+        <b-container>
+          <b-row>
+            <b-col cols="12">
+              <p>©{{ new Date().getFullYear() }} {{ copyrightText }}</p>
+            </b-col>
+          </b-row>
+        </b-container>
+      </div>
+    </footer>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Button"
+  name: "FooterBar",
+  props: {
+    copyrightText: {
+      type: String,
+      default: "Your Website Name All Right Reserved"
+    },
+    classes: {
+      type: String,
+      default: ""
+    }
+  }
 };
 </script>
 
 <style scoped>
+.footer-top {
+  background-color: #f8f6f6;
+  padding: 80px 0 0 0;
+}
+.footer-bottom {
+  padding: 20px 0;
+}
 /* (1366x768) WXGA Display */
 
 @media screen and (min-width: 1366px) and (max-width: 1919px) {

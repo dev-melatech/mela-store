@@ -1,6 +1,6 @@
 {
-  "name": "MelaTechUI",
-  "version": "0.1.7",
+  "name": "melatech-ui",
+  "version": "0.1.0",
   "private": false,
   "repository": "https://github.com/dev-melatech/MelaTechUI",
   "homepage": "https://dev-melatech.github.io",
@@ -10,10 +10,9 @@
       "url": "https://github.com/a4anthony"
     }
   ],
-  "main": "./dist melatech_ui.common.js",
+  "main": "./dist/melatech_ui.common.js",
   "files": [
-    "dist/*",
-    "static/*"
+    "dist/*"
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -23,6 +22,7 @@
     "lint": "vue-cli-service lint",
     "storybook:build": "vue-cli-service storybook:build -c config/storybook",
     "storybook:serve": "vue-cli-service storybook:serve -p 6007 -c config/storybook",
+    "storybook-docs": "vue-cli-service storybook:build --docs -c config/storybook",
     "release": "np --any-branch --no-2fa"
   },
   "dependencies": {
@@ -34,7 +34,8 @@
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "np": "^7.2.0",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.1"
   },
   "devDependencies": {
     "@rollup/plugin-buble": "^0.21.3",

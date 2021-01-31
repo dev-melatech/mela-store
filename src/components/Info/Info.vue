@@ -1,11 +1,14 @@
 <template>
-  <div class="info mt-5 mb-5 text-center">
+  <div class="info mt-5 mb-5 text-center" :class="classes">
     <b-container>
       <b-row>
-        <b-col lg="3" md="6" v-for="(info, index) in infos" :key="index">
+        <b-col lg="3" md="6" v-for="(info, index) in data" :key="index">
           <div class="info-section mb-3" :class="'info-section-' + (index + 1)">
-            <div class="info-icon-box">
-              <font-awesome-icon :icon="['far', 'money-bill-alt']" />
+            <div
+              class="info-icon-box"
+              :style="{ backgroundColor: backgroundColor, color: iconColor }"
+            >
+              <font-awesome-icon :icon="[info.icon.class, info.icon.name]" />
             </div>
             <span class="info-title d-block mb-1">
               {{ info.title }}
@@ -23,31 +26,61 @@
 <script>
 export default {
   name: "Info",
-  data() {
-    return {
-      infos: [
+  props: {
+    data: {
+      type: Array,
+      default: () => [
         {
           title: "Money Back Guarantee",
           subText:
-            "There are many variations of passaes of Lorem Ipsum available, but the majority"
+            "There are many variations of passages of Lorem Ipsum available, but the majority",
+          icon: {
+            class: "far",
+            name: "money-bill-alt"
+          }
         },
         {
-          title: "Money Back Guarantee",
+          title: "Free Shipping",
           subText:
-            "There are many variations of passaes of Lorem Ipsum available, but the majority"
+            "There are many variations of passages of Lorem Ipsum available, but the majority",
+          icon: {
+            class: "fas",
+            name: "shipping-fast"
+          }
         },
         {
-          title: "Money Back Guarantee",
+          title: "Secure Payment",
           subText:
-            "There are many variations of passaes of Lorem Ipsum available, but the majority"
+            "There are many variations of passages of Lorem Ipsum available, but the majority",
+          icon: {
+            class: "fas",
+            name: "lock"
+          }
         },
         {
-          title: "Money Back Guarantee",
+          title: "24/7 Customer Service",
           subText:
-            "There are many variations of passaes of Lorem Ipsum available, but the majority"
+            "There are many variations of passages of Lorem Ipsum available, but the majority",
+          icon: {
+            class: "far",
+            name: "money-bill-alt"
+          }
         }
-      ]
-    };
+      ],
+      required: true
+    },
+    backgroundColor: {
+      type: String,
+      default: ""
+    },
+    iconColor: {
+      type: String,
+      default: ""
+    },
+    classes: {
+      type: String,
+      default: ""
+    }
   }
 };
 </script>
@@ -64,6 +97,7 @@ export default {
   background: pink;
   border-radius: 50%;
   margin: 0 auto 10px auto;
+  line-height: 70px;
 }
 .info-title {
   font-weight: 700;

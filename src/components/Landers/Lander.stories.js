@@ -26,7 +26,7 @@ const Template = (args, { argTypes }) => ({
   components: { Lander },
   props: Object.keys(argTypes),
   template:
-    '<Lander1 :img1="img1" :img2="img2" :img3="img3" :classes="classes"/>'
+    '<Lander :img1="img1" :img2="img2" :img3="img3" :classes="classes"/>'
 });
 
 // Each story then reuses that template

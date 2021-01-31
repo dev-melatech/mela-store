@@ -17,7 +17,7 @@ import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 
 export default {
   component: ScrollToTop,
-  title: "E-commerce/ScrollToTop",
+  title: "E-commerce/Scroll To Top",
   argTypes: {}
 };
 

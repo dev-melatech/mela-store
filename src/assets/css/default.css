@@ -30,3 +30,31 @@ body {
   color: var(--price-color);
   font-weight: 600;
 }
+
+/*=======================================
+ Start MelaTechUI Footer
+========================================*/
+#melatech_ui_footer {
+  font-size: 15px;
+}
+#melatech_ui_footer h2,
+.melatech_ui_footer_widget h2 {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 15px;
+  color: #666;
+}
+#melatech_ui_footer a,
+.melatech_ui_footer_widget a {
+  color: #333;
+}
+#melatech_ui_footer a:hover,
+.melatech_ui_footer_widget a:hover {
+  color: #666;
+  text-decoration: none;
+}
+/*=======================================
+ End MelaTechUI Footer
+========================================*/

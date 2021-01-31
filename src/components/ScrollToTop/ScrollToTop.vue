@@ -59,11 +59,11 @@ export default {
   right: 40px;
   background: var(--scroll-to-top-bg-color);
   opacity: 0.85;
-  color: #ffff;
+  color: #ffff !important;
   padding: 15px 15px;
 }
 .scroll-to-top--btn:hover {
-  opacity: 1;
+  background: var(--scroll-to-top-hover-bg-color);
 }
 /* (1366x768) WXGA Display */
 @media screen and (min-width: 1366px) and (max-width: 1919px) {
