@@ -1,7 +1,8 @@
 <template>
-  <div class="footer-widget footer-logo">
-    <p v-if="socialText">
-      {{ socialText }}
+  <div class="footer-widget footer-logo" :class="classes">
+    <h2>{{ label }}</h2>
+    <p>
+      {{ labelText }}
     </p>
     <ul class="social-icon d-flex">
       <li v-for="(link, index) in data" :key="index">
@@ -49,26 +50,25 @@ export default {
       default: () => [
         {
           social_key: "facebook",
-          link: ""
+          link: "https://social.com"
         },
         {
           social_key: "twitter",
-          link: ""
+          link: "https://social.com"
         },
         {
           social_key: "linkedin",
-          link: ""
+          link: "https://social.com"
         },
         {
           social_key: "google_plus",
-          link: ""
+          link: "https://social.com"
         },
         {
           social_key: "instagram",
-          link: ""
+          link: "https://social.com"
         }
-      ],
-      required: true
+      ]
     },
     backgroundColor: {
       type: String,
@@ -78,9 +78,14 @@ export default {
       type: String,
       default: "#fff"
     },
-    socialText: {
+    label: {
       type: String,
-      default: ""
+      default: "Follow Us"
+    },
+    labelText: {
+      type: String,
+      default:
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from"
     },
     classes: {
       type: String,

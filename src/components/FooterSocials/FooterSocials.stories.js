@@ -1,11 +1,11 @@
 import FooterSocials from "@/components/FooterSocials/FooterSocials";
 export default {
   component: FooterSocials,
-  title: "E-commerce/Footer Socials",
+  title: "E-commerce/Footer/Socials",
   argTypes: {
     data: {
       table: {
-        defaultValue: {
+        type: {
           summary: "See default json structure",
           detail:
             "[\n" +
@@ -23,10 +23,11 @@ export default {
         "\n\n " +
         "'facebook', 'twitter', 'linkedin', 'google_plus', 'instagram'"
     },
-    backgroundColor: { control: "color" },
-    iconColor: { control: "color" },
-    socialText: { control: "text" },
-    classes: { control: "text" }
+    backgroundColor: { control: null },
+    iconColor: { control: null },
+    label: { control: null },
+    labelText: { control: null },
+    classes: { control: null }
   },
   parameters: {
     docs: {
@@ -41,38 +42,11 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { FooterSocials },
   props: Object.keys(argTypes),
-  template:
-    '<FooterSocials :social-text="socialText" :data="data" :background-color="backgroundColor" :icon-color="iconColor" :classes="classes"/>'
+  template: "<FooterSocials/>"
 });
 
 // Each story then reuses that template
 export const Default = Template.bind({});
 Default.args = {
-  data: [
-    {
-      social_key: "facebook",
-      link: "https://social_link.com"
-    },
-    {
-      social_key: "twitter",
-      link: "https://social_link.com"
-    },
-    {
-      social_key: "linkedin",
-      link: "https://social_link.com"
-    },
-    {
-      social_key: "google_plus",
-      link: "https://social_link.com"
-    },
-    {
-      social_key: "instagram",
-      link: "https://social_link.com"
-    }
-  ],
-  backgroundColor: "#999",
-  iconColor: "#fff",
-  socialText:
-    "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from",
-  classes: ""
+  data: []
 };
