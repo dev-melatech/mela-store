@@ -72,7 +72,7 @@ export default {
     },
     backgroundColor: {
       type: String,
-      default: "#999"
+      default: "#333"
     },
     iconColor: {
       type: String,
@@ -111,7 +111,7 @@ export default {
   border-radius: 50%;
   text-align: center;
   display: block;
-  background: #999;
+  background: #333;
   color: #fff;
   font-size: 12px;
 }
