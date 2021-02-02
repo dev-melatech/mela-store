@@ -1,7 +1,28 @@
 body {
   font-family: "Nunito", sans-serif !important;
 }
-.mt-20px {
+
+.btn:focus,
+select:focus,
+.navbar-search--input:focus,
+button:focus,
+input:focus {
+  outline: none !important;
+  box-shadow: 0 0 0.2rem 0.05rem rgba(34, 34, 34, 0.4) !important;
+  -webkit-box-shadow: none !important;
+}
+
+.btn:active,
+select:active,
+.navbar-search--input:active,
+button:active,
+input:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.form-control .mt-20px {
   margin-top: 20px;
 }
 .mb-20px {
@@ -32,7 +53,19 @@ body {
 }
 
 /*=======================================
- Start MelaTechUI Footer
+ 1. Start MelaTechUI NavBar
+========================================*/
+.melatech_ui_navbar svg path {
+  stroke-width: 20px !important;
+  stroke: #333 !important;
+}
+
+/*=======================================
+ End MelaTechUI Footer
+========================================*/
+
+/*=======================================
+ 2. Start MelaTechUI NavBar
 ========================================*/
 #melatech_ui_footer {
   font-size: 15px;

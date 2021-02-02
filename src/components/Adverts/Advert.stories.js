@@ -1,10 +1,3 @@
-import Vue from "vue";
-import BootstrapVue from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-
-Vue.use(BootstrapVue);
-
 import Advert from "@/components/Adverts/Advert";
 import imageFile1 from "../../../static/images/adverts/1.jpg";
 import imageFile2 from "../../../static/images/adverts/2.jpg";
@@ -19,7 +12,16 @@ export default {
         options: ["single", "triple"]
       }
     },
-    images: { control: "array" }
+    singleViewImage: { control: null },
+    tripleViewImages: { control: null },
+    classes: { control: null }
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: '_```import Advert from "melatech_ui"```_'
+      }
+    }
   }
 };
 
@@ -27,18 +29,15 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { Advert },
   props: Object.keys(argTypes),
-  template: '<Advert :images="images" :view="view"/>'
+  template:
+    '<Advert :single-view-image="singleViewImage" :triple-view-images="tripleViewImages" :view="view" :classes="classes"/>'
 });
 
 // Each story then reuses that template
-export const SingleView = Template.bind({});
-SingleView.args = {
+export const Default = Template.bind({});
+Default.args = {
   view: "single",
-  images: [imageFile1]
-};
-
-export const TripleView = Template.bind({});
-TripleView.args = {
-  view: "triple",
-  images: [imageFile2, imageFile2, imageFile2]
+  singleViewImage: imageFile1,
+  tripleViewImages: [imageFile2, imageFile2, imageFile2],
+  classes: ""
 };
