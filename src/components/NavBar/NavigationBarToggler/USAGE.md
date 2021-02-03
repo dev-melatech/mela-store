@@ -1,15 +1,12 @@
-### Usages
-Buttons allow users to take actions, and make choices, with a single tap. Supports all default HTML Button properties. See Material Design Button for UI/UX information.
+### Usage
 
-Button variants could be imported separately.
+This is the navbar side menu toggle button.
 
 ```js
 import NavBarToggler from "melatech_ui";
+
+<NavBarToggler/>
 ```
 <br>
 <!-- STORY -->
 
-<!-- SOURCE -->
-
-<br>
-<!-- PROPS -->

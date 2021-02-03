@@ -1,5 +1,5 @@
 <template>
-  <b-button @click="toggleMenu" class="toggle-navbar">
+  <b-button @click="onToggleMenu" class="melatech-ui-navbar-toggle-navbar">
     <font-awesome-icon v-if="isOpen" :icon="['fas', 'times']" />
     <font-awesome-icon v-else :icon="['fas', 'bars']" />
   </b-button>
@@ -14,20 +14,24 @@ export default {
       default: false
     }
   },
+  emits: ["click", "toggle-menu"],
   methods: {
-    toggleMenu() {
-      this.$emit("toggle-menu", !this.isOpen);
+    onToggleMenu() {
+      this.$emit("click", !this.isOpen);
     }
   }
 };
 </script>
 
 <style scoped>
-.toggle-navbar {
+.melatech-ui-navbar-toggle-navbar {
   background: none !important;
   border: none !important;
   color: #333 !important;
   width: 40px;
+}
+.melatech-ui-navbar-toggle-navbar:hover {
+  color: #666 !important;
 }
 /* (1366x768) WXGA Display */
 
