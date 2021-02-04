@@ -53,23 +53,38 @@ export default {
 /* Normal desktop :991px. */
 
 @media (min-width: 768px) and (max-width: 991px) {
+  .count-circle {
+    font-size: 1.4vw;
+  }
 }
 
 /* small mobile :576px. */
 
 @media (min-width: 576px) and (max-width: 767px) {
+  .count-circle {
+    font-size: 2.8vw;
+  }
 }
 
 /* extra small mobile 320px. */
 
 @media (max-width: 575px) {
+  .count-circle {
+    font-size: 2.8vw;
+  }
 }
 
 /* Large Mobile :480px. */
 
 @media only screen and (min-width: 480px) and (max-width: 575px) {
+  .count-circle {
+    font-size: 2.8vw;
+  }
 }
 
 @media only screen and (max-width: 575px) and (min-width: 480px) {
+  .count-circle {
+    font-size: 1.8vw;
+  }
 }
 </style>

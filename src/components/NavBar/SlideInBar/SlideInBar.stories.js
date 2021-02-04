@@ -1,11 +1,11 @@
-import NavBarToggler from "@/components/NavBar/NavigationBarToggler/NavBarToggler";
+import SlideInBar from "@/components/NavBar/SlideInBar/SlideInBar";
 import Usage from "@/components/NavBar/NavigationBarToggler/USAGE.md";
 import { boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 
 export default {
-  component: NavBarToggler,
-  title: "E-commerce/NavBar/NavBar Toggler",
+  component: SlideInBar,
+  title: "E-commerce/NavBar/Slide In Bar",
   parameters: {
     previewTabs: {
       "storybook/docs/panel": {
@@ -20,21 +20,25 @@ export default {
     readme: {
       content: "",
       sidebar: Usage,
-      codeTheme: "atom-dark",
-      includePropTables: [NavBarToggler]
+      codeTheme: "atom-dark"
     }
   }
 };
 
 // We create a “template” of how args map to rendering
 const Template = () => ({
-  components: { NavBarToggler },
+  components: { SlideInBar },
   props: {
     isOpen: {
       default: boolean("isOpen", false)
     }
   },
-  template: '<NavBarToggler @click="onToggleMenu" />',
+  template:
+    '<SlideInBar title="Wishlist" classes="melatech-ui-slide-in-bar-in" @click="onToggleMenu" > ' +
+    "<template v-slot:cart-total>" +
+    "<p>Here might be a page title KKFKFKFK</p>" +
+    "</template>" +
+    "</SlideInBar>",
   methods: {
     onToggleMenu: action("toggle-menu")
   }

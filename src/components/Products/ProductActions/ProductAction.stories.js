@@ -5,8 +5,8 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 
 Vue.use(BootstrapVue);
 
-import ProductActions from "@/components/ProductAction/ProductActions";
-import testData from "../../../testData";
+import ProductActions from "@/components/Products/ProductActions/ProductActions";
+import testData from "../../../../testData";
 
 export default {
   component: ProductActions,

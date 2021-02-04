@@ -1,22 +1,53 @@
 <template>
-  <ul class="product-actions-icons" :class="classes">
-    <li>
+  <ul class="melatech-ui-product-actions-icons" :class="classes">
+    <!--decrease cart quantity-->
+    <li class="float-left" v-if="!hideCartQuantityAdjust">
+      <button class="btn">
+        <font-awesome-icon :icon="['fas', 'minus']" />
+      </button>
+      <span class="sr-only">Add to cart</span>
+    </li>
+    <!--cart quantity-->
+    <li
+      class="float-left cart-quantity text-center"
+      v-if="!hideCartQuantityAdjust"
+    >
+      <span>1</span>
+    </li>
+    <!--increase cart quantity-->
+    <li class="float-left" v-if="!hideCartQuantityAdjust">
+      <button class="btn">
+        <font-awesome-icon :icon="['fas', 'plus']" />
+      </button>
+      <span class="sr-only">Add to cart</span>
+    </li>
+    <!--cart button-->
+    <li v-if="!hideCartButton">
       <button class="btn">
         <font-awesome-icon :icon="['fas', 'shopping-cart']" />
       </button>
       <span class="sr-only">Add to cart</span>
     </li>
-    <li>
+    <!--fav button-->
+    <li v-if="!hideFavouriteButton">
       <button class="btn">
         <font-awesome-icon :icon="['fas', 'heart']" />
       </button>
       <span class="sr-only">Add to Wishlist</span>
     </li>
-    <li>
+    <!--preview button-->
+    <li v-if="!hidePreviewButton">
       <button class="btn">
         <font-awesome-icon :icon="['fas', 'eye']" />
       </button>
       <span class="sr-only">Quick View</span>
+    </li>
+    <!--delete button-->
+    <li v-if="!hideDeleteButton">
+      <button class="btn">
+        <font-awesome-icon :icon="['fas', 'trash-alt']" />
+      </button>
+      <span class="sr-only">Trash</span>
     </li>
   </ul>
 </template>
@@ -37,6 +68,26 @@ export default {
       }),
       required: true
     },
+    hideCartButton: {
+      type: Boolean,
+      default: false
+    },
+    hideFavouriteButton: {
+      type: Boolean,
+      default: false
+    },
+    hidePreviewButton: {
+      type: Boolean,
+      default: false
+    },
+    hideDeleteButton: {
+      type: Boolean,
+      default: false
+    },
+    hideCartQuantityAdjust: {
+      type: Boolean,
+      default: true
+    },
     classes: {
       type: String,
       default: ""
@@ -46,7 +97,7 @@ export default {
 </script>
 
 <style scoped>
-.product-actions-icons {
+.melatech-ui-product-actions-icons {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -56,11 +107,27 @@ export default {
   text-align: center;
   z-index: 99;
 }
-.product-actions-icons li {
+.melatech-ui-product-actions-icons .cart-quantity {
+  line-height: 30px;
+  width: 50px;
+}
+.from-slide-in-bar.melatech-ui-product-actions-icons {
+  position: relative;
+  text-align: right;
+  left: 0;
+  bottom: 10px;
+}
+.from-slide-in-bar.melatech-ui-product-actions-icons li {
+  /*border: 1px solid;*/
+}
+.from-slide-in-bar.melatech-ui-product-actions-icons li button {
+  border: 1px solid;
+}
+.melatech-ui-product-actions-icons li {
   display: inline-block;
 }
 
-.product-actions-icons li button {
+.melatech-ui-product-actions-icons li button {
   display: block;
   width: 30px;
   height: 30px;
@@ -75,7 +142,7 @@ export default {
   font-size: 12px;
   margin: 0 2px;
 }
-.product-actions-icons li button:hover {
+.melatech-ui-product-actions-icons li button:hover {
   background: #999;
   color: #fff;
 }

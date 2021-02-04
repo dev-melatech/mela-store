@@ -1,4 +1,6 @@
 :root {
+  --default-color: #2353ab !important;
+
   /*products*/
   --price-color: #666 !important;
   --title-color: #333 !important;
@@ -7,4 +9,7 @@
   /*button*/
   --scroll-to-top-bg-color: #333 !important;
   --scroll-to-top-hover-bg-color: #666 !important;
+
+  /*borders*/
+  --border-color: #ece9e9 !important;
 }

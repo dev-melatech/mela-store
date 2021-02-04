@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import ProductActions from "@/components/ProductAction/ProductActions";
+import ProductActions from "@/components/Products/ProductActions/ProductActions";
 export default {
   name: "ProductCard",
   components: { ProductActions },

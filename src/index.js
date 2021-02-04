@@ -5,7 +5,7 @@ import Lander from "@/components/Landers/Lander";
 import Advert from "@/components/Adverts/Advert";
 import Products from "@/components/Products/Products";
 import ProductCard from "@/components/Products/ProductCard";
-import ProductActions from "@/components/ProductAction/ProductActions";
+import ProductActions from "@/components/Products/ProductActions/ProductActions";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import Info from "@/components/Info/Info";
 // Bootstrap

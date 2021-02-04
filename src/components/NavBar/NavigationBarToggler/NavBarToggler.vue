@@ -14,7 +14,7 @@ export default {
       default: false
     }
   },
-  emits: ["click", "toggle-menu"],
+  emits: ["click", ""],
   methods: {
     onToggleMenu() {
       this.$emit("click", !this.isOpen);
