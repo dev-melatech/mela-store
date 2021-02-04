@@ -18,10 +18,14 @@
         >
         <product-actions
           :hide-cart-button="label === 'Cart'"
-          :hide-favourite-button="label === 'Favourites'"
+          hide-favourite-button
           hide-preview-button
           :hide-cart-quantity-adjust="label === 'Cart' ? false : true"
           :product="product"
+          @increase-cart-quantity="increaseCartQuantity"
+          @decrease-cart-quantity="decreaseCartQuantity"
+          @delete-product="deleteProduct"
+          @move-to-cart="moveToCart"
           classes="from-slide-in-bar mt-4"
         />
       </div>
@@ -44,6 +48,23 @@ export default {
       type: String,
       default: "",
       required: true
+    }
+  },
+  methods: {
+    deleteProduct(product) {
+      this.$emit("delete-product", {
+        product: product,
+        origin: this.label
+      });
+    },
+    increaseCartQuantity(product) {
+      this.$emit("increase-cart-quantity", product);
+    },
+    decreaseCartQuantity(product) {
+      this.$emit("decrease-cart-quantity", product);
+    },
+    moveToCart(product) {
+      this.$emit("move-to-cart", product);
     }
   }
 };

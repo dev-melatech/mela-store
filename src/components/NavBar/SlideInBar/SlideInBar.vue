@@ -8,12 +8,14 @@
       classes
     ]"
   >
+    <!--slide in bar header-->
     <div class="header b-radius" ref="melatechUiSideMenuHeader">
       <button class="btn close-slide-in-bar--btn mr-3" @click="onToggleMenu">
         <font-awesome-icon :icon="['fas', 'chevron-right']" />
       </button>
       {{ title }}
     </div>
+    <!--slide in bar content-->
     <div
       class="content mt-3"
       :class="[
@@ -21,43 +23,23 @@
         title === 'Favourites' ? 'favourites' : ''
       ]"
     >
-      <products-list :label="title" :products="products">
-        <template v-slot:item="{ item }">
-          <div>
-            <slot name="product-link" :item="item"></slot>
-          </div>
-        </template>
-      </products-list>
+      <slot v-if="title === 'Cart'" name="shopping-cart"></slot>
+      <slot v-if="title === 'Favourites'" name="favourites"></slot>
     </div>
     <!--slide in bar footer-->
     <div class="footer" ref="melatechUiSideMenuFooter">
-      <!--proceed to checkout button-->
-      <button
-        v-if="title === 'Cart'"
-        class="btn proceed-to-checkout--btn w-100"
-      >
-        Proceed to checkout (${{ cartTotal }})
-      </button>
-      <!--empty favourites button-->
-      <button v-if="title === 'Favourites'" class="btn empty-cart--btn w-100">
-        <font-awesome-icon :icon="['fas', 'trash-alt']" />
-        Empty Favourites
-      </button>
-      <!--empty cart button-->
-      <button v-else class="btn empty-cart--btn w-100 mt-3">
-        <font-awesome-icon :icon="['fas', 'trash-alt']" />
-        Empty Cart
-      </button>
+      <slot v-if="title === 'Cart'" name="shopping-cart-footer"></slot>
+      <slot v-if="title === 'Favourites'" name="favourites-footer"></slot>
     </div>
   </div>
 </template>
 
 <script>
-import ProductsList from "@/components/Products/ProductsList/ProductsList";
+// import ProductsList from "@/components/Products/ProductsList/ProductsList";
 
 export default {
   name: "SlideInBar",
-  components: { ProductsList },
+  components: {},
   props: {
     products: {
       type: Array,
@@ -104,7 +86,7 @@ export default {
   },
   methods: {
     onToggleMenu() {
-      this.$emit("click", !this.isOpen);
+      this.$emit("click", "");
     }
   }
 };
@@ -166,7 +148,7 @@ export default {
 .close-slide-in-bar--btn {
   border-radius: 50px;
   background: white;
-
+  color: #666;
   padding: 3px 10px;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(235, 217, 235, 1);
   -moz-box-shadow: 0px 0px 5px 0px rgba(235, 217, 235, 1);

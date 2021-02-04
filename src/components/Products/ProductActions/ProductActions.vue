@@ -2,7 +2,7 @@
   <ul class="melatech-ui-product-actions-icons" :class="classes">
     <!--decrease cart quantity-->
     <li class="float-left" v-if="!hideCartQuantityAdjust">
-      <button class="btn">
+      <button class="btn" @click="$emit('decrease-cart-quantity', product)">
         <font-awesome-icon :icon="['fas', 'minus']" />
       </button>
       <span class="sr-only">Add to cart</span>
@@ -16,14 +16,14 @@
     </li>
     <!--increase cart quantity-->
     <li class="float-left" v-if="!hideCartQuantityAdjust">
-      <button class="btn">
+      <button class="btn" @click="$emit('increase-cart-quantity', product)">
         <font-awesome-icon :icon="['fas', 'plus']" />
       </button>
       <span class="sr-only">Add to cart</span>
     </li>
     <!--cart button-->
     <li v-if="!hideCartButton">
-      <button class="btn">
+      <button class="btn" @click="$emit('move-to-cart', product)">
         <font-awesome-icon :icon="['fas', 'shopping-cart']" />
       </button>
       <span class="sr-only">Add to cart</span>
@@ -44,7 +44,7 @@
     </li>
     <!--delete button-->
     <li v-if="!hideDeleteButton">
-      <button class="btn">
+      <button class="btn" @click="$emit('delete-product', product)">
         <font-awesome-icon :icon="['fas', 'trash-alt']" />
       </button>
       <span class="sr-only">Trash</span>

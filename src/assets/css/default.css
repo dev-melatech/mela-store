@@ -72,7 +72,7 @@ input:active {
 /*=======================================
  1. Start MelaTechUI NavBar
 ========================================*/
-.melatech_ui_navbar svg path {
+.melatech-ui-navbar svg path {
   stroke-width: 20px !important;
   stroke: transparent !important;
 }

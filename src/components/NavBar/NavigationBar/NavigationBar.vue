@@ -1,7 +1,7 @@
 <template>
   <b-navbar
     toggleable="lg"
-    class="melatech_ui_navbar melatech-ui-navbar"
+    class="melatech-ui-navbar"
     type="dark"
     sticky
     variant="info"
@@ -36,25 +36,75 @@
       <nav-bar-search classes="d-md-none mt-3" />
     </b-container>
     <!--side menu-->
-    <side-menu :is-open="isOpen" @click="toggleMenu" />
+    <side-menu :is-open="isOpen" @click="toggleSlideInBar" />
     <!--slide in bar-->
     <slide-in-bar
       :products="products"
       ref="melatechUiSlideInBar"
       :title="slideInTitle"
       :is-open="isSlideInOpen"
-      @click="toggleMenu"
+      @click="toggleSlideInBar"
     >
-      <!--item link slot-->
-      <template v-slot:product-link="{ item }">
-        <a :href="item.link" class="melatech-ui-product-title">{{
-          item.title
-        }}</a>
+      <!---------------------------------------------------------------------------
+                                      CART SLOTS
+      ----------------------------------------------------------------------------->
+      <template v-slot:shopping-cart>
+        <shopping-cart
+          :products="products"
+          label="Cart"
+          @proceed-to-checkout="proceedToCheckout"
+          @empty-cart="emptyCart"
+          @increase-cart-quantity="increaseCartQuantity"
+          @decrease-cart-quantity="decreaseCartQuantity"
+          @delete-product="deleteProductFromCart"
+        >
+          <!--item link slot-->
+          <template v-slot:product-link="{ item }">
+            <a :href="item.link" class="melatech-ui-product-title">{{
+              item.title
+            }}</a>
+          </template>
+        </shopping-cart>
       </template>
-      <!--cart total slot-->
-      <!--<template v-slot:cart-total>-->
-      <!--  <h1>Here might be a page title</h1>-->
-      <!--</template>-->
+      <template v-slot:shopping-cart-footer>
+        <!--proceed to checkout button-->
+        <button
+          class="btn proceed-to-checkout--btn w-100"
+          @click="proceedToCheckout"
+        >
+          Proceed to checkout ($4,000)
+        </button>
+        <!--empty cart button-->
+        <button class="btn empty-cart--btn w-100 mt-3" @click="emptyCart">
+          <font-awesome-icon :icon="['fas', 'trash-alt']" />
+          Empty Cart
+        </button>
+      </template>
+      <!---------------------------------------------------------------------------
+                                    FAVOURITES SLOTS
+      ----------------------------------------------------------------------------->
+      <template v-slot:favourites>
+        <favourites
+          :products="products"
+          label="Favourites"
+          @delete-product="deleteProductFromFavourites"
+          @move-to-cart="moveToCart"
+        >
+          <!--item link slot-->
+          <template v-slot:product-link="{ item }">
+            <a :href="item.link" class="melatech-ui-product-title">{{
+              item.title
+            }}</a>
+          </template>
+        </favourites>
+      </template>
+      <template v-slot:favourites-footer>
+        <!--empty favourites button-->
+        <button class="btn empty-cart--btn w-100" @click="emptyFavourites">
+          <font-awesome-icon :icon="['fas', 'trash-alt']" />
+          Empty Favourites
+        </button>
+      </template>
     </slide-in-bar>
     <!--full screen overlay-->
     <div
@@ -73,9 +123,14 @@ import CountCircle from "@/components/NavBar/Helpers/CountCircle";
 import SideMenu from "@/components/NavBar/SideMenu/SideMenu";
 import SlideInBar from "@/components/NavBar/SlideInBar/SlideInBar";
 import config from "@/config";
+import ShoppingCart from "@/components/Shopping Cart/ShoppingCart";
+import Favourites from "@/components/Favourites/Favourites";
+import "@/assets/css/navbar.css";
 export default {
   name: "NavigationBar",
   components: {
+    Favourites,
+    ShoppingCart,
     SlideInBar,
     SideMenu,
     CountCircle,
@@ -115,86 +170,35 @@ export default {
   methods: {
     toggleMenu(isOpen) {
       this.isOpen = isOpen;
-      this.isSlideInOpen = isOpen;
-      console.log(isOpen);
     },
     toggleSlideInBar(title) {
       this.isSlideInOpen = !this.isSlideInOpen;
       this.slideInTitle = title;
-      // this.$refs.melatechUiSlideInBar.setContent(title);
+    },
+    proceedToCheckout() {
+      alert("Should proceed to check out");
+    },
+    emptyCart() {
+      alert("Should empty cart");
+    },
+    emptyFavourites() {
+      alert("Should empty favourites");
+    },
+    deleteProductFromCart(product) {
+      alert(`Delete item from cart. \n\n ${JSON.stringify(product)}`);
+    },
+    increaseCartQuantity(product) {
+      alert(`Increase cart quantity. \n\n ${JSON.stringify(product)}`);
+    },
+    decreaseCartQuantity(product) {
+      alert(`Decrease cart quantity. \n\n ${JSON.stringify(product)}`);
+    },
+    deleteProductFromFavourites(product) {
+      alert(`Delete item from favourites. \n\n ${JSON.stringify(product)}`);
+    },
+    moveToCart(product) {
+      alert(`Move item to cart. \n\n ${JSON.stringify(product)}`);
     }
   }
 };
 </script>
-
-<style scoped>
-.visible {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.5s linear;
-}
-
-.hidden {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s 0.5s, opacity 0.5s linear;
-}
-
-.melatech_ui_navbar {
-  background: red;
-  padding: 20px;
-}
-.nav-links-list {
-  display: table !important;
-}
-.nav-links-list li {
-  display: table-cell !important;
-  position: relative;
-}
-.navbar-nav .nav-link {
-  /*position: relative;*/
-}
-.navbar-nav .nav-item {
-  position: relative;
-  padding-right: 40px;
-}
-.navbar-nav .nav-item:last-child {
-  padding-right: 0;
-}
-
-/* (1366x768) WXGA Display */
-
-@media screen and (min-width: 1366px) and (max-width: 1919px) {
-}
-
-@media (min-width: 1198px) and (max-width: 1365.9px) {
-}
-
-/* Normal desktop :992px. */
-
-@media (min-width: 992px) and (max-width: 1197px) {
-}
-
-/* Normal desktop :991px. */
-
-@media (min-width: 768px) and (max-width: 991px) {
-}
-
-/* small mobile :576px. */
-
-@media (min-width: 576px) and (max-width: 767px) {
-}
-
-/* extra small mobile 320px. */
-
-@media (max-width: 575px) {
-}
-
-/* Large Mobile :480px. */
-
-@media only screen and (min-width: 480px) and (max-width: 575px) {
-}
-
-@media only screen and (max-width: 575px) and (min-width: 480px) {
-}
-</style>
