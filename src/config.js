@@ -26,7 +26,7 @@ const data = {
         title: `Lorem ipsum dolor sit amet, consectetur adipiscing elit ${i +
           1}`,
         price: 3000,
-        image_link: ImageFile,
+        image_link: "/images/featured/1.jpg",
         slug: `sample-item-${i + 1}`,
         link: `/sample-item-${i + 1}`,
         discount: getRandomIntInclusive(0, 100),

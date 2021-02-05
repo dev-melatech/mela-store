@@ -1,17 +1,25 @@
 <template>
-  <products-list
-    :label="label"
-    :products="products"
-    @increase-cart-quantity="increaseCartQuantity"
-    @decrease-cart-quantity="decreaseCartQuantity"
-    @delete-product="deleteProduct"
-  >
-    <template v-slot:item="{ item }">
-      <div>
-        <slot name="product-link" :item="item"></slot>
-      </div>
-    </template>
-  </products-list>
+  <div>
+    <products-list
+      v-if="products.length !== 0"
+      :label="label"
+      :products="products"
+      @increase-cart-quantity="increaseCartQuantity"
+      @decrease-cart-quantity="decreaseCartQuantity"
+      @delete-product="deleteProduct"
+    >
+      <template v-slot:item="{ item }">
+        <div>
+          <slot name="product-link" :item="item"></slot>
+        </div>
+      </template>
+    </products-list>
+    <div v-else class="text-center mt-5">
+      <span>
+        Oops! Your cart is currently empty
+      </span>
+    </div>
+  </div>
 </template>
 
 <script>

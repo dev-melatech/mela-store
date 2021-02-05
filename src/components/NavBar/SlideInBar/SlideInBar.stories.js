@@ -34,7 +34,7 @@ const Template = () => ({
     }
   },
   template:
-    '<SlideInBar title="Wishlist" classes="melatech-ui-slide-in-bar-in" @click="onToggleMenu" > ' +
+    '<SlideInBar title="Favourites" classes="melatech-ui-slide-in-bar-in" @click="onToggleMenu" > ' +
     "<template v-slot:cart-total>" +
     "<p>Here might be a page title KKFKFKFK</p>" +
     "</template>" +
@@ -45,4 +45,4 @@ const Template = () => ({
 });
 
 // Each story then reuses that template
-export const Default = Template.bind({});
+export const Favourites = Template.bind({});

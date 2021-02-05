@@ -42,9 +42,14 @@ addParameters({
     theme: basicTheme
     // theme: themes.dark,
   },
+  previewTabs: {
+    "storybook/docs/panel": {
+      hidden: true
+    }
+  },
   readme: {
     // You can set the global code theme here.
-    codeTheme: "atom-dark"
+    // codeTheme: "atom-dark"
   },
   controls: { hideNoControlsWarning: true, disabled: true }
 });

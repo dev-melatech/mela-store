@@ -39,7 +39,6 @@
     <side-menu :is-open="isOpen" @click="toggleSlideInBar" />
     <!--slide in bar-->
     <slide-in-bar
-      :products="products"
       ref="melatechUiSlideInBar"
       :title="slideInTitle"
       :is-open="isSlideInOpen"
@@ -50,7 +49,7 @@
       ----------------------------------------------------------------------------->
       <template v-slot:shopping-cart>
         <shopping-cart
-          :products="products"
+          :products="[]"
           label="Cart"
           @proceed-to-checkout="proceedToCheckout"
           @empty-cart="emptyCart"

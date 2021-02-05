@@ -17,6 +17,7 @@
     </div>
     <!--slide in bar content-->
     <div
+      ref="melatechUiSideMenuContent"
       class="content mt-3"
       :class="[
         title === 'Cart' ? 'cart' : '',
@@ -35,17 +36,10 @@
 </template>
 
 <script>
-// import ProductsList from "@/components/Products/ProductsList/ProductsList";
-
 export default {
   name: "SlideInBar",
   components: {},
   props: {
-    products: {
-      type: Array,
-      default: () => [],
-      required: true
-    },
     isOpen: {
       type: Boolean,
       default: null
@@ -57,6 +51,19 @@ export default {
     title: {
       type: String,
       default: "Wishlist"
+    }
+  },
+  watch: {
+    title: {
+      handler() {
+        const that = this;
+        setTimeout(function() {
+          that.$nextTick(() => {
+            that.$refs.melatechUiSideMenuContent.scrollTop = 0;
+          });
+        }, 300);
+      },
+      deep: true
     }
   },
   computed: {
