@@ -1,16 +1,3 @@
-<style>
-.prop{
-    background: #f1e5e7;
-    border-radius: 5px;
-    padding: 3px 8px;
-    color: #333;
-    font-size: 12px;
-    font-weight: 700;
-    display: inline-block;
-    margin: 0 5px;
-}
-</style>
-
 ### Imports
 ```js
 import ShoppingCart from "melatech_ui";
@@ -22,7 +9,6 @@ import ShoppingCart from "melatech_ui";
     :products="data"
     label="Cart"
     @proceed-to-checkout="proceedToCheckout"
-    @empty-cart="emptyCart"
     @increase-cart-quantity="increaseCartQuantity"
     @decrease-cart-quantity="decreaseCartQuantity"
     @delete-product="deleteProductFromCart"
@@ -37,8 +23,23 @@ import ShoppingCart from "melatech_ui";
 ```
 <br>
 
+### Slots
+
+| Name                 | Scopes                   | Description                                      |
+| :---------------------: |:---------------------------:| :----------------------------------------------- |
+| product-link      | *item* - product object   |  The 'Product Link' content       |
+
+### Events
+
+| Event                 | Arguments                   | Description                                      |
+| :---------------------: |:---------------------------:| :----------------------------------------------- |
+| delete-product     | -   |  Deletes selected product from favourites        |
+| decrease-cart-quantity        | *product* - selected item   |  Decreases cart quantity of selected item   |
+| increase-cart-quantity        | *product* - selected item   |  Increase cart quantity of selected item  |
+| proceed-to-checkout      | *product* - selected item   |  Initializes the checkout process   |
+
+
 ### Notes
-1. The <span class="prop">label</span> prop should have a fixed value of "Cart".
-2. Object keys in <span class="prop">products</span> props array should satisfy default values.
-<!-- STORY -->
+1. The `label`prop should have a fixed value of "Cart".
+2. Object keys in `products`props array should satisfy default values.
 
