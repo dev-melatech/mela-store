@@ -175,6 +175,7 @@ export default {
 }
 .proceed-to-checkout--btn:hover {
   background: #3060b7;
+  color: white !important;
 }
 .empty-cart--btn {
   color: #666;
