@@ -27,7 +27,7 @@ export const Default = () => ({
     }
   },
   template:
-    '<SlideInBar :title="label" classes="melatech-ui-slide-in-bar-in" @click="toggleSlideInBar" >      ' +
+    '<SlideInBar :title="label" classes="melatech-ui-slide-in-bar-in">      ' +
     "<template v-slot:favourites>\n" +
     "        <favourites\n" +
     '          :products="products"\n' +
@@ -82,7 +82,7 @@ export const EmptyFavourites = () => ({
     }
   },
   template:
-    '<SlideInBar :title="label" classes="melatech-ui-slide-in-bar-in" @click="toggleSlideInBar" >      ' +
+    '<SlideInBar :title="label" classes="melatech-ui-slide-in-bar-in">      ' +
     "<template v-slot:favourites>\n" +
     "        <favourites\n" +
     '          :products="products"\n' +

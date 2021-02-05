@@ -28,7 +28,7 @@ export const Default = () => ({
     }
   },
   template:
-    '<SlideInBar title="Cart" classes="melatech-ui-slide-in-bar-in" @click="toggleSlideInBar" >      ' +
+    '<SlideInBar title="Cart" classes="melatech-ui-slide-in-bar-in" >      ' +
     "<template v-slot:shopping-cart>\n" +
     "        <shopping-cart\n" +
     '          :products="products"\n' +
@@ -73,10 +73,6 @@ export const Default = () => ({
     };
   },
   methods: {
-    toggleSlideInBar(title) {
-      this.isSlideInOpen = !this.isSlideInOpen;
-      this.slideInTitle = title;
-    },
     emptyCart() {
       alert("Should empty cart");
     },
@@ -103,7 +99,7 @@ export const EmptyShoppingCart = () => ({
     }
   },
   template:
-    '<SlideInBar title="Cart" classes="melatech-ui-slide-in-bar-in" @click="toggleSlideInBar" >      ' +
+    '<SlideInBar title="Cart" classes="melatech-ui-slide-in-bar-in" >      ' +
     "<template v-slot:shopping-cart>\n" +
     "        <shopping-cart\n" +
     '          :products="products"\n' +
@@ -158,10 +154,6 @@ export const EmptyShoppingCart = () => ({
     };
   },
   methods: {
-    toggleSlideInBar(title) {
-      this.isSlideInOpen = !this.isSlideInOpen;
-      this.slideInTitle = title;
-    },
     emptyCart() {
       alert("Should empty cart");
     },

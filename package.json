@@ -20,9 +20,9 @@
     "build-bundle": "vue-cli-service build --target lib --name melatech_ui ./src/index.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "storybook:build": "vue-cli-service storybook:build -c config/storybook",
+    "storybook:build": "vue-cli-service storybook:build -s ./static -c config/storybook",
     "storybook:serve": "vue-cli-service storybook:serve -s ./static -p 6007 -c config/storybook",
-    "storybook-docs": "vue-cli-service storybook:build --docs -c config/storybook",
+    "storybook-docs": "vue-cli-service storybook:build --docs -s ./static -c config/storybook",
     "release": "np --any-branch --no-2fa"
   },
   "dependencies": {
