@@ -1,19 +1,17 @@
 # Shopping Cart
 <br>
 
-<code-group>
-<code-block title="Imports">
+<Code>
+
 ```js
 import ShoppingCart from "melatech_ui";
 ```
-</code-block>
-</code-group>
+</Code>
 
 ### Example:
 
 <Demo>
-<code-group>
-<code-block title="Component">
+
 ```vue
 <shopping-cart
     :products="data"
@@ -29,6 +27,4 @@ import ShoppingCart from "melatech_ui";
     </template>
 </shopping-cart>
 ```
-</code-block>
-</code-group>
 </Demo>

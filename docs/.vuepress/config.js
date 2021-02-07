@@ -1,5 +1,5 @@
 module.exports = {
-  base: "/melatechui/",
+  base: "/mela-store/",
   themeConfig: {
     nav: [
       { text: "Home", link: "/" },

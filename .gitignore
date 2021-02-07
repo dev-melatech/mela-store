@@ -22,4 +22,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+scripts/deploy.sh
+/docs/.vuepress/dist/
 deploy.sh
+docs/.vuepress/dist/index.html
