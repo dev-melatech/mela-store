@@ -1,0 +1,25 @@
+.props-table table td span.props {
+  background: #ece9e9;
+  padding: 4px 8px;
+  font-size: 13px;
+  color: #d74949;
+  font-weight: 600;
+  border-radius: 5px;
+}
+.props-table .table td span.label,
+.props-table .table td span.default {
+  font-size: 15px;
+  font-weight: 500;
+  color: #d74949;
+}
+.props-table tbody td {
+  width: 15%;
+  text-align: center;
+}
+.props-table tbody td:last-child {
+  width: 55% !important;
+  text-align: left;
+}
+.table-responsive {
+  display: table !important;
+}

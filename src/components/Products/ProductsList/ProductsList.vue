@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import ProductActions from "@/components/Products/ProductActions/ProductActions";
+import ProductActions from "../../../../src/components/Products/ProductActions/ProductActions";
 export default {
   name: "ProductsList",
   components: { ProductActions },

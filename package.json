@@ -23,7 +23,9 @@
     "storybook:build": "vue-cli-service storybook:build -s ./static -c config/storybook",
     "storybook:serve": "vue-cli-service storybook:serve -s ./static -p 6007 -c config/storybook",
     "storybook-docs": "vue-cli-service storybook:build --docs -s ./static -c config/storybook",
-    "release": "np --any-branch --no-2fa"
+    "release": "np --any-branch --no-2fa",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
@@ -58,6 +60,7 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/test-utils": "^1.0.3",
+    "@vuepress/plugin-register-components": "^1.8.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.3",
@@ -67,6 +70,7 @@
     "rollup-plugin-vue": "^6.0.0",
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-storybook": "~2.0.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vuepress": "^1.8.0"
   }
 }

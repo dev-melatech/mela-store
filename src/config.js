@@ -17,10 +17,9 @@ const data = {
       discount: getRandomIntInclusive(0, 100)
     };
   },
-  getProducts() {
+  getProducts(value = 50) {
     let arr = [];
-    const len = 50;
-    for (let i = 0; i < len; i++) {
+    for (let i = 0; i < value; i++) {
       arr.push({
         id: i + 1,
         title: `Lorem ipsum dolor sit amet, consectetur adipiscing elit ${i +

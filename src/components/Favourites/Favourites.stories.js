@@ -27,35 +27,21 @@ export const Default = () => ({
     }
   },
   template:
-    '<SlideInBar :title="label" classes="melatech-ui-slide-in-bar-in">      ' +
-    "<template v-slot:favourites>\n" +
-    "        <favourites\n" +
-    '          :products="products"\n' +
-    '          :label="label"\n' +
-    '          @move-to-cart="moveToCart"\n' +
-    '          @delete-product="deleteProductFromCart"\n' +
-    "        >\n" +
-    "          <!--item link slot-->\n" +
-    '          <template v-slot:product-link="{ item }">\n' +
-    '            <a :href="item.link" class="melatech-ui-product-title">{{\n' +
-    "              item.title\n" +
-    "            }}</a>\n" +
-    "          </template>\n" +
-    "        </fav>\n" +
-    "</template>" +
-    "<template v-slot:favourites-footer>" +
-    "     <!--empty cart button-->\n" +
-    "     <button\n" +
-    '     class="btn empty-cart--btn w-100"\n' +
-    '     @click="emptyCart"\n' +
-    "     >\n" +
-    "         <font-awesome-icon\n" +
-    '           :icon="icon"\n' +
-    "         />\n" +
-    "         Empty Cart\n" +
-    "      </button>" +
-    "</template>" +
-    "</SlideInBar>",
+    "<b-container>" +
+    "<favourites\n" +
+    '  :products="products"\n' +
+    '  :label="label"\n' +
+    '  @move-to-cart="moveToCart"\n' +
+    '  @delete-product="deleteProductFromCart"\n' +
+    ">\n" +
+    "  <!--item link slot-->\n" +
+    '  <template v-slot:product-link="{ item }">\n' +
+    '    <a :href="item.link" class="melatech-ui-product-title">{{\n' +
+    "      item.title\n" +
+    "    }}</a>\n" +
+    "  </template>\n" +
+    "</favourites>" +
+    "</b-container>",
   data() {
     return {
       icon: ["fas", "trash-alt"]
@@ -84,19 +70,19 @@ export const EmptyFavourites = () => ({
   template:
     '<SlideInBar :title="label" classes="melatech-ui-slide-in-bar-in">      ' +
     "<template v-slot:favourites>\n" +
-    "        <favourites\n" +
-    '          :products="products"\n' +
-    '          :label="label"\n' +
-    '          @move-to-cart="moveToCart"\n' +
-    '          @delete-product="deleteProductFromCart"\n' +
-    "        >\n" +
-    "          <!--item link slot-->\n" +
-    '          <template v-slot:product-link="{ item }">\n' +
-    '            <a :href="item.link" class="melatech-ui-product-title">{{\n' +
-    "              item.title\n" +
-    "            }}</a>\n" +
-    "          </template>\n" +
-    "        </fav>\n" +
+    "<favourites\n" +
+    '  :products="products"\n' +
+    '  :label="label"\n' +
+    '  @move-to-cart="moveToCart"\n' +
+    '  @delete-product="deleteProductFromCart"\n' +
+    ">\n" +
+    "  <!--item link slot-->\n" +
+    '  <template v-slot:product-link="{ item }">\n' +
+    '    <a :href="item.link" class="melatech-ui-product-title">{{\n' +
+    "      item.title\n" +
+    "    }}</a>\n" +
+    "  </template>\n" +
+    "</fav>\n" +
     "</template>" +
     "<template v-slot:favourites-footer>" +
     "     <!--proceed to checkout button-->" +
@@ -105,7 +91,7 @@ export const EmptyFavourites = () => ({
     '       class="btn proceed-to-checkout--btn w-100"\n' +
     '       @click="proceedToCheckout"\n' +
     "     >\n" +
-    "             Continue Shopping" +
+    "     Continue Shopping" +
     "     </button>" +
     "</template>" +
     "</SlideInBar>",

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import ProductsList from "@/components/Products/ProductsList/ProductsList";
+import ProductsList from "../../../src/components/Products/ProductsList/ProductsList";
 export default {
   name: "ShoppingCart",
   components: { ProductsList },

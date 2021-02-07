@@ -3,10 +3,10 @@ body {
 }
 
 .sb-show-main.sb-main-padded {
-  margin: 0;
-  padding: 0 !important;
-  display: block;
-  background: #eff0f1;
+  /*margin: 0;*/
+  /*padding: 0 !important;*/
+  /*display: block;*/
+  /*background: #eff0f1;*/
 }
 
 .btn:focus,

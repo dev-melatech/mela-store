@@ -38,7 +38,7 @@ export const parameters = {
 addParameters({
   options: {
     showPanel: true,
-    panelPosition: "right",
+    panelPosition: "bottom",
     theme: basicTheme
     // theme: themes.dark,
   },
