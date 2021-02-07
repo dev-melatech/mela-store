@@ -113,14 +113,14 @@ input:active {
 /*=======================================
  3. Start MelaTechUI Products
 ========================================*/
-.melatech-ui-product-title {
+.melastore-product--title {
   color: #333;
   font-weight: 600;
   font-size: 15px;
 }
-.melatech-ui-product-title:hover {
+.melastore-product--title:hover {
   color: #666;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 .melatech-ui-product-price {
   font-weight: 700;

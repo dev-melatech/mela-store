@@ -48,7 +48,7 @@
                                       CART SLOTS
       ----------------------------------------------------------------------------->
       <template v-slot:shopping-cart>
-        <shopping-cart
+        <shopping-cart-doc
           :products="[]"
           label="Cart"
           @proceed-to-checkout="proceedToCheckout"
@@ -63,7 +63,7 @@
               item.title
             }}</a>
           </template>
-        </shopping-cart>
+        </shopping-cart-doc>
       </template>
       <template v-slot:shopping-cart-footer>
         <!--proceed to checkout button-->

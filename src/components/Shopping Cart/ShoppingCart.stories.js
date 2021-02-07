@@ -30,7 +30,7 @@ export const Default = () => ({
   template:
     '<SlideInBar title="Cart" classes="melatech-ui-slide-in-bar-in" >      ' +
     "<template v-slot:shopping-cart>\n" +
-    "        <shopping-cart\n" +
+    "        <shopping-cart-doc\n" +
     '          :products="products"\n' +
     '          :label="label"\n' +
     '          @proceed-to-checkout="proceedToCheckout"\n' +
@@ -45,7 +45,7 @@ export const Default = () => ({
     "              item.title\n" +
     "            }}</a>\n" +
     "          </template>\n" +
-    "        </shopping-cart>\n" +
+    "        </shopping-cart-doc>\n" +
     "</template>" +
     "<template v-slot:shopping-cart-footer>" +
     "  <!--proceed to checkout button-->" +
@@ -101,7 +101,7 @@ export const EmptyShoppingCart = () => ({
   template:
     '<SlideInBar title="Cart" classes="melatech-ui-slide-in-bar-in" >      ' +
     "<template v-slot:shopping-cart>\n" +
-    "        <shopping-cart\n" +
+    "        <shopping-cart-doc\n" +
     '          :products="products"\n' +
     '          label="Cart"\n' +
     '          @proceed-to-checkout="proceedToCheckout"\n' +
@@ -116,7 +116,7 @@ export const EmptyShoppingCart = () => ({
     "              item.title\n" +
     "            }}</a>\n" +
     "          </template>\n" +
-    "        </shopping-cart>\n" +
+    "        </shopping-cart-doc>\n" +
     "</template>" +
     "<template " +
     " v-slot:shopping-cart-footer>" +

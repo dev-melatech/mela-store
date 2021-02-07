@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="melastore-shopping-cart">
     <products-list
       v-if="products.length !== 0"
       :label="label"
@@ -10,7 +10,11 @@
     >
       <template v-slot:item="{ item }">
         <div>
-          <slot name="product-link" :item="item"></slot>
+          <slot name="product-link" :item="item">
+            <a :href="item.link" class="melastore-product--title">{{
+              item.title
+            }}</a>
+          </slot>
         </div>
       </template>
     </products-list>

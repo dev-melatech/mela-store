@@ -9,7 +9,7 @@
       />
       <!--item content-->
       <div class="content float-left w-100">
-        <slot name="item" :item="product"></slot>
+        <slot name="item" :item="product">djjjdjjd</slot>
         <span class="melatech-ui-product-price d-block mt-2"
           >${{ product.price | formatNumber }}</span
         >

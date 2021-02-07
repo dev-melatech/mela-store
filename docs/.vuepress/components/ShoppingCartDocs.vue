@@ -7,7 +7,8 @@
         @increase-cart-quantity="increaseCartQuantity"
         @decrease-cart-quantity="decreaseCartQuantity"
         @delete-product="deleteProductFromCart"
-      />
+      >
+      </shopping-cart>
     </div>
     <div class="mt-5">
       <slot></slot>
@@ -33,7 +34,7 @@ import PropsTable from "./PropsTable";
 import Notes from "./Notes";
 
 export default {
-  name: "Demo",
+  name: "ShoppingCartDocs",
   components: { Notes, PropsTable },
   props: {},
   data() {
@@ -46,7 +47,7 @@ export default {
           name: "products",
           type: "array",
           default: [],
-          description: "djddjndndnd"
+          description: "An array of items/products in user's cart."
         }
       ],
       slots: [
