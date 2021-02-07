@@ -1,11 +1,29 @@
 module.exports = {
+  base: "/melatechui/",
   themeConfig: {
     nav: [
       { text: "Home", link: "/" },
       { text: "Guide", link: "/guide/" },
       { text: "External", link: "https://google.com" }
     ],
-    sidebar: ["/", ["/ShoppingCart", "Shopping Cart"]],
+    sidebar: [
+      {
+        title: "Home", // required
+        path: "", // optional, link of the title, which should be an absolute path and must exist
+        collapsable: false, // optional, defaults to true
+        sidebarDepth: 1, // optional, defaults to 1
+        children: [["/", "Hello There"]]
+      },
+      {
+        title: "Components",
+        path: "/components/",
+        collapsable: false, // optional, defaults to true
+        // sidebarDepth: 1, // optional, defaults to 1
+        children: [["/components/ShoppingCart", "Shopping Cart"]]
+      }
+    ],
+    // sidebarDepth: 2,
+
     displayAllHeaders: true, // Default: false,
     // Assumes GitHub. Can also be a full GitLab url.
     repo: "vuejs/vuepress",

@@ -2,6 +2,9 @@ import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
+import "../../src/assets/css/default.css";
+import "../../src/assets/css/color-scheme.css";
+import "../../src/assets/fonts/nunito/stylesheet.css";
 import "../../src/assets/css/markdown.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -43,6 +46,9 @@ library.add(faMinus);
 library.add(faChevronRight);
 
 import ShoppingCart from "../../src/components/Shopping Cart/ShoppingCart";
+
+const numeral = require("numeral");
+
 import Vue from "vue";
 // import ProductsList from "../../src/components/Products/ProductsList/ProductsList";
 export default ({
@@ -51,6 +57,9 @@ export default ({
   router, // the router instance for the app
   siteData // site metadata
 }) => {
+  Vue.filter("formatNumber", function(value) {
+    return numeral(value).format("0,0"); // displaying other groupings/separators is possible, look at the docs
+  });
   Vue.use(BootstrapVue);
   Vue.component("font-awesome-icon", FontAwesomeIcon);
   Vue.component("ShoppingCart", ShoppingCart);

@@ -1,25 +1,31 @@
-.props-table table td span.props {
+.props-table table td span.props,
+.slots-table table td span.scopes-name,
+.events-table table td span.arguments-name,
+.notes-props {
   background: #ece9e9;
   padding: 4px 8px;
   font-size: 13px;
   color: #d74949;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: 5px;
 }
 .props-table .table td span.label,
+.slots-table .table td span.label,
+.events-table .table td span.label,
 .props-table .table td span.default {
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   color: #d74949;
 }
 .props-table tbody td {
-  width: 15%;
-  text-align: center;
+  /*width: 15%;*/
+  /*text-align: center;*/
 }
 .props-table tbody td:last-child {
-  width: 55% !important;
-  text-align: left;
+  /*width: 55% !important;*/
+  /*text-align: left;*/
 }
-.table-responsive {
+.table-responsive,
+.table-responsive-sm {
   display: table !important;
 }

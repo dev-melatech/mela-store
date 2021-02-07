@@ -24,7 +24,7 @@ const data = {
         id: i + 1,
         title: `Lorem ipsum dolor sit amet, consectetur adipiscing elit ${i +
           1}`,
-        price: 3000,
+        price: getRandomIntInclusive(100, 10000),
         image_link: require("../static/images/featured/1.jpg"),
         slug: `sample-item-${i + 1}`,
         link: `/sample-item-${i + 1}`,

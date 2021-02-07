@@ -1,6 +1,6 @@
 <template>
-  <div class="props-table mt-5">
-    <h3 id="props"><a href="#props" class="header-anchor">#</a> Props</h3>
+  <div class="mt-5" :class="classes">
+    <h3 id="props"><a href="#props" class="header-anchor">#</a> {{ label }}</h3>
     <div class="table-responsive mt-2">
       <b-table :items="props" class="w-100 table-responsive">
         <template #cell(name)="data">
@@ -11,6 +11,20 @@
         </template>
         <template #cell(default)="data">
           <span class="default text-center">{{ data.item.default }}</span>
+        </template>
+        <template #cell(scopes)="data">
+          <span class="scopes-name text-center">{{
+            data.item.scopes.name
+          }}</span>
+          -
+          <span class="text-center">{{ data.item.scopes.description }}</span>
+        </template>
+        <template #cell(arguments)="data">
+          <span class="arguments-name text-center">{{
+            data.item.arguments.name
+          }}</span>
+          -
+          <span class="text-center">{{ data.item.arguments.description }}</span>
         </template>
       </b-table>
     </div>
@@ -24,6 +38,16 @@ export default {
     props: {
       type: Array,
       default: () => [],
+      required: true
+    },
+    label: {
+      type: String,
+      default: "",
+      required: true
+    },
+    classes: {
+      type: String,
+      default: "",
       required: true
     }
   },

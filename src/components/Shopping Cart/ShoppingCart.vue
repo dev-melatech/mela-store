@@ -32,12 +32,12 @@ export default {
       type: Array,
       default: () => [],
       required: true
-    },
-    label: {
-      type: String,
-      default: "",
-      required: true
     }
+  },
+  data() {
+    return {
+      label: "Cart"
+    };
   },
   methods: {
     deleteProduct(product) {

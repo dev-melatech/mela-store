@@ -11,7 +11,7 @@
       <div class="content float-left w-100">
         <slot name="item" :item="product"></slot>
         <span class="melatech-ui-product-price d-block mt-2"
-          >${{ product.price }}</span
+          >${{ product.price | formatNumber }}</span
         >
         <span class="melatech-ui-product-stock d-block mt-1"
           >Available stock: {{ product.quantity }}</span
