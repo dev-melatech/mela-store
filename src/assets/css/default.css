@@ -1,7 +1,35 @@
 body {
   font-family: "Nunito", sans-serif !important;
 }
-.mt-20px {
+
+.sb-show-main.sb-main-padded {
+  /*margin: 0;*/
+  /*padding: 0 !important;*/
+  /*display: block;*/
+  /*background: #eff0f1;*/
+}
+
+.btn:focus,
+select:focus,
+.navbar-search--input:focus,
+button:focus,
+input:focus {
+  outline: none !important;
+  box-shadow: 0 0 0.2rem 0.05rem rgba(34, 34, 34, 0.4) !important;
+  -webkit-box-shadow: none !important;
+}
+
+.btn:active,
+select:active,
+.navbar-search--input:active,
+button:active,
+input:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.form-control .mt-20px {
   margin-top: 20px;
 }
 .mb-20px {
@@ -30,9 +58,32 @@ body {
   color: var(--price-color);
   font-weight: 600;
 }
+.melatech-ui-full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.66);
+}
+.b-radius {
+  border-radius: 5px;
+}
+/*=======================================
+ 1. Start MelaTechUI NavBar
+========================================*/
+.melatech-ui-navbar svg path {
+  stroke-width: 20px !important;
+  stroke: transparent !important;
+}
 
 /*=======================================
- Start MelaTechUI Footer
+ End MelaTechUI Footer
+========================================*/
+
+/*=======================================
+ 2. Start MelaTechUI NavBar
 ========================================*/
 #melatech_ui_footer {
   font-size: 15px;
@@ -57,4 +108,32 @@ body {
 }
 /*=======================================
  End MelaTechUI Footer
+========================================*/
+
+/*=======================================
+ 3. Start MelaTechUI Products
+========================================*/
+.melatech-ui-product-title {
+  color: #333;
+  font-weight: 600;
+  font-size: 15px;
+}
+.melatech-ui-product-title:hover {
+  color: #666;
+  text-decoration: none;
+}
+.melatech-ui-product-price {
+  font-weight: 700;
+  color: var(--default-color);
+}
+.melatech-ui-product-stock {
+  text-transform: uppercase;
+  display: block;
+  color: rgb(153, 153, 153);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+/*=======================================
+ End MelaTechUI Products
 ========================================*/

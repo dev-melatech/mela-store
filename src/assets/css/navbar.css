@@ -1,0 +1,72 @@
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
+}
+
+.melatech-ui-navbar {
+  background: white !important;
+  padding: 20px;
+}
+.nav-links-list {
+  display: table !important;
+}
+.nav-links-list li {
+  display: table-cell !important;
+  position: relative;
+}
+.navbar-nav .nav-link {
+  /*position: relative;*/
+}
+.navbar-nav .nav-item {
+  position: relative;
+  padding-right: 40px;
+}
+.navbar-nav .nav-item:last-child {
+  padding-right: 0;
+}
+.melatech-ui-navbar .navbar-brand {
+  color: #333;
+}
+
+/* (1366x768) WXGA Display */
+
+@media screen and (min-width: 1366px) and (max-width: 1919px) {
+}
+
+@media (min-width: 1198px) and (max-width: 1365.9px) {
+}
+
+/* Normal desktop :992px. */
+
+@media (min-width: 992px) and (max-width: 1197px) {
+}
+
+/* Normal desktop :991px. */
+
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+/* small mobile :576px. */
+
+@media (min-width: 576px) and (max-width: 767px) {
+}
+
+/* extra small mobile 320px. */
+
+@media (max-width: 575px) {
+}
+
+/* Large Mobile :480px. */
+
+@media only screen and (min-width: 480px) and (max-width: 575px) {
+}
+
+@media only screen and (max-width: 575px) and (min-width: 480px) {
+}

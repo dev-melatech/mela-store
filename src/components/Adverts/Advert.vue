@@ -4,7 +4,7 @@
       <!--dingle view-->
       <b-row v-if="view === 'single'">
         <b-col cols="12">
-          <img :src="images[0]" class="w-100" alt="" />
+          <img :src="singleViewImage" class="w-100" alt="" />
         </b-col>
       </b-row>
       <!--triple view-->
@@ -13,7 +13,7 @@
           lg="4"
           md="4"
           sm="12"
-          v-for="(image, index) in images"
+          v-for="(image, index) in tripleViewImages"
           :key="index"
         >
           <img :src="image" class="w-100 mb-4" alt="" />
@@ -27,10 +27,17 @@
 export default {
   name: "Advert",
   props: {
-    images: {
+    singleViewImage: {
+      type: String,
+      default: "img/2.25959d72.jpg"
+    },
+    tripleViewImages: {
       type: Array,
-      default: () => [],
-      required: true
+      default: () => [
+        "img/2.25959d72.jpg",
+        "img/2.25959d72.jpg",
+        "img/2.25959d72.jpg"
+      ]
     },
     classes: {
       type: String,
