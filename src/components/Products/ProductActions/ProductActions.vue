@@ -105,7 +105,7 @@ export default {
   bottom: 20px;
   width: 100%;
   text-align: center;
-  z-index: 10;
+  z-index: 5;
 }
 .melatech-ui-product-actions-icons .cart-quantity {
   line-height: 30px;
