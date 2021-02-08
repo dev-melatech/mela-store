@@ -46,6 +46,11 @@ library.add(faChevronRight);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
+const numeral = require("numeral");
+Vue.filter("formatNumber", function(value) {
+  return numeral(value).format("0,0"); // displaying other groupings/separators is possible, look at the docs
+});
+
 // import { configureReadme } from "storybook-readme";
 // // import { configureReadme, addFooter, addHeader } from "storybook-readme";
 //

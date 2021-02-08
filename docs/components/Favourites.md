@@ -1,22 +1,21 @@
-# Shopping Cart
+# Favourites
 <br>
 
 ```js
-import ShoppingCart from "mela-store";
+import Favourites from "mela-store";
 ```
 
 ### Example:
 
-<ShoppingCartDocs>
+<FavouritesDocs>
 
 ```vue
-<shopping-cart
-  :products="data"
-  @increase-cart-quantity="increaseCartQuantity"
-  @decrease-cart-quantity="decreaseCartQuantity"
-  @delete-product="deleteProductFromCart"
+<favourites
+  :products="products"
+  @move-to-cart="moveToCart"
+  @delete-product="deleteProductFromFavourites"
 >
-</shopping-cart>
+</favourites>
 ```
 
 To replace native a link tags with a vue link or nuxt link, you replace the default using the available slot.
@@ -35,4 +34,4 @@ To replace native a link tags with a vue link or nuxt link, you replace the defa
     </NuxtLink>
 </template>
 ```
-</ShoppingCartDocs>
+</FavouritesDocs>

@@ -1,7 +1,7 @@
 <template>
-  <ul class="melatech-ui-product-actions-icons" :class="classes">
+  <ul class="melastore-product-actions-icons" :class="classes">
     <!--decrease cart quantity-->
-    <li class="float-left" v-if="!hideCartQuantityAdjust">
+    <li v-if="!hideCartQuantityAdjust" :class="fromCart ? 'float-left' : ''">
       <button class="btn" @click="$emit('decrease-cart-quantity', product)">
         <font-awesome-icon :icon="['fas', 'minus']" />
       </button>
@@ -9,13 +9,14 @@
     </li>
     <!--cart quantity-->
     <li
-      class="float-left cart-quantity text-center"
+      class=" cart-quantity text-center"
+      :class="fromCart ? 'float-left' : ''"
       v-if="!hideCartQuantityAdjust"
     >
       <span>1</span>
     </li>
     <!--increase cart quantity-->
-    <li class="float-left" v-if="!hideCartQuantityAdjust">
+    <li v-if="!hideCartQuantityAdjust" :class="fromCart ? 'float-left' : ''">
       <button class="btn" @click="$emit('increase-cart-quantity', product)">
         <font-awesome-icon :icon="['fas', 'plus']" />
       </button>
@@ -68,6 +69,10 @@ export default {
       }),
       required: true
     },
+    fromCart: {
+      type: Boolean,
+      default: false
+    },
     hideCartButton: {
       type: Boolean,
       default: false
@@ -97,7 +102,7 @@ export default {
 </script>
 
 <style scoped>
-.melatech-ui-product-actions-icons {
+.melastore-product-actions-icons {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -107,27 +112,27 @@ export default {
   text-align: center;
   z-index: 5;
 }
-.melatech-ui-product-actions-icons .cart-quantity {
+.melastore-product-actions-icons .cart-quantity {
   line-height: 30px;
   width: 50px;
 }
-.from-slide-in-bar.melatech-ui-product-actions-icons {
+.from-slide-in-bar.melastore-product-actions-icons {
   position: relative;
   text-align: right;
   left: 0;
   bottom: 10px;
 }
-.from-slide-in-bar.melatech-ui-product-actions-icons li {
+.from-slide-in-bar.melastore-product-actions-icons li {
   /*border: 1px solid;*/
 }
-.from-slide-in-bar.melatech-ui-product-actions-icons li button {
+.from-slide-in-bar.melastore-product-actions-icons li button {
   border: 1px solid;
 }
-.melatech-ui-product-actions-icons li {
+.melastore-product-actions-icons li {
   display: inline-block;
 }
 
-.melatech-ui-product-actions-icons li button {
+.melastore-product-actions-icons li button {
   display: block;
   width: 30px;
   height: 30px;
@@ -142,7 +147,7 @@ export default {
   font-size: 12px;
   margin: 0 2px;
 }
-.melatech-ui-product-actions-icons li button:hover {
+.melastore-product-actions-icons li button:hover {
   background: #999;
   color: #fff;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="melastore-shopping-cart">
+  <div class="melastore-shopping-cart" :class="classes">
     <products-list
       v-if="products.length !== 0"
       :label="label"
@@ -36,6 +36,10 @@ export default {
       type: Array,
       default: () => [],
       required: true
+    },
+    classes: {
+      type: String,
+      default: ""
     }
   },
   data() {

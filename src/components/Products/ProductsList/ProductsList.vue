@@ -1,6 +1,6 @@
 <template>
-  <ul class="melatech-ui-products-list">
-    <li v-for="product in products" :key="product.slug">
+  <ul class="melastore-products-list">
+    <li v-for="product in products" class="mb-3" :key="product.slug">
       <!--item image-->
       <img
         v-if="product.image_link"
@@ -9,15 +9,20 @@
       />
       <!--item content-->
       <div class="content float-left w-100">
-        <slot name="item" :item="product">djjjdjjd</slot>
-        <span class="melatech-ui-product-price d-block mt-2"
+        <!--item name-->
+        <slot name="item" :item="product"></slot>
+        <!--item price-->
+        <span class="melastore-product--price d-block mt-2"
           >${{ product.price | formatNumber }}</span
         >
-        <span class="melatech-ui-product-stock d-block mt-1"
+        <!--item stock-->
+        <span class="melastore-product--stock d-block mt-1"
           >Available stock: {{ product.quantity }}</span
         >
+        <!--product actions-->
         <product-actions
           :hide-cart-button="label === 'Cart'"
+          :from-cart="label === 'Cart'"
           hide-favourite-button
           hide-preview-button
           :hide-cart-quantity-adjust="label === 'Cart' ? false : true"
@@ -71,13 +76,13 @@ export default {
 </script>
 
 <style scoped>
-.melatech-ui-products-list {
+.melastore-products-list {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.melatech-ui-products-list li {
+.melastore-products-list li {
   min-height: 70px;
   background: #fff;
   display: flex;
@@ -86,16 +91,19 @@ export default {
   align-items: center;
   padding: 10px 5px;
   position: relative;
+  border-radius: 8px;
 }
-.melatech-ui-products-list li:nth-child(even) {
+.melastore-products-list li:nth-child(even) {
   background: #f8f7f7;
-  border-radius: 5px;
 }
-.melatech-ui-products-list li img {
+.melastore-products-list li:last-child {
+  margin-bottom: 0 !important;
+}
+.melastore-products-list li img {
   width: 80px;
   padding: 10px;
 }
-.melatech-ui-products-list .content {
+.melastore-products-list .content {
   padding-left: 5px;
   padding-right: 10px;
 }

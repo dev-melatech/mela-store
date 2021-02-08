@@ -1,9 +1,8 @@
-import "storybook-readme/register";
 import { MINIMAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { addDecorator, addParameters } from "@storybook/vue";
-import { addReadme } from "storybook-readme/vue";
-import { create } from "@storybook/theming";
-import { withKnobs } from "@storybook/addon-knobs";
+import { addParameters } from "@storybook/vue";
+// import { addReadme } from "storybook-readme/vue";
+// import { create } from "@storybook/theming";
+// import { withKnobs } from "@storybook/addon-knobs";
 
 // import { addons } from "@storybook/addons";
 //
@@ -21,13 +20,6 @@ import { withKnobs } from "@storybook/addon-knobs";
 //   showRoots: false
 // });
 
-const basicTheme = create({
-  base: "light",
-  brandTitle: "README addon",
-  brandUrl: "https://github.com/tuchk4/storybook-readme",
-  brandImage: null
-});
-
 export const parameters = {
   // layout: "centered",
   viewport: {
@@ -38,21 +30,14 @@ export const parameters = {
 addParameters({
   options: {
     showPanel: true,
-    panelPosition: "bottom",
-    theme: basicTheme
-    // theme: themes.dark,
-  },
-  previewTabs: {
-    "storybook/docs/panel": {
-      hidden: true
-    }
+    panelPosition: "right"
   },
   readme: {
     // You can set the global code theme here.
     // codeTheme: "atom-dark"
   },
-  controls: { hideNoControlsWarning: true, disabled: true }
+  controls: { hideNoControlsWarning: true }
 });
 
-addDecorator(addReadme);
-addDecorator(withKnobs);
+// addDecorator(addReadme);
+// addDecorator(withKnobs);

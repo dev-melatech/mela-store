@@ -19,7 +19,10 @@ module.exports = {
         path: "/components/",
         collapsable: false, // optional, defaults to true
         // sidebarDepth: 1, // optional, defaults to 1
-        children: [["/components/ShoppingCart", "Shopping Cart"]]
+        children: [
+          ["/components/ShoppingCart", "Shopping Cart"],
+          ["/components/Favourites", "Favourites"]
+        ]
       }
     ],
     // sidebarDepth: 2,

@@ -1,13 +1,12 @@
 <template>
   <div>
     <div class="sample-component">
-      <shopping-cart
+      <favourites
         :products="products"
-        @increase-cart-quantity="increaseCartQuantity"
-        @decrease-cart-quantity="decreaseCartQuantity"
-        @delete-product="deleteProductFromCart"
+        @move-to-cart="moveToCart"
+        @delete-product="deleteProductFromFavourites"
       >
-      </shopping-cart>
+      </favourites>
     </div>
     <div class="mt-5">
       <slot></slot>
@@ -28,13 +27,14 @@
 </template>
 
 <script>
-import config from "../../../src/config";
-import PropsTable from "./PropsTable";
 import Notes from "./Notes";
+import PropsTable from "./PropsTable";
+import config from "../../../src/config";
+import Favourites from "../../../src/components/Favourites/Favourites";
 
 export default {
-  name: "ShoppingCartDocs",
-  components: { Notes, PropsTable },
+  name: "FavouritesDocs",
+  components: { Favourites, Notes, PropsTable },
   props: {},
   data() {
     return {
@@ -69,20 +69,12 @@ export default {
           description: "Deletes selected product from cart"
         },
         {
-          name: "decrease-cart-quantity",
+          name: "move-to-cart",
           arguments: {
             name: "product",
             description: "selected product object"
           },
-          description: "Decreases cart quantity of selected item"
-        },
-        {
-          name: "increase-cart-quantity",
-          arguments: {
-            name: "product",
-            description: "selected product object"
-          },
-          description: "Increase cart quantity of selected item"
+          description: "Moves item from favourites to cart"
         }
       ]
     };
@@ -93,17 +85,11 @@ export default {
     }
   },
   methods: {
-    deleteProductFromCart(product) {
-      alert(`Delete item from cart. \n\n ${JSON.stringify(product)}`);
-    },
-    increaseCartQuantity(product) {
-      alert(`Increase cart quantity. \n\n ${JSON.stringify(product)}`);
-    },
-    decreaseCartQuantity(product) {
-      alert(`Decrease cart quantity. \n\n ${JSON.stringify(product)}`);
-    },
     deleteProductFromFavourites(product) {
       alert(`Delete item from favourites. \n\n ${JSON.stringify(product)}`);
+    },
+    moveToCart(product) {
+      alert(`Move item to cart. \n\n ${JSON.stringify(product)}`);
     }
   }
 };

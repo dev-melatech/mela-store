@@ -1,20 +1,32 @@
 <template>
-  <products-list
-    :label="label"
-    :products="products"
-    @move-to-cart="moveToCart"
-    @delete-product="deleteProduct"
-  >
-    <template v-slot:item="{ item }">
-      <div>
-        <slot name="product-link" :item="item"></slot>
-      </div>
-    </template>
-  </products-list>
+  <div class="melastore-favourites" :class="classes">
+    <products-list
+      :label="label"
+      v-if="products.length !== 0"
+      :products="products"
+      @move-to-cart="moveToCart"
+      @delete-product="deleteProduct"
+    >
+      <template v-slot:item="{ item }">
+        <div>
+          <slot name="product-link" :item="item">
+            <a :href="item.link" class="melastore-product--title">{{
+              item.title
+            }}</a>
+          </slot>
+        </div>
+      </template>
+    </products-list>
+    <div v-else class="text-center mt-5">
+      <span>
+        Oops! Your favourites is currently empty
+      </span>
+    </div>
+  </div>
 </template>
 
 <script>
-import ProductsList from "@/components/Products/ProductsList/ProductsList";
+import ProductsList from "../../../src/components/Products/ProductsList/ProductsList";
 export default {
   name: "Favourites",
   components: { ProductsList },
@@ -24,11 +36,15 @@ export default {
       default: () => [],
       required: true
     },
-    label: {
+    classes: {
       type: String,
-      default: "",
-      required: true
+      default: ""
     }
+  },
+  data() {
+    return {
+      label: "Favourites"
+    };
   },
   methods: {
     deleteProduct(product) {

@@ -122,11 +122,11 @@ input:active {
   color: #666;
   text-decoration: none !important;
 }
-.melatech-ui-product-price {
+.melastore-product--price {
   font-weight: 700;
   color: var(--default-color);
 }
-.melatech-ui-product-stock {
+.melastore-product--stock {
   text-transform: uppercase;
   display: block;
   color: rgb(153, 153, 153);
