@@ -48,7 +48,10 @@ library.add(faChevronRight);
 library.add(faShoppingCart);
 
 import ShoppingCart from "../../src/components/Shopping Cart/ShoppingCart";
-
+import Advert from "../../src/components/Adverts/Advert";
+import Lander from "../../src/components/Landers/Lander";
+import PropsTable from "./components/PropsTable";
+import Notes from "./components/Notes";
 const numeral = require("numeral");
 
 import Vue from "vue";
@@ -65,5 +68,9 @@ export default ({
   Vue.use(BootstrapVue);
   Vue.component("font-awesome-icon", FontAwesomeIcon);
   Vue.component("ShoppingCart", ShoppingCart);
+  Vue.component("Advert", Advert);
+  Vue.component("Lander", Lander);
+  Vue.component("PropsTable", PropsTable);
+  Vue.component("Notes", Notes);
   // Vue.component("products-list", ProductsList);
 };
