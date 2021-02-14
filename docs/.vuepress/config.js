@@ -21,7 +21,8 @@ module.exports = {
         // sidebarDepth: 1, // optional, defaults to 1
         children: [
           ["/components/ShoppingCart", "Shopping Cart"],
-          ["/components/Favourites", "Favourites"]
+          ["/components/Favourites", "Favourites"],
+          ["/components/Landers", "Landers"]
         ]
       }
     ],
