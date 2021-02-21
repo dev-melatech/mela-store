@@ -1,50 +1,54 @@
 <template>
-  <div class="melastore-auth mt-3" :class="classes">
-    <b-form>
-      <!--email input-->
-      <b-form-group
-        id="email-group"
-        label="Email"
-        label-for="email"
-        :description="email.description"
-        :class="email.error && 'error-field'"
-      >
-        <b-form-input
-          id="email"
-          v-model="email.value"
-          type="text"
-          :placeholder="email.placeholder"
-        ></b-form-input>
-      </b-form-group>
-      <!--password input-->
-      <b-form-group
-        id="password-group"
-        label="Password"
-        label-for="password"
-        :description="password.description"
-        :class="password.error && 'error-field'"
-      >
-        <b-form-input
-          id="password"
-          v-model="password.value"
-          :type="passwordType"
-          :placeholder="password.placeholder"
-        ></b-form-input>
-        <!--forgot password-->
-        <span class="forgot-password-btn" @click="showForgotPasswordForm">
-          Forgot Password?
-        </span>
-        <!--toggle password-->
-        <span
-          v-if="!showPassword"
-          @click="togglePassword"
-          class="toggle-password"
-          >show</span
+  <account-container>
+    <template v-slot:form>
+      <b-form>
+        <!--email input-->
+        <b-form-group
+          id="email-group"
+          label="Email"
+          label-for="email"
+          :description="email.description"
+          :class="email.error && 'error-field'"
         >
-        <span v-else @click="togglePassword" class="toggle-password">hide</span>
-      </b-form-group>
-    </b-form>
-    <div class="mt-5">
+          <b-form-input
+            id="email"
+            v-model="email.value"
+            type="text"
+            :placeholder="email.placeholder"
+          ></b-form-input>
+        </b-form-group>
+        <!--password input-->
+        <b-form-group
+          id="password-group"
+          label="Password"
+          label-for="password"
+          :description="password.description"
+          :class="password.error && 'error-field'"
+        >
+          <b-form-input
+            id="password"
+            v-model="password.value"
+            :type="passwordType"
+            :placeholder="password.placeholder"
+          ></b-form-input>
+          <!--forgot password-->
+          <span class="forgot-password-btn" @click="showForgotPasswordForm">
+            Forgot Password?
+          </span>
+          <!--toggle password-->
+          <span
+            v-if="!showPassword"
+            @click="togglePassword"
+            class="toggle-password"
+            >show</span
+          >
+          <span v-else @click="togglePassword" class="toggle-password"
+            >hide</span
+          >
+        </b-form-group>
+      </b-form>
+    </template>
+    <template v-slot:footer>
       <default-button
         text="Login"
         type="button"
@@ -57,16 +61,17 @@
           Register
         </span>
       </span>
-    </div>
-  </div>
+    </template>
+  </account-container>
 </template>
 
 <script>
-import DefaultButton from "@/components/Buttons/DefaultButton";
+import DefaultButton from "../../../src/components/Buttons/DefaultButton";
 import helpers from "../../helpers";
+import AccountContainer from "../../../src/components/Containers/AccountContainer";
 export default {
   name: "Login",
-  components: { DefaultButton },
+  components: { AccountContainer, DefaultButton },
   props: {
     classes: {
       type: String,

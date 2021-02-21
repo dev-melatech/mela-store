@@ -27,6 +27,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faFacebookF);
 library.add(faTwitter);
@@ -46,12 +47,16 @@ library.add(faPlus);
 library.add(faMinus);
 library.add(faChevronRight);
 library.add(faShoppingCart);
+library.add(faCircleNotch);
 
 import ShoppingCart from "../../src/components/Shopping Cart/ShoppingCart";
 import Advert from "../../src/components/Adverts/Advert";
 import Lander from "../../src/components/Landers/Lander";
 import PropsTable from "./components/PropsTable";
 import Notes from "./components/Notes";
+import Register from "../../src/components/Register/Register";
+import Login from "../../src/components/Login/Login";
+import ForgotPassword from "../../src/components/ForgotPassword/ForgotPassword";
 const numeral = require("numeral");
 
 import Vue from "vue";
@@ -72,5 +77,8 @@ export default ({
   Vue.component("Lander", Lander);
   Vue.component("PropsTable", PropsTable);
   Vue.component("Notes", Notes);
+  Vue.component("Register", Register);
+  Vue.component("Login", Login);
+  Vue.component("ForgotPassword", ForgotPassword);
   // Vue.component("products-list", ProductsList);
 };

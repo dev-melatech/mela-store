@@ -20,11 +20,13 @@
           <span class="text-center">{{ data.item.scopes.description }}</span>
         </template>
         <template #cell(arguments)="data">
-          <span class="arguments-name text-center">{{
+          <span v-if="data.item.arguments" class="arguments-name text-center">{{
             data.item.arguments.name
           }}</span>
           -
-          <span class="text-center">{{ data.item.arguments.description }}</span>
+          <span v-if="data.item.arguments" class="text-center">{{
+            data.item.arguments.description
+          }}</span>
         </template>
       </b-table>
     </div>

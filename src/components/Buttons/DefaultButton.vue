@@ -34,6 +34,7 @@ export default {
   background-color: #333;
   color: #ffff !important;
   padding: 15px;
+  font-weight: 700;
   border-radius: 30px;
 }
 .default-btn:hover {

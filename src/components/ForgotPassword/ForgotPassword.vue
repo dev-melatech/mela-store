@@ -1,23 +1,25 @@
 <template>
-  <div class="melastore-auth mt-3" :class="classes">
-    <b-form>
-      <!--email input-->
-      <b-form-group
-        id="email-group"
-        label="Email"
-        label-for="email"
-        :description="email.description"
-        :class="email.error && 'error-field'"
-      >
-        <b-form-input
-          id="email"
-          v-model="email.value"
-          type="text"
-          :placeholder="email.placeholder"
-        ></b-form-input>
-      </b-form-group>
-    </b-form>
-    <div class="mt-5">
+  <account-container>
+    <template v-slot:form>
+      <b-form>
+        <!--email input-->
+        <b-form-group
+          id="email-group"
+          label="Email"
+          label-for="email"
+          :description="email.description"
+          :class="email.error && 'error-field'"
+        >
+          <b-form-input
+            id="email"
+            v-model="email.value"
+            type="text"
+            :placeholder="email.placeholder"
+          ></b-form-input>
+        </b-form-group>
+      </b-form>
+    </template>
+    <template v-slot:footer>
       <default-button
         text="Send Password Reset Link"
         type="button"
@@ -30,16 +32,17 @@
           Login
         </span>
       </span>
-    </div>
-  </div>
+    </template>
+  </account-container>
 </template>
 
 <script>
-import DefaultButton from "@/components/Buttons/DefaultButton";
+import DefaultButton from "../../../src/components/Buttons/DefaultButton";
 import helpers from "../../helpers";
+import AccountContainer from "../../../src/components/Containers/AccountContainer";
 export default {
   name: "ForgotPassword",
-  components: { DefaultButton },
+  components: { AccountContainer, DefaultButton },
   props: {
     classes: {
       type: String,
@@ -81,9 +84,7 @@ export default {
       if (err.length !== 0) {
         this.showSpinner = false;
       } else {
-        this.$emit("send-password-reset-link", {
-          email: this.email.value
-        });
+        this.$emit("send-password-reset-link", this.email.value);
       }
     },
     setEmailError(error) {

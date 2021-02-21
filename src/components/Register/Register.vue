@@ -107,9 +107,9 @@
 </template>
 
 <script>
-import DefaultButton from "@/components/Buttons/DefaultButton";
+import DefaultButton from "../../../src/components/Buttons/DefaultButton";
 import helpers from "../../helpers";
-import AccountContainer from "@/components/Containers/AccountContainer";
+import AccountContainer from "../../../src/components/Containers/AccountContainer";
 export default {
   name: "Register",
   components: { AccountContainer, DefaultButton },

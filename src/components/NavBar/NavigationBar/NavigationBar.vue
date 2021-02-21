@@ -258,9 +258,7 @@ export default {
     },
     sendPasswordResetLink(email) {
       setTimeout(function() {
-        alert(
-          `Should send password reset email to \n\n ${JSON.stringify(email)}`
-        );
+        alert(`Should send password reset email to \n\n ${email}`);
       }, 1000);
     },
     proceedToCheckout() {

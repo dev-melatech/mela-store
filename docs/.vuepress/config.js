@@ -21,7 +21,10 @@ module.exports = {
         children: [
           ["/components/ShoppingCart", "Shopping Cart"],
           ["/components/Favourites", "Favourites"],
-          ["/components/Landers", "Landers"]
+          ["/components/Landers", "Landers"],
+          ["/components/Register", "Registration Form"],
+          ["/components/Login", "Login Form"],
+          ["/components/ForgotPassword", "Forgot Password Form"]
         ]
       }
     ],
