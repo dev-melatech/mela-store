@@ -62,15 +62,18 @@ export default {
 }
 .navbar-search--input {
   background: white;
-  border-radius: 0.25rem !important;
+  border-radius: 20px !important;
+  padding: 20px !important;
 }
 .navbar-search--input:focus {
   border-color: #ced4da;
 }
 .navbar-search--btn {
-  background: #333;
-  color: #ffff;
+  background: none;
+  color: #333;
+  /*font-size: 12px;*/
   border: none;
+  /*width: 40px;*/
   border-radius: 0.25rem !important;
 }
 .navbar-search-btn-append {

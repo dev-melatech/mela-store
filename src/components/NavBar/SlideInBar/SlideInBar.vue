@@ -26,9 +26,12 @@
     >
       <slot v-if="title === 'Cart'" name="shopping-cart"></slot>
       <slot v-if="title === 'Favourites'" name="favourites"></slot>
+      <slot v-if="title === 'Login'" name="auth"></slot>
+      <slot v-if="title === 'Register'" name="auth"></slot>
+      <slot v-if="title === 'Forgot Password'" name="auth"></slot>
     </div>
     <!--slide in bar footer-->
-    <div class="footer" ref="melatechUiSideMenuFooter">
+    <div class="footer" ref="melatechUiSideMenuFooter" v-if="title !== 'Login'">
       <slot v-if="title === 'Cart'" name="shopping-cart-footer"></slot>
       <slot v-if="title === 'Favourites'" name="favourites-footer"></slot>
     </div>

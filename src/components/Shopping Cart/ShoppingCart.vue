@@ -11,7 +11,7 @@
       <template v-slot:item="{ item }">
         <div>
           <slot name="product-link" :item="item">
-            <a :href="item.link" class="melastore-product--title">{{
+            <a :href="item.link" class="melastore-product-title">{{
               item.title
             }}</a>
           </slot>

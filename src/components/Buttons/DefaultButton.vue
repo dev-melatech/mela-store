@@ -1,41 +1,43 @@
 <template>
-  <div
-    class="count-circle text-center"
-    :style="{ backgroundColor: backgroundColor }"
-  >
-    <span>{{ value }}</span>
-  </div>
+  <button class="btn default-btn w-100" :type="type" @click="$emit('click')">
+    <span class="mr-1" v-if="showSpinner">
+      <font-awesome-icon class="fa-spin" :icon="['fas', 'circle-notch']" />
+    </span>
+    {{ text }}
+  </button>
 </template>
 
 <script>
 export default {
-  name: "CountCircle",
+  name: "DefaultButton",
   props: {
-    backgroundColor: {
+    text: {
       type: String,
-      default: "#333"
+      default: "",
+      required: true
     },
-    value: {
-      type: Number,
-      default: 0
+    type: {
+      type: String,
+      default: "",
+      required: true
+    },
+    showSpinner: {
+      type: Boolean,
+      default: false
     }
   }
 };
 </script>
 
 <style scoped>
-.count-circle {
-  position: relative;
-  height: 20px;
-  width: 20px;
-  background: red;
-  border-radius: 50%;
-  line-height: 20px;
-  top: -32px;
-  left: 12px;
-  margin-bottom: -20px;
-  font-size: 0.75vw;
-  color: white !important;
+.default-btn {
+  background-color: #333;
+  color: #ffff;
+  padding: 15px;
+  border-radius: 30px;
+}
+.default-btn:hover {
+  background-color: #666;
 }
 /* (1366x768) WXGA Display */
 
@@ -53,38 +55,23 @@ export default {
 /* Normal desktop :991px. */
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .count-circle {
-    font-size: 1.4vw;
-  }
 }
 
 /* small mobile :576px. */
 
 @media (min-width: 576px) and (max-width: 767px) {
-  .count-circle {
-    font-size: 2.8vw;
-  }
 }
 
 /* extra small mobile 320px. */
 
 @media (max-width: 575px) {
-  .count-circle {
-    font-size: 2.8vw;
-  }
 }
 
 /* Large Mobile :480px. */
 
 @media only screen and (min-width: 480px) and (max-width: 575px) {
-  .count-circle {
-    font-size: 2.8vw;
-  }
 }
 
 @media only screen and (max-width: 575px) and (min-width: 480px) {
-  .count-circle {
-    font-size: 1.8vw;
-  }
 }
 </style>

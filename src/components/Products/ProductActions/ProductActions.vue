@@ -115,6 +115,7 @@ export default {
 .melastore-product-actions-icons .cart-quantity {
   line-height: 30px;
   width: 50px;
+  background: ;
 }
 .from-slide-in-bar.melastore-product-actions-icons {
   position: relative;

@@ -1,33 +1,29 @@
 <template>
   <b-navbar
     toggleable="lg"
-    class="melatech-ui-navbar"
-    type="dark"
+    class="melatech-ui-navbar melastore-navbar"
+    type="light"
     sticky
     variant="info"
   >
     <b-container>
       <!--navbar toggler-->
-      <nav-bar-toggler @click="toggleMenu" :is-open="isOpen" />
       <!--navbar brand-->
       <b-navbar-brand href="#">Logo</b-navbar-brand>
+      <b-navbar-nav>
+        <b-nav-item href="#">Shop</b-nav-item>
+      </b-navbar-nav>
       <!--navbar search md|lg-->
       <nav-bar-search classes="d-none d-md-block" />
       <!--navbar links-->
       <b-navbar-nav class="ml-auto nav-links-list">
         <b-nav-item
-          v-for="(l, index) in navLinks"
+          v-for="(link, index) in navLinks"
           :key="index"
-          @click="toggleSlideInBar(l.title)"
+          @click="toggleSlideInBar(link)"
         >
-          <inline-svg
-            :name="l.icon"
-            width="20"
-            height="20"
-            dir="svgs"
-            classes=""
-          />
-          <count-circle />
+          <inline-svg :svg-file="link.icon" width="20" height="20" classes="" />
+          <count-circle v-if="link.title !== 'Login'" />
         </b-nav-item>
       </b-navbar-nav>
     </b-container>
@@ -35,8 +31,6 @@
     <b-container class="d-md-none">
       <nav-bar-search classes="d-md-none mt-3" />
     </b-container>
-    <!--side menu-->
-    <side-menu :is-open="isOpen" @click="toggleSlideInBar" />
     <!--slide in bar-->
     <slide-in-bar
       ref="melatechUiSlideInBar"
@@ -49,17 +43,18 @@
       ----------------------------------------------------------------------------->
       <template v-slot:shopping-cart>
         <shopping-cart
-          :products="[]"
+          :products="products"
           label="Cart"
           @proceed-to-checkout="proceedToCheckout"
           @empty-cart="emptyCart"
           @increase-cart-quantity="increaseCartQuantity"
           @decrease-cart-quantity="decreaseCartQuantity"
           @delete-product="deleteProductFromCart"
+          classes="hide-shadow toggle-bg"
         >
           <!--item link slot-->
           <template v-slot:product-link="{ item }">
-            <a :href="item.link" class="melatech-ui-product-title">{{
+            <a :href="item.link" class="melastore-product-title">{{
               item.title
             }}</a>
           </template>
@@ -88,10 +83,11 @@
           label="Favourites"
           @delete-product="deleteProductFromFavourites"
           @move-to-cart="moveToCart"
+          classes="hide-shadow toggle-bg"
         >
           <!--item link slot-->
           <template v-slot:product-link="{ item }">
-            <a :href="item.link" class="melatech-ui-product-title">{{
+            <a :href="item.link" class="melastore-product-title">{{
               item.title
             }}</a>
           </template>
@@ -104,38 +100,53 @@
           Empty Favourites
         </button>
       </template>
+      <!---------------------------------------------------------------------------
+                                      LOGIN SLOTS
+      ----------------------------------------------------------------------------->
+      <template v-slot:auth>
+        <login
+          v-if="slideInTitle === 'Login'"
+          @login="login"
+          @show-register-form="showRegisterForm"
+          @show-forgot-password-form="showForgotPasswordForm"
+        />
+        <h2 v-if="slideInTitle === 'Register'">
+          Register
+        </h2>
+        <h2 v-if="slideInTitle === 'Forgot Password'">
+          Forgot Password
+        </h2>
+      </template>
     </slide-in-bar>
     <!--full screen overlay-->
     <div
       class="melatech-ui-full-screen"
       :class="isOpen || isSlideInOpen ? 'visible' : 'hidden'"
-      @click="[(isOpen = false), (isSlideInOpen = false)]"
+      @click="toggleSlideInBar"
     ></div>
   </b-navbar>
 </template>
 
 <script>
-import NavBarToggler from "@/components/NavBar/NavigationBarToggler/NavBarToggler";
 import NavBarSearch from "@/components/NavBar/NavigationBarSearch/NavBarSearch";
 import InlineSvg from "@/components/InlineSVG/InlineSvg";
 import CountCircle from "@/components/NavBar/Helpers/CountCircle";
-import SideMenu from "@/components/NavBar/SideMenu/SideMenu";
 import SlideInBar from "@/components/NavBar/SlideInBar/SlideInBar";
 import config from "@/config";
 import ShoppingCart from "@/components/Shopping Cart/ShoppingCart";
 import Favourites from "@/components/Favourites/Favourites";
 import "@/assets/css/navbar.css";
+import Login from "@/components/Login/Login";
 export default {
   name: "NavigationBar",
   components: {
+    Login,
     Favourites,
     ShoppingCart,
     SlideInBar,
-    SideMenu,
     CountCircle,
     InlineSvg,
-    NavBarSearch,
-    NavBarToggler
+    NavBarSearch
   },
   computed: {
     products() {
@@ -143,17 +154,28 @@ export default {
       return config.getProducts();
     }
   },
+  mounted() {
+    console.log(window.location.href);
+    localStorage.setItem("currentHref", window.location.href);
+  },
   props: {
     navLinks: {
       type: Array,
       default: () => [
         {
           title: "Favourites",
-          icon: "like"
+          icon: require(`!html-loader!../../../../static/svgs/like.svg`),
+          path: "/favourites"
         },
         {
           title: "Cart",
-          icon: "cart"
+          icon: require(`!html-loader!../../../../static/svgs/cart.svg`),
+          path: "/cart"
+        },
+        {
+          title: "Login",
+          icon: require(`!html-loader!../../../../static/svgs/user.svg`),
+          path: "/account/login"
         }
       ]
     }
@@ -162,7 +184,8 @@ export default {
     return {
       isOpen: false,
       isSlideInOpen: false,
-      slideInTitle: ""
+      slideInTitle: "",
+      authTitle: "Login"
     };
   },
 
@@ -170,9 +193,29 @@ export default {
     toggleMenu(isOpen) {
       this.isOpen = isOpen;
     },
-    toggleSlideInBar(title) {
+    toggleSlideInBar(link = null) {
       this.isSlideInOpen = !this.isSlideInOpen;
-      this.slideInTitle = title;
+      if (link) {
+        this.slideInTitle = link.title;
+      }
+      if (this.isSlideInOpen) {
+        window.history.pushState("", "", `${link.path}`);
+      } else {
+        window.history.pushState("", "", localStorage.getItem("currentHref"));
+      }
+    },
+    showRegisterForm() {
+      this.slideInTitle = "Register";
+      window.history.pushState("", "", `/account/register`);
+    },
+    showForgotPasswordForm() {
+      this.slideInTitle = "Forgot Password";
+      window.history.pushState("", "", `/account/forgot-password`);
+    },
+    login(user) {
+      setTimeout(function() {
+        alert(`Should log user in \n\n ${JSON.stringify(user)}`);
+      }, 1000);
     },
     proceedToCheckout() {
       alert("Should proceed to check out");

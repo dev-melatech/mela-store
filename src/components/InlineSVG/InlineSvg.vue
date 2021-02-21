@@ -1,8 +1,8 @@
 <script>
 class Svg {
-  constructor(dir, name) {
+  constructor(svgFile) {
     const div = document.createElement("div");
-    div.innerHTML = require(`!html-loader!../../../static/${dir}/${name}.svg`);
+    div.innerHTML = svgFile;
     // change to wherever your svg files are
     const fragment = document.createDocumentFragment();
     fragment.appendChild(div);
@@ -38,13 +38,22 @@ class Svg {
   }
 }
 export default {
-  props: ["name", "classes", "width", "height", "title", "total", "dir"],
+  props: [
+    "name",
+    "classes",
+    "width",
+    "height",
+    "title",
+    "total",
+    "dir",
+    "svgFile"
+  ],
   render(h) {
     return h("div", {
       domProps: {
         classList: "flex-items-center",
         innerHTML:
-          `<span>${new Svg(this.dir, this.name)
+          `<span>${new Svg(this.svgFile)
             .classes(this.classes)
             .width(this.width)
             .height(this.height)}</span>` +

@@ -22,14 +22,14 @@ To replace native a link tags with a vue link or nuxt link, you replace the defa
 ```vue
 <!-- vue -->
 <template v-slot:product-link="{ item }">
-    <VueLink :to="item.link" class="melastore-product--title">
+    <VueLink :to="item.link" class="melastore-product-title">
       {{ item.title }}
     </VueLink>
 </template>
 
 <!-- nuxt -->
 <template v-slot:product-link="{ item }">
-    <NuxtLink :to="item.link" class="melastore-product--title">
+    <NuxtLink :to="item.link" class="melastore-product-title">
       {{ item.title }}
     </NuxtLink>
 </template>

@@ -25,6 +25,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faFacebookF);
 library.add(faTwitter);
@@ -43,6 +44,7 @@ library.add(faSearch);
 library.add(faPlus);
 library.add(faMinus);
 library.add(faChevronRight);
+library.add(faCircleNotch);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

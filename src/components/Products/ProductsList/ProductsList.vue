@@ -1,22 +1,27 @@
 <template>
   <ul class="melastore-products-list">
-    <li v-for="product in products" class="mb-3" :key="product.slug">
+    <li
+      v-for="product in products"
+      class="mb-3 b-shadow-full"
+      :key="product.slug"
+    >
       <!--item image-->
       <img
         v-if="product.image_link"
         :src="product.image_link"
         :alt="product.slug"
+        class="rounded"
       />
       <!--item content-->
       <div class="content float-left w-100">
         <!--item name-->
         <slot name="item" :item="product"></slot>
         <!--item price-->
-        <span class="melastore-product--price d-block mt-2"
+        <span class="melastore-product-price d-block mt-2"
           >${{ product.price | formatNumber }}</span
         >
         <!--item stock-->
-        <span class="melastore-product--stock d-block mt-1"
+        <span class="melastore-product-stock d-block mt-1"
           >Available stock: {{ product.quantity }}</span
         >
         <!--product actions-->
@@ -86,7 +91,6 @@ export default {
   min-height: 70px;
   background: #fff;
   display: flex;
-  /*border: 1px solid red;*/
   flex-direction: row;
   align-items: center;
   padding: 10px 5px;
@@ -94,14 +98,14 @@ export default {
   border-radius: 8px;
 }
 .melastore-products-list li:nth-child(even) {
-  background: #f8f7f7;
+  /*background: #f8f7f7;*/
 }
 .melastore-products-list li:last-child {
   margin-bottom: 0 !important;
 }
 .melastore-products-list li img {
   width: 80px;
-  padding: 10px;
+  margin: 0 10px;
 }
 .melastore-products-list .content {
   padding-left: 5px;

@@ -37,7 +37,7 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   products: config.getProducts(5),
-  classes: ""
+  classes: "mt-3 mb-3"
 };
 
 export const EmptyFavourites = Template.bind({});
