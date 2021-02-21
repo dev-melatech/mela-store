@@ -124,10 +124,11 @@
           @send-password-reset-link="sendPasswordResetLink"
           @show-login-form="showLoginForm"
         />
-        <h2 v-if="slideInTitle === 'Register'">
-          Register
-        </h2>
-
+        <register
+          v-if="slideInTitle === 'Register'"
+          @register="register"
+          @show-login-form="showLoginForm"
+        />
         <loader ref="loader" />
       </template>
     </slide-in-bar>
@@ -152,9 +153,11 @@ import "@/assets/css/navbar.css";
 import Login from "@/components/Login/Login";
 import ForgotPassword from "@/components/ForgotPassword/ForgotPassword";
 import Loader from "@/components/Loaders/Loader";
+import Register from "@/components/Register/Register";
 export default {
   name: "NavigationBar",
   components: {
+    Register,
     Loader,
     ForgotPassword,
     Login,
@@ -246,6 +249,11 @@ export default {
     login(user) {
       setTimeout(function() {
         alert(`Should log user in \n\n ${JSON.stringify(user)}`);
+      }, 1000);
+    },
+    register(user) {
+      setTimeout(function() {
+        alert(`Should register user in \n\n ${JSON.stringify(user)}`);
       }, 1000);
     },
     sendPasswordResetLink(email) {
