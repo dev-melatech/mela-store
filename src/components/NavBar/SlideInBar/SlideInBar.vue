@@ -31,7 +31,7 @@
       <slot v-if="title === 'Forgot Password'" name="auth"></slot>
     </div>
     <!--slide in bar footer-->
-    <div class="footer" ref="melatechUiSideMenuFooter" v-if="title !== 'Login'">
+    <div class="footer" ref="melatechUiSideMenuFooter" v-if="!hideFooter">
       <slot v-if="title === 'Cart'" name="shopping-cart-footer"></slot>
       <slot v-if="title === 'Favourites'" name="favourites-footer"></slot>
     </div>
@@ -46,6 +46,10 @@ export default {
     isOpen: {
       type: Boolean,
       default: null
+    },
+    hideFooter: {
+      type: Boolean,
+      default: false
     },
     classes: {
       type: String,

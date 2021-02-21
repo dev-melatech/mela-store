@@ -37,6 +37,13 @@
       :title="slideInTitle"
       :is-open="isSlideInOpen"
       @click="toggleSlideInBar"
+      :hide-footer="
+        slideInTitle === 'Login'
+          ? true
+          : slideInTitle === 'Register'
+          ? true
+          : slideInTitle === 'Forgot Password'
+      "
     >
       <!---------------------------------------------------------------------------
                                       CART SLOTS
@@ -106,15 +113,19 @@
       <template v-slot:auth>
         <login
           v-if="slideInTitle === 'Login'"
+          ref="melastoreLogin"
           @login="login"
           @show-register-form="showRegisterForm"
           @show-forgot-password-form="showForgotPasswordForm"
         />
+        <forgot-password
+          v-if="slideInTitle === 'Forgot Password'"
+          ref="melastoreForgotPassword"
+          @send-password-reset-link="sendPasswordResetLink"
+          @show-login-form="showLoginForm"
+        />
         <h2 v-if="slideInTitle === 'Register'">
           Register
-        </h2>
-        <h2 v-if="slideInTitle === 'Forgot Password'">
-          Forgot Password
         </h2>
       </template>
     </slide-in-bar>
@@ -137,9 +148,11 @@ import ShoppingCart from "@/components/Shopping Cart/ShoppingCart";
 import Favourites from "@/components/Favourites/Favourites";
 import "@/assets/css/navbar.css";
 import Login from "@/components/Login/Login";
+import ForgotPassword from "@/components/ForgotPassword/ForgotPassword";
 export default {
   name: "NavigationBar",
   components: {
+    ForgotPassword,
     Login,
     Favourites,
     ShoppingCart,
@@ -208,6 +221,10 @@ export default {
       this.slideInTitle = "Register";
       window.history.pushState("", "", `/account/register`);
     },
+    showLoginForm() {
+      this.slideInTitle = "Login";
+      window.history.pushState("", "", `/account/login`);
+    },
     showForgotPasswordForm() {
       this.slideInTitle = "Forgot Password";
       window.history.pushState("", "", `/account/forgot-password`);
@@ -215,6 +232,13 @@ export default {
     login(user) {
       setTimeout(function() {
         alert(`Should log user in \n\n ${JSON.stringify(user)}`);
+      }, 1000);
+    },
+    sendPasswordResetLink(email) {
+      setTimeout(function() {
+        alert(
+          `Should send password reset email to \n\n ${JSON.stringify(email)}`
+        );
       }, 1000);
     },
     proceedToCheckout() {

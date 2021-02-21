@@ -32,12 +32,13 @@ export default {
 <style scoped>
 .default-btn {
   background-color: #333;
-  color: #ffff;
+  color: #ffff !important;
   padding: 15px;
   border-radius: 30px;
 }
 .default-btn:hover {
   background-color: #666;
+  color: #ffff !important;
 }
 /* (1366x768) WXGA Display */
 
