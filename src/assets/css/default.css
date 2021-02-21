@@ -114,6 +114,10 @@ label {
 .toggle-password:hover {
   cursor: pointer;
 }
+.preloader-wrap .spinner svg {
+  width: 40px !important;
+  height: 40px !important;
+}
 /*=======================================
  1. Start MelaStore NavBar
 ========================================*/

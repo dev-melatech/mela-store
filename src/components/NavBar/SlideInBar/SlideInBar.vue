@@ -100,7 +100,7 @@ export default {
   },
   methods: {
     onToggleMenu() {
-      this.$emit("click", "");
+      this.$emit("toggle-slide-in", { title: this.title });
     }
   }
 };

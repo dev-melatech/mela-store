@@ -36,7 +36,7 @@
       ref="melatechUiSlideInBar"
       :title="slideInTitle"
       :is-open="isSlideInOpen"
-      @click="toggleSlideInBar"
+      @toggle-slide-in="toggleSlideInBar"
       :hide-footer="
         slideInTitle === 'Login'
           ? true
@@ -127,13 +127,15 @@
         <h2 v-if="slideInTitle === 'Register'">
           Register
         </h2>
+
+        <loader ref="loader" />
       </template>
     </slide-in-bar>
     <!--full screen overlay-->
     <div
       class="melatech-ui-full-screen"
       :class="isOpen || isSlideInOpen ? 'visible' : 'hidden'"
-      @click="toggleSlideInBar"
+      @click="toggleSlideInBar({ title: slideInTitle })"
     ></div>
   </b-navbar>
 </template>
@@ -149,9 +151,11 @@ import Favourites from "@/components/Favourites/Favourites";
 import "@/assets/css/navbar.css";
 import Login from "@/components/Login/Login";
 import ForgotPassword from "@/components/ForgotPassword/ForgotPassword";
+import Loader from "@/components/Loaders/Loader";
 export default {
   name: "NavigationBar",
   components: {
+    Loader,
     ForgotPassword,
     Login,
     Favourites,
@@ -207,25 +211,35 @@ export default {
       this.isOpen = isOpen;
     },
     toggleSlideInBar(link = null) {
+      console.log(link);
+      this.slideInTitle = link.title;
       this.isSlideInOpen = !this.isSlideInOpen;
-      if (link) {
-        this.slideInTitle = link.title;
-      }
+
       if (this.isSlideInOpen) {
         window.history.pushState("", "", `${link.path}`);
       } else {
         window.history.pushState("", "", localStorage.getItem("currentHref"));
       }
     },
+    toggleLoader() {
+      this.$refs.loader.toggleLoader();
+      const that = this;
+      setTimeout(function() {
+        that.$refs.loader.toggleLoader();
+      }, 1000);
+    },
     showRegisterForm() {
+      this.toggleLoader();
       this.slideInTitle = "Register";
       window.history.pushState("", "", `/account/register`);
     },
     showLoginForm() {
+      this.toggleLoader();
       this.slideInTitle = "Login";
       window.history.pushState("", "", `/account/login`);
     },
     showForgotPasswordForm() {
+      this.toggleLoader();
       this.slideInTitle = "Forgot Password";
       window.history.pushState("", "", `/account/forgot-password`);
     },
