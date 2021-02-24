@@ -7,7 +7,7 @@ import Lander from "@/components/Landers/Lander";
 
 export default {
   component: Lander,
-  title: "E-commerce/Landers",
+  title: "E-commerce/Landers/Lander",
   argTypes: {
     imageLink1: { control: "text" },
     imageLink2: { control: "text" },

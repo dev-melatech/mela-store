@@ -9,7 +9,7 @@
     ]"
   >
     <!--slide in bar header-->
-    <div class="header b-radius" ref="melatechUiSideMenuHeader">
+    <div class="header" ref="melatechUiSideMenuHeader">
       <button class="btn close-slide-in-bar--btn mr-3" @click="onToggleMenu">
         <font-awesome-icon :icon="['fas', 'chevron-right']" />
       </button>
@@ -125,10 +125,12 @@ export default {
 .melatech-ui-slide-in-bar .header {
   background: var(--default-color);
   color: #fff;
-  padding: 10px 15px;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 14px;
+  padding: 13px 15px;
+
+  border-radius: 35px;
 }
 .melatech-ui-slide-in-bar .content {
   /*height: 100vh;*/
