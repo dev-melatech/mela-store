@@ -8,14 +8,10 @@
         :class="[
           currentSlide !== index && index > currentSlide && 'next-slide',
           currentSlide !== index && index < currentSlide && 'prev-slide',
-          currentSlide === index && next && !slideNext && 'next',
-          currentSlide === index && next && slideNext && 'next-fast',
-          index === currentSlide + 1 && next && !slideNext && 'in',
-          index === currentSlide + 1 && next && slideNext && 'in-fast',
-          currentSlide === index && prev && !slidePrev && 'prev',
-          currentSlide === index && prev && slidePrev && 'prev-fast',
-          index === currentSlide - 1 && prev && !slidePrev && 'out',
-          index === currentSlide - 1 && prev && slidePrev && 'out-fast'
+          currentSlide === index && next && 'next',
+          index === currentSlide + nextKey && next && 'in',
+          currentSlide === index && prev && 'prev',
+          index === currentSlide - prevKey && prev && 'out'
         ]"
         :ref="`imgContainer${index}`"
         :style="{
@@ -30,10 +26,18 @@
       ></div>
     </div>
     <div class="mt-5 text-center">
-      <button class="btn btn-primary" @click="movePrev" :disabled="prev">
+      <button
+        class="btn btn-primary"
+        @click="movePrev(500, 1)"
+        :disabled="prev"
+      >
         Slide prev
       </button>
-      <button class="btn btn-secondary" @click="moveNext(500)" :disabled="next">
+      <button
+        class="btn btn-secondary"
+        @click="moveNext(500, 1)"
+        :disabled="next"
+      >
         Slide next
       </button>
     </div>
@@ -87,7 +91,9 @@ export default {
       next: false,
       slidePrev: false,
       slideNext: false,
-      step: 0
+      step: 0,
+      nextKey: 1,
+      prevKey: 1
     };
   },
   mounted() {
@@ -108,7 +114,7 @@ export default {
       let currentSlide;
       let minus;
       let count;
-      const time = 3000;
+      const time = 500;
 
       if (this.step > 0) {
         minus = this.step * this.landerImages.length;
@@ -119,43 +125,21 @@ export default {
 
       if (index < currentSlide) {
         count = currentSlide - index;
-        this.slidePrev = true;
-        this.slideNext = false;
+        this.prevKey = count;
+        this.movePrev(time, count);
       } else if (index === currentSlide) {
         alert("same");
       } else {
         count = index - currentSlide;
-        this.slidePrev = false;
-        this.slideNext = true;
+        this.nextKey = count;
+        this.moveNext(time, count);
       }
-
-      const that = this;
-
-      const slide = setInterval(function() {
-        if (index < currentSlide) {
-          that.movePrev(time);
-        } else {
-          that.moveNext(time);
-        }
-      }, time);
-
-      setTimeout(function() {
-        clearInterval(slide);
-        if (index < currentSlide) {
-          that.slidePrev = false;
-        } else {
-          that.slideNext = true;
-        }
-      }, count * time);
     },
-    moveNext(time) {
+    moveNext(time, nextKey) {
       this.next = true;
       this.prev = false;
       const length = this.images.length;
       const currentSlide = this.currentSlide;
-
-      console.log(`length is ${length}`);
-      console.log(`current slide is ${currentSlide}`);
 
       if (currentSlide === length - 1) {
         this.landerImages.forEach(v => {
@@ -167,25 +151,30 @@ export default {
       const that = this;
       setTimeout(function() {
         that.next = false;
-        that.currentSlide = that.currentSlide + 1;
+        that.currentSlide = that.currentSlide + nextKey;
+        that.nextKey = 1;
       }, time - 50);
     },
-    movePrev(time) {
+    movePrev(time, prevKey) {
       this.next = false;
       this.prev = true;
+      const length = this.images.length;
 
+      console.log(this.currentSlide);
       if (this.currentSlide === 0) {
         this.landerImages.forEach(v => {
           this.images.push(v);
         });
         this.step++;
+        this.currentSlide = length;
         console.table(this.images);
       }
 
       const that = this;
       setTimeout(function() {
         that.prev = false;
-        that.currentSlide = that.currentSlide - 1;
+        that.currentSlide = that.currentSlide - prevKey;
+        that.prevKey = 1;
       }, time - 50);
     }
   }
@@ -217,22 +206,7 @@ export default {
   width: 100vw;
   height: 100%;
 }
-.in-fast {
-  -webkit-animation: slide-in 3s forwards;
-  animation: slide-in 3s forwards;
-}
-.out-fast {
-  -webkit-animation: slide-out 0.1s forwards;
-  animation: slide-out 0.1s forwards;
-}
-.next-fast {
-  -webkit-animation: slide-next 2 forwards;
-  animation: slide-next 2 forwards;
-}
-.prev-fast {
-  -webkit-animation: slide-prev 0.1s forwards;
-  animation: slide-prev 0.1s forwards;
-}
+
 .in {
   -webkit-animation: slide-in 0.5s forwards;
   animation: slide-in 0.5s forwards;
