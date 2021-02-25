@@ -109,6 +109,12 @@ export default {
     this.landerImages.forEach(v => {
       this.images.push(v);
     });
+    this.landerImages.forEach(v => {
+      this.images.push(v);
+    });
+    this.step++;
+    this.currentSlide = this.landerImages.length;
+    console.table(this.images);
     if (this.autoplay) {
       this.timer();
     }
@@ -156,15 +162,9 @@ export default {
     moveNext(time, nextKey) {
       this.next = true;
       this.prev = false;
-      const length = this.images.length;
-      const currentSlide = this.currentSlide;
-
-      if (currentSlide === length - 1) {
-        this.landerImages.forEach(v => {
-          this.images.push(v);
-        });
-        this.step++;
-        console.table(this.images);
+      console.log(this.currentSlide);
+      if (this.currentSlide === this.images.length - 1) {
+        this.currentSlide = this.landerImages.length - 1;
       }
       const that = this;
       setTimeout(function() {
@@ -176,18 +176,10 @@ export default {
     movePrev(time, prevKey) {
       this.next = false;
       this.prev = true;
-      const length = this.images.length;
-
       console.log(this.currentSlide);
       if (this.currentSlide === 0) {
-        this.landerImages.forEach(v => {
-          this.images.push(v);
-        });
-        this.step++;
-        this.currentSlide = length;
-        console.table(this.images);
+        this.currentSlide = this.landerImages.length;
       }
-
       const that = this;
       setTimeout(function() {
         that.prev = false;
