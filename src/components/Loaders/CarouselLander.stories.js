@@ -1,18 +1,21 @@
 import CarouselLander from "@/components/Loaders/CarouselLander";
 // import { action } from "@storybook/addon-actions";
-
+import NavigationBar from "@/components/NavBar/NavigationBar/NavigationBar";
 export default {
   component: CarouselLander,
   title: "E-commerce/Landers/Carousel Lander",
   argTypes: {
+    autoplay: { control: "boolean" },
+    interval: { control: "number" },
     classes: { control: "text" }
   }
 };
 
 const Template = (args, { argTypes }) => ({
-  components: { CarouselLander },
+  components: { CarouselLander, NavigationBar },
   props: Object.keys(argTypes),
-  template: "<carousel-lander></carousel-lander>",
+  template:
+    "<div><navigation-bar></navigation-bar><carousel-lander :interval='interval' :autoplay='autoplay'/></div>",
   data() {
     return {};
   },
@@ -21,5 +24,7 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  classes: ""
+  classes: "",
+  autoplay: false,
+  interval: 3
 };

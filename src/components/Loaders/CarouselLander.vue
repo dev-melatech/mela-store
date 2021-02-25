@@ -1,55 +1,51 @@
 <template>
-  <div>
-    <div style="position:relative; overflow-x: hidden;   height: 400px;">
-      <div
-        v-for="(image, index) in images"
-        :key="index"
-        class="img-container"
-        :class="[
-          currentSlide !== index && index > currentSlide && 'next-slide',
-          currentSlide !== index && index < currentSlide && 'prev-slide',
-          currentSlide === index && next && 'next',
-          index === currentSlide + nextKey && next && 'in',
-          currentSlide === index && prev && 'prev',
-          index === currentSlide - prevKey && prev && 'out'
-        ]"
-        :ref="`imgContainer${index}`"
-        :style="{
-          padding: '50px 0',
-          background:
-            'linear-gradient(147deg, rgba(15, 85, 131, 0.2), rgba(0, 0, 0, .3)), url(' +
-            image +
-            ') no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }"
-      ></div>
-    </div>
-    <div class="mt-5 text-center">
-      <button
-        class="btn btn-primary"
-        @click="movePrev(500, 1)"
-        :disabled="prev"
-      >
-        Slide prev
-      </button>
-      <button
-        class="btn btn-secondary"
-        @click="moveNext(500, 1)"
-        :disabled="next"
-      >
-        Slide next
-      </button>
-    </div>
-    <div>
-      {{ landerImages }}
+  <div
+    style="position:relative; overflow-x: hidden;   height: 400px;"
+    @mouseover="pauseTimer"
+    @mouseleave="autoplay && timer()"
+  >
+    <div
+      v-for="(image, index) in images"
+      :key="index"
+      class="img-container"
+      :class="[
+        currentSlide !== index && index > currentSlide && 'next-slide',
+        currentSlide !== index && index < currentSlide && 'prev-slide',
+        currentSlide === index && next && 'next',
+        index === currentSlide + nextKey && next && 'in',
+        currentSlide === index && prev && 'prev',
+        index === currentSlide - prevKey && prev && 'out'
+      ]"
+      :ref="`imgContainer${index}`"
+      :style="{
+        padding: '50px 0',
+        backgroundImage: 'url(/' + image + ')',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }"
+    >
       <button
         class="btn btn-danger"
+        style="position: absolute; bottom: 50px;z-index: 10"
+      >
+        Shop Now
+      </button>
+    </div>
+    <button class="btn  prev-btn" @click="movePrev(500, 1)" :disabled="prev">
+      <font-awesome-icon :icon="['fas', 'chevron-left']" />
+    </button>
+    <button class="btn next-btn" @click="moveNext(500, 1)" :disabled="next">
+      <font-awesome-icon :icon="['fas', 'chevron-right']" />
+    </button>
+    <div class="dots text-center">
+      <button
+        class="btn"
         v-for="(image, index) in landerImages"
         :key="index"
         @click="setCurrent(index)"
+        :disabled="calcCurrentSlide === index"
       >
-        click me
+        <font-awesome-icon :icon="['fas', 'circle']" />
       </button>
     </div>
   </div>
@@ -61,11 +57,11 @@ export default {
   props: {
     autoplay: {
       type: Boolean,
-      default: false
+      default: true
     },
     interval: {
       type: Number,
-      default: 1
+      default: 3
     },
     landerImages: {
       type: Array,
@@ -77,15 +73,25 @@ export default {
       ]
     }
   },
-  computed: {
-    image() {
-      return require("../../../static/images/lander/fill_1.jpg");
+  computed: {},
+  watch: {
+    currentSlide: {
+      handler(val) {
+        let minus;
+        if (this.step > 0) {
+          minus = this.step * this.landerImages.length;
+          this.calcCurrentSlide = val - minus;
+        } else {
+          this.calcCurrentSlide = this.currentSlide;
+        }
+      },
+      deep: true
     }
   },
   data() {
     return {
       images: [],
-      currentSlide: 1,
+      currentSlide: 0,
       nextSlide: 1,
       prev: false,
       next: false,
@@ -93,23 +99,35 @@ export default {
       slideNext: false,
       step: 0,
       nextKey: 1,
-      prevKey: 1
+      prevKey: 1,
+      calcCurrentSlide: 0,
+      autoSlide: false,
+      my_timer: 0
     };
   },
   mounted() {
     this.landerImages.forEach(v => {
       this.images.push(v);
     });
-
-    const that = this;
     if (this.autoplay) {
-      setInterval(function() {
-        console.log("what's next");
-        that.slideNext();
-      }, that.interval * 1000);
+      this.timer();
     }
   },
   methods: {
+    timer() {
+      console.log("playing");
+      const that = this;
+      this.my_timer = setInterval(() => {
+        if (!that.next && !that.prev) {
+          console.log("what's next");
+          that.moveNext(500, 1);
+        }
+      }, that.interval * 1000);
+    },
+    pauseTimer() {
+      console.log("stop");
+      clearInterval(this.my_timer);
+    },
     setCurrent(index) {
       let currentSlide;
       let minus;
@@ -128,7 +146,7 @@ export default {
         this.prevKey = count;
         this.movePrev(time, count);
       } else if (index === currentSlide) {
-        alert("same");
+        // alert("same");
       } else {
         count = index - currentSlide;
         this.nextKey = count;
@@ -182,6 +200,49 @@ export default {
 </script>
 
 <style scoped>
+.prev-btn {
+  position: absolute;
+  left: 10%;
+  top: 45%;
+  z-index: 10;
+}
+.next-btn {
+  position: absolute;
+  right: 10%;
+  top: 45%;
+  z-index: 10;
+}
+.prev-btn,
+.next-btn {
+  background-color: #2966a5;
+  /* width: 40px; */
+  /* padding: 5px 15px; */
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: white;
+}
+.prev-btn:disabled,
+.next-btn:disabled {
+  opacity: 1;
+}
+.prev-btn:hover,
+.next-btn:hover {
+  background-color: #3d77b3;
+}
+.dots {
+  bottom: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 10;
+}
+.dots .btn {
+  color: black;
+  padding: 5px;
+  font-size: 12px;
+}
 .img-container {
   background-color: red;
   position: absolute;
@@ -229,63 +290,63 @@ export default {
 
 @keyframes slide-next {
   0% {
-    z-index: 100000000;
+    z-index: 1;
     left: 0;
   }
 
   100% {
     left: -100%;
     width: 100vw;
-    z-index: 100000000;
+    z-index: 1;
   }
 }
 @keyframes slide-prev {
   0% {
-    z-index: 100000000;
+    z-index: 1;
     left: 0;
   }
 
   100% {
     left: 100%;
     width: 100vw;
-    z-index: 100000000;
+    z-index: 1;
   }
 }
 @keyframes slide-in {
   0% {
-    z-index: 100000000;
+    z-index: 1;
     left: 100%;
   }
 
   100% {
     left: 0;
     width: 100vw;
-    z-index: 100000000;
+    z-index: 1;
   }
 }
 @keyframes slide-out {
   0% {
-    z-index: 100000000;
+    z-index: 1;
     left: -100%;
   }
 
   100% {
     left: 0;
     width: 100vw;
-    z-index: 100000000;
+    z-index: 1;
   }
 }
 
 /*@-webkit-keyframes slide-next {*/
 /*  0% {*/
-/*    z-index: 100000000;*/
+/*    z-index: 1;*/
 /*    right: -2000px;*/
 /*  }*/
 
 /*  100% {*/
 /*    right: 0;*/
 /*    width: 100vw;*/
-/*    z-index: 100000000;*/
+/*    z-index: 1;*/
 /*  }*/
 /*}*/
 /* (1366x768) WXGA Display */
