@@ -19,7 +19,9 @@ const Template = (args, { argTypes }) => ({
     "@login='loginAction'\n" +
     "@show-register-form='showRegisterFormAction'\n" +
     "@show-forgot-password-form='showForgotPasswordFormAction'\n" +
-    ":classes='classes'/>" +
+    ":classes='classes'>" +
+    "<template v-slot:forgot-password-redirect>new</template>" +
+    "</login>" +
     "</auth-container>",
   data() {
     return {};

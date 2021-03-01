@@ -98,6 +98,7 @@ export default {
   border-radius: 50%;
   margin: 0 auto 10px auto;
   line-height: 70px;
+  font-size: 18px;
 }
 .info-title {
   font-weight: 700;

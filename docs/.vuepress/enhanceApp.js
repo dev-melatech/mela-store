@@ -26,8 +26,10 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faFacebookF);
 library.add(faTwitter);
@@ -46,8 +48,10 @@ library.add(faSearch);
 library.add(faPlus);
 library.add(faMinus);
 library.add(faChevronRight);
+library.add(faChevronLeft);
 library.add(faShoppingCart);
 library.add(faCircleNotch);
+library.add(faCircle);
 
 import ShoppingCart from "../../src/components/Shopping Cart/ShoppingCart";
 import Advert from "../../src/components/Adverts/Advert";
@@ -57,6 +61,7 @@ import Notes from "./components/Notes";
 import Register from "../../src/components/Register/Register";
 import Login from "../../src/components/Login/Login";
 import ForgotPassword from "../../src/components/ForgotPassword/ForgotPassword";
+import CarouselLander from "../../src/components/Loaders/CarouselLander";
 const numeral = require("numeral");
 
 import Vue from "vue";
@@ -80,5 +85,6 @@ export default ({
   Vue.component("Register", Register);
   Vue.component("Login", Login);
   Vue.component("ForgotPassword", ForgotPassword);
+  Vue.component("CarouselLander", CarouselLander);
   // Vue.component("products-list", ProductsList);
 };

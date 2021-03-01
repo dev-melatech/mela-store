@@ -62,7 +62,7 @@ export default {
 
 @media (min-width: 576px) and (max-width: 767px) {
   .count-circle {
-    font-size: 2.8vw;
+    font-size: 1.8vw;
   }
 }
 

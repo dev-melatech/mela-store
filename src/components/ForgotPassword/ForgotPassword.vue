@@ -28,9 +28,11 @@
       />
       <span class="mt-2 text-center w-100 d-inline-block"
         >I remember my password?
-        <span @click="showLoginForm" class="show-register-form-btn">
-          Login
-        </span>
+        <slot name="login-redirect">
+          <span @click="showLoginForm" class="show-register-form-btn">
+            Login
+          </span>
+        </slot>
       </span>
     </template>
   </account-container>

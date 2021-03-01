@@ -21,7 +21,16 @@ module.exports = {
         children: [
           ["/components/ShoppingCart", "Shopping Cart"],
           ["/components/Favourites", "Favourites"],
-          ["/components/Landers", "Landers"],
+          {
+            title: "Landers",
+            path: "/components/landers/Landers",
+            collapsable: true, // optional, defaults to true
+            // sidebarDepth: 1, // optional, defaults to 1
+            children: [
+              ["/components/landers/Landers", "Lander"],
+              ["/components/landers/CarouselLander", "Carousel Lander"]
+            ]
+          },
           ["/components/Register", "Registration Form"],
           ["/components/Login", "Login Form"],
           ["/components/ForgotPassword", "Forgot Password Form"]
