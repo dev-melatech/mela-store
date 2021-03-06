@@ -1,10 +1,10 @@
 <template>
-  <div id="melatech_ui_footer" :class="classes">
+  <div id="melastore-footer" :class="classes">
     <footer>
-      <div class="footer-top">
+      <div class="melastore-footer-top">
         <slot></slot>
       </div>
-      <div class="footer-bottom text-center">
+      <div class="melastore-footer-bottom text-center">
         <b-container>
           <b-row>
             <b-col cols="12">
@@ -23,7 +23,7 @@ export default {
   props: {
     copyrightText: {
       type: String,
-      default: "Your Website Name All Right Reserved"
+      default: ""
     },
     classes: {
       type: String,
@@ -34,12 +34,15 @@ export default {
 </script>
 
 <style scoped>
-.footer-top {
-  background-color: #f8f6f6;
-  padding: 80px 0 0 0;
+.melastore-footer-top {
+  background-color: var(--ms-footer-background);
+  padding: 40px 0 0 0;
 }
-.footer-bottom {
-  padding: 20px 0;
+.melastore-footer-bottom {
+  padding: 20px 0 10px 0;
+  background-color: var(--ms-footer-bottom-background);
+  font-size: 12px;
+  color: var(--ms-footer-text-color);
 }
 /* (1366x768) WXGA Display */
 

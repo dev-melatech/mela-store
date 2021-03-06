@@ -4,17 +4,32 @@
       <b-form>
         <!--firstname input-->
         <b-form-group
-          id="fullName-group"
-          label="Full Name"
-          label-for="fullName"
-          :description="fullName.description"
-          :class="fullName.error && 'error-field'"
+          id="firstName-group"
+          label="First Name"
+          label-for="firstName"
+          :description="firstName.description"
+          :class="firstName.error && 'error-field'"
         >
           <b-form-input
-            id="fullName"
-            v-model="fullName.value"
+            id="firstName"
+            v-model="firstName.value"
             type="text"
-            :placeholder="fullName.placeholder"
+            :placeholder="firstName.placeholder"
+          ></b-form-input>
+        </b-form-group>
+        <!--lastname input-->
+        <b-form-group
+          id="lastName-group"
+          label="Last Name"
+          label-for="lastName"
+          :description="lastName.description"
+          :class="lastName.error && 'error-field'"
+        >
+          <b-form-input
+            id="lastName"
+            v-model="lastName.value"
+            type="text"
+            :placeholder="lastName.placeholder"
           ></b-form-input>
         </b-form-group>
         <!--email input-->
@@ -111,9 +126,15 @@ export default {
       showSpinner: false,
       showPassword: false,
       passwordType: "password",
-      fullName: {
+      firstName: {
         value: "",
-        placeholder: "Enter your full name",
+        placeholder: "Enter your first name",
+        description: "",
+        error: false
+      },
+      lastName: {
+        value: "",
+        placeholder: "Enter your last name",
         description: "",
         error: false
       },
@@ -154,13 +175,22 @@ export default {
       this.showSpinner = true;
       let err = [];
       // validate first name
-      if (!this.fullName.value) {
-        this.fullName.description = "Please enter your first name";
-        this.fullName.error = true;
+      if (!this.firstName.value) {
+        this.firstName.description = "Please enter your first name";
+        this.firstName.error = true;
         err.push("fullName");
       } else {
-        this.fullName.description = "";
-        this.fullName.error = false;
+        this.firstName.description = "";
+        this.firstName.error = false;
+      }
+      // validate last name
+      if (!this.lastName.value) {
+        this.lastName.description = "Please enter your last name";
+        this.lastName.error = true;
+        err.push("lastName");
+      } else {
+        this.lastName.description = "";
+        this.lastName.error = false;
       }
       // validate phone number
       if (!this.phone.value) {
@@ -204,25 +234,38 @@ export default {
       } else {
         this.$emit("register", {
           email: this.email.value,
-          fullName: this.fullName.value,
+          firstName: this.firstName.value,
+          lastName: this.lastName.value,
           phone: this.phone.value,
           password: this.password.value
         });
       }
     },
-    setFullNameError(error) {
+    setFirstNameError(error) {
       if (error) {
-        this.fullName.description = error;
-        this.fullName.error = true;
+        this.firstName.description = error;
+        this.firstName.error = true;
+        this.showSpinner = false;
       } else {
-        this.fullName.description = "";
-        this.fullName.error = false;
+        this.firstName.description = "";
+        this.firstName.error = false;
+      }
+    },
+    setLastNameError(error) {
+      if (error) {
+        this.lastName.description = error;
+        this.lastName.error = true;
+        this.showSpinner = false;
+      } else {
+        this.lastName.description = "";
+        this.lastName.error = false;
       }
     },
     setPhoneError(error) {
       if (error) {
         this.phone.description = error;
         this.phone.error = true;
+        this.showSpinner = false;
       } else {
         this.phone.description = "";
         this.phone.error = false;
@@ -232,6 +275,7 @@ export default {
       if (error) {
         this.email.description = error;
         this.email.error = true;
+        this.showSpinner = false;
       } else {
         this.email.description = "";
         this.email.error = false;
@@ -241,6 +285,7 @@ export default {
       if (error) {
         this.password.description = error;
         this.password.error = true;
+        this.showSpinner = false;
       } else {
         this.password.description = "";
         this.password.error = false;

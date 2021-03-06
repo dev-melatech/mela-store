@@ -7,10 +7,11 @@ Vue.use(BootstrapVue);
 
 import ProductActions from "@/components/Products/ProductActions/ProductActions";
 import testData from "../../../../testData";
+import { action } from "@storybook/addon-actions";
 
 export default {
   component: ProductActions,
-  title: "E-commerce/Product Actions",
+  title: "E-commerce/Products/Product Actions",
   argTypes: {
     product: { control: "object" },
     hideCartButton: { control: "boolean" },
@@ -32,6 +33,7 @@ const Template = (args, { argTypes }) => ({
     "<div style='height: 500px;" +
     " background: #f3efef;" +
     " width: 500px;" +
+    " padding-top: 300px;" +
     " margin: 0 auto;" +
     " position: relative'>\n" +
     "<ProductActions " +
@@ -41,10 +43,17 @@ const Template = (args, { argTypes }) => ({
     ':hide-delete-button="hideDeleteButton"\n' +
     ':hide-cart-quantity-adjust="hideCartQuantityAdjust"\n' +
     ':from-cart="fromCart"\n' +
-    ' :product="product" ' +
-    ':classes="classes"/>' +
+    ':product="product"\n' +
+    ':classes="classes"\n' +
+    '@move-to-cart="moveToCart"\n' +
+    '@move-to-favourites="moveToFavourites"\n' +
+    "/>" +
     "</div>" +
-    "</b-container>"
+    "</b-container>",
+  methods: {
+    moveToCart: action("move-to-cart"),
+    moveToFavourites: action("move-to-favourites")
+  }
 });
 
 // Each story then reuses that template

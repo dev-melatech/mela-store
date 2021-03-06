@@ -1,38 +1,39 @@
-.visible {
+.melastore-navbar .visible {
   visibility: visible;
   opacity: 1;
   transition: opacity 0.5s linear;
 }
 
-.hidden {
+.melastore-navbar .hidden {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 
-.melatech-ui-navbar {
+.melastore-navbar {
   background: white !important;
   padding: 20px;
+  border-bottom: 1px solid var(--border-color);
 }
-.nav-links-list {
+.melastore-navbar .nav-links-list {
   display: table !important;
 }
-.nav-links-list li {
+.melastore-navbar .nav-links-list li {
   display: table-cell !important;
   position: relative;
 }
-.navbar-nav .nav-link {
+.melastore-navbar .navbar-nav .nav-link {
   /*position: relative;*/
   /*color: red;*/
 }
-.navbar-nav .nav-item {
+.melastore-navbar .navbar-nav .nav-item {
   position: relative;
   padding-right: 40px;
 }
-.navbar-nav .nav-item:last-child {
+.melastore-navbar .navbar-nav .nav-item:last-child {
   padding-right: 0;
 }
-.melatech-ui-navbar .navbar-brand {
+.melastore-navbar .navbar-brand {
   color: #333;
 }
 

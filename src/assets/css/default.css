@@ -64,29 +64,29 @@ label {
 .mb-20px {
   margin-bottom: 20px;
 }
-.section-title h3 {
+.melastore-section-title h3 {
   color: #333;
   font-weight: 600;
 }
-.section-title hr {
+.melastore-section-title hr {
   width: 80px;
   border: 1px solid #333;
   background: #333;
   margin-left: auto;
   margin-right: auto;
 }
-.product-title {
-  font-weight: 600;
-  color: var(--title-color);
-}
-.product-title:hover {
-  color: var(--title-hover-color);
-  text-decoration: none;
-}
-.product-price {
-  color: var(--price-color);
-  font-weight: 600;
-}
+/*.product-title {*/
+/*  font-weight: 600;*/
+/*  color: var(--title-color);*/
+/*}*/
+/*.product-title:hover {*/
+/*  color: var(--title-hover-color);*/
+/*  text-decoration: none;*/
+/*}*/
+/*.product-price {*/
+/*  color: var(--price-color);*/
+/*  font-weight: 600;*/
+/*}*/
 .melatech-ui-full-screen {
   position: fixed;
   top: 0;
@@ -132,27 +132,35 @@ label {
 ========================================*/
 
 /*=======================================
- 2. Start MelaStore NavBar
+ 2. Start MelaStore Footer
 ========================================*/
-#melatech_ui_footer {
-  font-size: 15px;
-}
-#melatech_ui_footer h2,
-.melatech_ui_footer_widget h2 {
-  font-size: 15px;
+.melastore-footer-newsletter h2,
+.melastore-footer-quick-links h2,
+.melastore-footer-contact-us h2,
+.melastore-footer-socials h2 {
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   display: block;
   margin-bottom: 15px;
-  color: #666;
+  color: var(--ms-footer-label-color);
 }
-#melatech_ui_footer a,
-.melatech_ui_footer_widget a {
-  color: #333;
+.melastore-footer-newsletter a,
+.melastore-footer-quick-links a,
+.melastore-footer-contact-us a,
+.melastore-footer-socials a,
+.melastore-footer-newsletter p,
+.melastore-footer-quick-links p,
+.melastore-footer-contact-us p,
+.melastore-footer-socials p {
+  color: var(--ms-footer-link-color);
+  font-size: 14px;
 }
-#melatech_ui_footer a:hover,
-.melatech_ui_footer_widget a:hover {
-  color: #666;
+.melastore-footer-newsletter a:hover,
+.melastore-footer-quick-links a:hover,
+.melastore-footer-contact-us a:hover,
+.melastore-footer-socials a:hover {
+  color: var(--ms-footer-link-color-hover);
   text-decoration: none;
 }
 /*=======================================
@@ -213,6 +221,57 @@ label {
 }
 /*=======================================
  End MelaStore Auth
+========================================*/
+
+/*=======================================
+ 5. Start MelaStore Slide In Bar
+========================================*/
+.melastore-slide-in-bar-content.cart {
+  padding-bottom: 230px;
+}
+.melastore-slide-in-bar-content.favourites {
+  padding-bottom: 160px;
+}
+.melastore-slide-in-bar-content.account {
+  padding-bottom: 160px;
+}
+/*=======================================
+ End MelaStore Slide In Bar
+========================================*/
+
+/*=======================================
+ 6. Start MelaStore Buttons
+========================================*/
+.proceed-to-checkout-btn {
+  padding: 15px;
+}
+.empty-cart--btn {
+  padding: 10px;
+}
+.proceed-to-checkout-btn {
+  background: #2353ab;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+}
+.proceed-to-checkout-btn:hover {
+  background: #3060b7;
+  color: white !important;
+}
+.empty-cart-btn,
+.logout-btn {
+  color: #666;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.empty-cart-btn:hover,
+.logout-btn:hover {
+  color: #999;
+  font-weight: 700;
+}
+/*=======================================
+ End MelaStore Slide In Bar
 ========================================*/
 
 /*=======================================

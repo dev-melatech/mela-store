@@ -2,17 +2,32 @@ import Vue from "vue";
 
 // Components
 import Register from "@/components/Register/Register";
-import Loader from "@/components/Loaders/Loader";
 import ForgotPassword from "@/components/ForgotPassword/ForgotPassword";
 import Login from "@/components/Login/Login";
 import Favourites from "@/components/Favourites/Favourites";
 import ShoppingCart from "@/components/Shopping Cart/ShoppingCart";
-import SlideInBar from "@/components/NavBar/SlideInBar/SlideInBar";
-import CountCircle from "@/components/NavBar/Helpers/CountCircle";
 import InlineSvg from "@/components/InlineSVG/InlineSvg";
-import NavBarSearch from "@/components/NavBar/NavigationBarSearch/NavBarSearch";
+import NavBarSearch from "@/components/NavBar/NavigationBarSearch/NavbarSearch";
 import Info from "@/components/Info/Info";
 import CarouselLander from "@/components/Loaders/CarouselLander";
+import ProductActions from "@/components/Products/ProductActions/ProductActions";
+import ProductCard from "@/components/Products/ProductCard";
+import Products from "@/components/Products/Products";
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
+import Banner from "@/components/Banners/Banner";
+import FooterContactUs from "@/components/FooterBar/FooterContactUs/FooterContactUs";
+import FooterNewsLetter from "@/components/FooterBar/FooterNewsLetter/FooterNewsLetter";
+import FooterSocials from "@/components/FooterBar/FooterSocials/FooterSocials";
+import FooterBar from "@/components/FooterBar/FooterBar";
+import FooterQuickLinks from "@/components/FooterBar/FooterQuickLinks/FooterQuickLinks";
+
+// Navigation Bar
+import NavbarToggle from "@/components/NavBar/NavigationBarToggle/NavbarToggle";
+import SideMenu from "@/components/NavBar/SideMenu/SideMenu";
+import NavbarSearch from "@/components/NavBar/NavigationBarSearch/NavbarSearch";
+import CountCircle from "@/components/NavBar/Helpers/CountCircle";
+import SlideInBar from "@/components/NavBar/SlideInBar/SlideInBar";
+import Loader from "@/components/Loaders/Loader";
 
 // Bootstrap
 import BootstrapVue from "bootstrap-vue";
@@ -23,27 +38,38 @@ Vue.use(BootstrapVue);
 
 // Fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
-import { faGooglePlusG } from "@fortawesome/free-brands-svg-icons";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebookF,
+  faTwitter,
+  faLinkedinIn,
+  faGooglePlusG,
+  faInstagram
+} from "@fortawesome/free-brands-svg-icons";
+
+import {
+  faEye,
+  faHeart,
+  faMapMarkerAlt,
+  faShoppingCart,
+  faPhone,
+  faTimes,
+  faBars,
+  faPlus,
+  faMinus,
+  faChevronRight,
+  faCircleNotch,
+  faCircle,
+  faChevronLeft,
+  faLongArrowAltRight,
+  faArrowLeft,
+  faSearch,
+  faTrashAlt,
+  faLongArrowAltUp
+} from "@fortawesome/free-solid-svg-icons";
+
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
-import { faLongArrowAltRight } from "@fortawesome/free-solid-svg-icons";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faMinus } from "@fortawesome/free-solid-svg-icons";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faFacebookF);
 library.add(faTwitter);
@@ -65,12 +91,17 @@ library.add(faChevronRight);
 library.add(faChevronLeft);
 library.add(faCircleNotch);
 library.add(faCircle);
+library.add(faShoppingCart);
+library.add(faEye);
+library.add(faHeart);
+library.add(faLongArrowAltUp);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 // Custom CSS
 import "@/assets/css/default.css";
 import "@/assets/css/color-scheme.css";
+import "@/assets/css/responsive.css";
 import "@/assets/fonts/nunito/stylesheet.css";
 
 // Components
@@ -86,11 +117,29 @@ const MelaStore = {
   InlineSvg,
   NavBarSearch,
   Info,
-  CarouselLander
+  CarouselLander,
+  ProductActions,
+  ProductCard,
+  Products,
+  ScrollToTop,
+  Banner,
+  FooterQuickLinks,
+  FooterBar,
+  FooterSocials,
+  FooterNewsLetter,
+  FooterContactUs,
+  NavbarToggle,
+  NavbarSearch,
+  SideMenu
 };
 
 Object.keys(MelaStore).forEach(name => {
   Vue.component(`Ms${name}`, MelaStore[name]);
+});
+
+const numeral = require("numeral");
+Vue.filter("formatNumber", function(value) {
+  return numeral(value).format("0,0"); // displaying other groupings/separators is possible, look at the docs
 });
 
 export default MelaStore;

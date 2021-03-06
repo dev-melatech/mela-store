@@ -1,4 +1,8 @@
 import Vue from "vue";
+import "@/assets/css/default.css";
+import "@/assets/css/color-scheme.css";
+import "@/assets/css/responsive.css";
+import "@/assets/fonts/nunito/stylesheet.css";
 import "@/assets/css/markdown.css";
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
@@ -12,7 +16,12 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faGooglePlusG } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEye,
+  faHeart,
+  faMapMarkerAlt,
+  faShoppingCart
+} from "@fortawesome/free-solid-svg-icons";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -49,6 +58,9 @@ library.add(faChevronRight);
 library.add(faChevronLeft);
 library.add(faCircleNotch);
 library.add(faCircle);
+library.add(faShoppingCart);
+library.add(faEye);
+library.add(faHeart);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
@@ -57,21 +69,47 @@ Vue.filter("formatNumber", function(value) {
   return numeral(value).format("0,0"); // displaying other groupings/separators is possible, look at the docs
 });
 
-// import { configureReadme } from "storybook-readme";
-// // import { configureReadme, addFooter, addHeader } from "storybook-readme";
-//
-// configureReadme({
-//   // codeTheme: 'far',
-//   header: `
-// ### \`storybook-readme\` addon example
-// <img src="https://storybook.js.org//images/logos/logo-storybook.svg"/>
-// ---
-// `,
-//   footer: `
-// ---
-// - Sources of this storybook (with React components) [tuchk4/storybook-readme/packages/example-react](https://github.com/tuchk4/storybook-readme/tree/master/packages/example-react)
-// - Sources of the same Vue storybook [tuchk4/storybook-readme/packages/example-vue](https://github.com/tuchk4/storybook-readme/tree/master/packages/example-vue)
-// - Issues and suggestions [storybook-readme/issues](https://github.com/tuchk4/storybook-readme/issues). You are welcome to suggest to awesome feature or report an annoying bug.
-// - <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/9/9f/Twitter_bird_logo_2012.svg/1200px-Twitter_bird_logo_2012.svg.png" alt="twitter" style="width:16px;"/> [tuchk4](https://twitter.com/tuchk)
-// `
-// });
+import FooterContactUs from "@/components/FooterBar/FooterContactUs/FooterContactUs";
+import FooterNewsLetter from "@/components/FooterBar/FooterNewsLetter/FooterNewsLetter";
+import FooterSocials from "@/components/FooterBar/FooterSocials/FooterSocials";
+import FooterBar from "@/components/FooterBar/FooterBar";
+import FooterQuickLinks from "@/components/FooterBar/FooterQuickLinks/FooterQuickLinks";
+import InlineSvg from "@/components/InlineSVG/InlineSvg";
+import Login from "@/components/Login/Login";
+import Register from "@/components/Register/Register";
+import ForgotPassword from "@/components/ForgotPassword/ForgotPassword";
+import ShoppingCart from "@/components/Shopping Cart/ShoppingCart";
+import Favourites from "@/components/Favourites/Favourites";
+
+// Navigation Bar
+import NavigationBar from "@/components/NavBar/NavigationBar/NavigationBar";
+import NavbarToggle from "@/components/NavBar/NavigationBarToggle/NavbarToggle";
+import SideMenu from "@/components/NavBar/SideMenu/SideMenu";
+import NavbarSearch from "@/components/NavBar/NavigationBarSearch/NavbarSearch";
+import CountCircle from "@/components/NavBar/Helpers/CountCircle";
+import SlideInBar from "@/components/NavBar/SlideInBar/SlideInBar";
+import Loader from "@/components/Loaders/Loader";
+const MelaStore = {
+  FooterQuickLinks,
+  FooterBar,
+  FooterSocials,
+  FooterNewsLetter,
+  FooterContactUs,
+  InlineSvg,
+  CountCircle,
+  SlideInBar,
+  Login,
+  Register,
+  ForgotPassword,
+  ShoppingCart,
+  Favourites,
+  NavigationBar,
+  NavbarSearch,
+  NavbarToggle,
+  SideMenu,
+  Loader
+};
+
+Object.keys(MelaStore).forEach(name => {
+  Vue.component(`Ms${name}`, MelaStore[name]);
+});

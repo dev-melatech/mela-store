@@ -1,4 +1,4 @@
-import NavBarSearch from "@/components/NavBar/NavigationBarSearch/NavBarSearch";
+import NavBarSearch from "@/components/NavBar/NavigationBarSearch/NavbarSearch";
 export default {
   component: NavBarSearch,
   title: "E-commerce/NavBar/NavBar Search",

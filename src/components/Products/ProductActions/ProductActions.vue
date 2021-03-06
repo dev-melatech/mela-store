@@ -31,7 +31,7 @@
     </li>
     <!--fav button-->
     <li v-if="!hideFavouriteButton">
-      <button class="btn">
+      <button class="btn" @click="$emit('move-to-favourites', product)">
         <font-awesome-icon :icon="['fas', 'heart']" />
       </button>
       <span class="sr-only">Add to Wishlist</span>
@@ -105,17 +105,17 @@ export default {
 .melastore-product-actions-icons {
   margin: 0;
   padding: 0;
-  position: absolute;
-  left: 0;
-  bottom: 20px;
+  /*position: absolute;*/
+  /*left: 0;*/
+  /*bottom: 20px;*/
   width: 100%;
   text-align: center;
-  z-index: 5;
+  /*z-index: 5;*/
 }
 .melastore-product-actions-icons .cart-quantity {
   line-height: 30px;
   width: 50px;
-  background: ;
+  /*background: ;*/
 }
 .from-slide-in-bar.melastore-product-actions-icons {
   position: relative;
@@ -134,22 +134,23 @@ export default {
 }
 
 .melastore-product-actions-icons li button {
+  border: 1px solid;
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 33px;
+  height: 33px;
   border-radius: 50%;
-  line-height: 30px;
+  line-height: 33px;
   background: #fff;
-  color: #999999;
+  color: #666;
   position: relative;
   /*opacity: 0;*/
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   padding: 0;
   font-size: 12px;
-  margin: 0 2px;
+  margin: 0 5px;
 }
 .melastore-product-actions-icons li button:hover {
-  background: #999;
+  background: #666;
   color: #fff;
 }
 /* (1366x768) WXGA Display */

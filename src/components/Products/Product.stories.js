@@ -1,32 +1,11 @@
-import Vue from "vue";
-import BootstrapVue from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-
-import "@/assets/css/default.css";
-import "@/assets/css/color-scheme.css";
-
-Vue.use(BootstrapVue);
-
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
-library.add(faShoppingCart);
-library.add(faEye);
-library.add(faHeart);
-
-Vue.component("font-awesome-icon", FontAwesomeIcon);
-
 import testData from "../../../testData";
 
 import Products from "@/components/Products/Products";
+import { action } from "@storybook/addon-actions";
 
 export default {
   component: Products,
-  title: "E-commerce/Products",
+  title: "E-commerce/Products/Product Cards",
   argTypes: {
     label: {
       control: {
@@ -34,7 +13,10 @@ export default {
         options: ["featured", "new_arrivals", "best_deals"]
       }
     },
-    products: { control: "array" }
+    classes: { control: "text" },
+    sectionTitle: { control: "text" },
+    currency: { control: "text" },
+    products: { table: { expanded: true } }
   }
 };
 
@@ -42,11 +24,27 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { Products },
   props: Object.keys(argTypes),
-  template: '<Products  :products="products" :label="label" />'
+  template:
+    '<Products :currency="currency" ' +
+    ':section-title="sectionTitle"' +
+    ' :classes="classes" ' +
+    ' :products="products"' +
+    ' :label="label"' +
+    '@move-to-cart="moveToCart"\n' +
+    '@move-to-favourites="moveToFavourites"\n' +
+    " >" +
+    "</Products>",
+  methods: {
+    moveToCart: action("move-to-cart"),
+    moveToFavourites: action("move-to-favourites")
+  }
 });
 
 export const ProductsList = Template.bind({});
 ProductsList.args = {
   label: "featured",
-  products: testData.setFeaturedProducts()
+  currency: "₦",
+  sectionTitle: "",
+  products: testData.setFeaturedProducts(),
+  classes: "mt-5 mb-5"
 };

@@ -1,39 +1,59 @@
 <template>
   <b-navbar
     toggleable="lg"
-    class="melatech-ui-navbar melastore-navbar"
+    class="melastore-navbar"
     type="light"
     sticky
     variant="info"
   >
     <b-container>
-      <!--navbar toggler-->
+      <!--navbar toggle-->
+      <ms-navbar-toggle @click="isOpen = !isOpen" />
       <!--navbar brand-->
       <b-navbar-brand href="#">Logo</b-navbar-brand>
-      <b-navbar-nav>
-        <b-nav-item href="#">Shop</b-nav-item>
-      </b-navbar-nav>
       <!--navbar search md|lg-->
-      <nav-bar-search classes="d-none d-md-block" />
+      <ms-navbar-search classes="d-none d-md-block" />
       <!--navbar links-->
       <b-navbar-nav class="ml-auto nav-links-list">
         <b-nav-item
-          v-for="(link, index) in navLinks"
+          v-for="(link, index) in navLinksComputed"
           :key="index"
           @click="toggleSlideInBar(link)"
         >
-          <inline-svg :svg-file="link.icon" width="20" height="20" classes="" />
-          <count-circle v-if="link.title !== 'Login'" />
+          <ms-inline-svg
+            :svg-file="link.icon"
+            width="20"
+            height="20"
+            classes=""
+          />
+          <ms-count-circle
+            v-if="link.title !== 'Login' && link.title !== 'Account'"
+          />
         </b-nav-item>
       </b-navbar-nav>
     </b-container>
     <!--navbar search sm-->
     <b-container class="d-md-none">
-      <nav-bar-search classes="d-md-none mt-3" />
+      <ms-navbar-search classes="d-md-none mt-3" />
     </b-container>
+    <!--side menu-->
+    <ms-side-menu :is-open="isOpen" @close="toggleMenu(false)">
+      <template v-slot:header>
+        <h1 class="text-white">
+          Header
+        </h1>
+      </template>
+      <template v-slot:content>
+        <ul>
+          <li v-for="link in 10" :key="link">
+            <a :href="`/link-${link}`">Link {{ link }}</a>
+          </li>
+        </ul>
+      </template>
+    </ms-side-menu>
     <!--slide in bar-->
-    <slide-in-bar
-      ref="melatechUiSlideInBar"
+    <ms-slide-in-bar
+      ref="melastoreSlideInBar"
       :title="slideInTitle"
       :is-open="isSlideInOpen"
       @toggle-slide-in="toggleSlideInBar"
@@ -44,12 +64,16 @@
           ? true
           : slideInTitle === 'Forgot Password'
       "
+      display-name="A4anthony"
+      :auth="auth"
+      :links="navLinksComputed"
+      :account-page="auth && slideInTitle === 'Account'"
     >
       <!---------------------------------------------------------------------------
                                       CART SLOTS
       ----------------------------------------------------------------------------->
-      <template v-slot:shopping-cart>
-        <shopping-cart
+      <template v-slot:cart>
+        <ms-shopping-cart
           :products="products"
           label="Cart"
           @proceed-to-checkout="proceedToCheckout"
@@ -65,12 +89,12 @@
               item.title
             }}</a>
           </template>
-        </shopping-cart>
+        </ms-shopping-cart>
       </template>
-      <template v-slot:shopping-cart-footer>
+      <template v-slot:cart-footer>
         <!--proceed to checkout button-->
         <button
-          class="btn proceed-to-checkout--btn w-100"
+          class="btn proceed-to-checkout-btn w-100"
           @click="proceedToCheckout"
         >
           Proceed to checkout ($4,000)
@@ -85,7 +109,7 @@
                                     FAVOURITES SLOTS
       ----------------------------------------------------------------------------->
       <template v-slot:favourites>
-        <favourites
+        <ms-favourites
           :products="products"
           label="Favourites"
           @delete-product="deleteProductFromFavourites"
@@ -98,7 +122,7 @@
               item.title
             }}</a>
           </template>
-        </favourites>
+        </ms-favourites>
       </template>
       <template v-slot:favourites-footer>
         <!--empty favourites button-->
@@ -110,114 +134,139 @@
       <!---------------------------------------------------------------------------
                                       LOGIN SLOTS
       ----------------------------------------------------------------------------->
-      <template v-slot:auth>
-        <login
-          v-if="slideInTitle === 'Login'"
+      <template v-slot:login v-if="!auth">
+        <ms-login
+          v-if="slideInTitle === 'Login' && !auth"
           ref="melastoreLogin"
           @login="login"
           @show-register-form="showRegisterForm"
           @show-forgot-password-form="showForgotPasswordForm"
         />
-        <forgot-password
-          v-if="slideInTitle === 'Forgot Password'"
+        <ms-forgot-password
+          v-if="slideInTitle === 'Forgot Password' && !auth"
           ref="melastoreForgotPassword"
           @send-password-reset-link="sendPasswordResetLink"
           @show-login-form="showLoginForm"
         />
-        <register
-          v-if="slideInTitle === 'Register'"
+        <ms-register
+          v-if="slideInTitle === 'Register' && !auth"
           @register="register"
           @show-login-form="showLoginForm"
         />
-        <loader ref="loader" />
       </template>
-    </slide-in-bar>
+      <!---------------------------------------------------------------------------
+                                ACCOUNT SLOTS
+      ----------------------------------------------------------------------------->
+      <template v-slot:account v-if="auth">
+        <div v-if="auth">
+          <ul>
+            <li v-for="link in 5" :key="link">
+              <a :href="`/link-${link}`">Link {{ link }}</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <img
+            :src="require('../../../../static/images/adverts/2.jpg')"
+            class="rounded w-100 mt-2"
+            alt="banner"
+          />
+        </div>
+      </template>
+      <template v-slot:account-footer v-if="auth">
+        <button class="btn logout-btn w-100" @click="logout">
+          Logout
+        </button>
+      </template>
+    </ms-slide-in-bar>
     <!--full screen overlay-->
     <div
       class="melatech-ui-full-screen"
       :class="isOpen || isSlideInOpen ? 'visible' : 'hidden'"
-      @click="toggleSlideInBar({ title: slideInTitle })"
+      @click="
+        [
+          isSlideInOpen && toggleSlideInBar({ title: slideInTitle }),
+          isOpen && toggleMenu(false)
+        ]
+      "
     ></div>
   </b-navbar>
 </template>
 
 <script>
-import NavBarSearch from "@/components/NavBar/NavigationBarSearch/NavBarSearch";
-import InlineSvg from "@/components/InlineSVG/InlineSvg";
-import CountCircle from "@/components/NavBar/Helpers/CountCircle";
-import SlideInBar from "@/components/NavBar/SlideInBar/SlideInBar";
-import config from "@/config";
-import ShoppingCart from "@/components/Shopping Cart/ShoppingCart";
-import Favourites from "@/components/Favourites/Favourites";
 import "@/assets/css/navbar.css";
-import Login from "@/components/Login/Login";
-import ForgotPassword from "@/components/ForgotPassword/ForgotPassword";
-import Loader from "@/components/Loaders/Loader";
-import Register from "@/components/Register/Register";
+import config from "@/config";
 export default {
   name: "NavigationBar",
-  components: {
-    Register,
-    Loader,
-    ForgotPassword,
-    Login,
-    Favourites,
-    ShoppingCart,
-    SlideInBar,
-    CountCircle,
-    InlineSvg,
-    NavBarSearch
-  },
+  components: {},
   computed: {
     products() {
-      console.log(config.getProducts());
       return config.getProducts();
-    }
-  },
-  mounted() {
-    console.log(window.location.href);
-    localStorage.setItem("currentHref", window.location.href);
-  },
-  props: {
-    navLinks: {
-      type: Array,
-      default: () => [
-        {
-          title: "Favourites",
-          icon: require(`!html-loader!../../../../static/svgs/like.svg`),
-          path: "/favourites"
-        },
-        {
-          title: "Cart",
-          icon: require(`!html-loader!../../../../static/svgs/cart.svg`),
-          path: "/cart"
-        },
-        {
+    },
+    navLinksComputed() {
+      let links = this.navLinks;
+      if (this.auth) {
+        links.push({
+          title: "Account",
+          icon: require(`!html-loader!../../../../static/svgs/user.svg`),
+          path: "",
+          content_classes: "account"
+        });
+      } else {
+        links.push({
           title: "Login",
           icon: require(`!html-loader!../../../../static/svgs/user.svg`),
           path: "/account/login"
-        }
-      ]
+        });
+      }
+
+      return links;
     }
   },
+  mounted() {
+    localStorage.setItem("currentHref", window.location.href);
+  },
+  props: {},
   data() {
     return {
       isOpen: false,
       isSlideInOpen: false,
       slideInTitle: "",
-      authTitle: "Login"
+      authTitle: "Login",
+      auth: false,
+      navLinks: [
+        {
+          title: "Favourites",
+          icon: require(`!html-loader!../../../../static/svgs/like.svg`),
+          path: "/favourites",
+          content_classes: "favourites"
+        },
+        {
+          title: "Cart",
+          icon: require(`!html-loader!../../../../static/svgs/cart.svg`),
+          path: "/cart",
+          content_classes: "cart"
+        }
+      ],
+      guestAuthLinks: [
+        {
+          title: "Register",
+          path: "/account/register"
+        },
+        {
+          title: "Forgot Password",
+          path: "/account/forgot-password"
+        }
+      ]
     };
   },
-
   methods: {
     toggleMenu(isOpen) {
       this.isOpen = isOpen;
     },
     toggleSlideInBar(link = null) {
-      console.log(link);
-      this.slideInTitle = link.title;
       this.isSlideInOpen = !this.isSlideInOpen;
-
+      this.slideInTitle = link.title;
       if (this.isSlideInOpen) {
         window.history.pushState("", "", `${link.path}`);
       } else {
@@ -225,10 +274,10 @@ export default {
       }
     },
     toggleLoader() {
-      this.$refs.loader.toggleLoader();
+      this.$refs.melastoreSlideInBar.$refs.loader.toggleLoader();
       const that = this;
       setTimeout(function() {
-        that.$refs.loader.toggleLoader();
+        that.$refs.melastoreSlideInBar.$refs.loader.toggleLoader();
       }, 1000);
     },
     showRegisterForm() {
@@ -249,6 +298,11 @@ export default {
     login(user) {
       setTimeout(function() {
         alert(`Should log user in \n\n ${JSON.stringify(user)}`);
+      }, 1000);
+    },
+    logout() {
+      setTimeout(function() {
+        alert(`Should logout user`);
       }, 1000);
     },
     register(user) {

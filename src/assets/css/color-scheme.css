@@ -12,4 +12,19 @@
 
   /*borders*/
   --border-color: #ece9e9 !important;
+  --ms-border-color: #ece9e9 !important;
+
+  /*footer*/
+  --ms-footer-background: #f8f6f6;
+  --ms-footer-bottom-background: #fff;
+  --ms-footer-label-color: #999;
+  --ms-footer-text-color: #333;
+  --ms-footer-link-color: #333;
+  --ms-footer-link-color-hover: #666;
+  --ms-footer-social-icons-background: #333;
+  --ms-footer-social-icons-color: #fff;
+  --ms-footer-contact-us-icons-color: #333;
+
+  /*side menu*/
+  --ms-side-menu-header-background: #333;
 }

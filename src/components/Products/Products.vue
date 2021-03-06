@@ -1,22 +1,47 @@
 <template>
-  <div class="mt-5 mb-5">
+  <div :class="classes" class="melastore-product-cards">
     <b-container>
-      <div class="section-title text-center">
+      <div class="melastore-section-title text-center">
         <h3>
-          {{ title }}
+          {{ sectionTitle || title }}
         </h3>
         <hr />
       </div>
       <b-row>
-        <b-col lg="3" md="6" v-for="(product, index) in products" :key="index">
-          <div class="featured-products-card mt-3 mb-3">
-            <product-card :product="product" />
+        <b-col
+          lg="2"
+          md="6"
+          cols="6"
+          v-for="(product, index) in products"
+          :key="index"
+          style="padding: 5px"
+        >
+          <div
+            class="melastore-featured-products-card rounded"
+            style="margin-bottom: 3px"
+          >
+            <product-card
+              :product="product"
+              :currency="currency"
+              @move-to-cart="$emit('move-to-cart', product)"
+              @move-to-favourites="$emit('move-to-favourites', product)"
+            >
+              <template v-slot:product-title="{ item }">
+                <slot name="product-title" :item="item">
+                  <span class="melastore-product--title">
+                    {{ item.title }}
+                  </span>
+                </slot>
+              </template>
+            </product-card>
           </div>
         </b-col>
-        <b-col cols="12 text-center">
-          <button class="btn load-more--btn">
-            View more
-          </button>
+        <b-col cols="12" class="text-center mt-4">
+          <slot name="load-more-redirect">
+            <button class="btn melastore-load-more-btn">
+              View more
+            </button>
+          </slot>
         </b-col>
       </b-row>
     </b-container>
@@ -30,6 +55,18 @@ export default {
   name: "Products",
   components: { ProductCard },
   props: {
+    sectionTitle: {
+      type: String,
+      default: ""
+    },
+    classes: {
+      type: String,
+      default: ""
+    },
+    currency: {
+      type: String,
+      default: "$"
+    },
     label: {
       type: String,
       default: "featured",
@@ -65,7 +102,7 @@ export default {
         this.title = "Featured Products";
       }
       if (key === "new_arrivals") {
-        this.title = "New Arrival";
+        this.title = "New Arrivals";
       }
       if (key === "best_deals") {
         this.title = "Best Deals";
@@ -76,50 +113,15 @@ export default {
 </script>
 
 <style scoped>
-/*.featured-products-card ul {*/
-/*  list-style: outside none none;*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*}*/
-/*.featured-products-card ul li {*/
-/*  display: inline-block;*/
-/*}*/
-/*.featured-products-card ul button {*/
-/*  height: 30px;*/
-/*  width: 30px;*/
-/*  border: 1px solid #a7a7a7;*/
-/*  display: block;*/
-/*  text-align: center;*/
-/*  line-height: 30px;*/
-/*  border-radius: 50%;*/
-/*  color: #333;*/
-/*  padding: 0;*/
-/*  font-size: 12px;*/
-/*}*/
-/*.featured-products-card ul li button:hover {*/
-/*  border-color: #999;*/
-/*  background: #999;*/
-/*  color: #fff;*/
-/*}*/
-/*.featured-products-card ul li button {*/
-/*  height: 30px;*/
-/*  width: 30px;*/
-/*  border: 1px solid #a7a7a7;*/
-/*  display: block;*/
-/*  text-align: center;*/
-/*  line-height: 30px;*/
-/*  border-radius: 50%;*/
-/*  color: #333;*/
-/*}*/
-.load-more--btn {
+.melastore-load-more-btn {
   display: inline-block;
-  padding: 5px 20px;
-  border: 1px solid #333;
+  padding: 8px 20px;
+  border: 2px solid #333;
   font-weight: 700;
   text-transform: capitalize;
   color: #333;
 }
-.load-more--btn:hover {
+.melastore-load-more-btn:hover {
   background-color: #333;
   color: white;
 }

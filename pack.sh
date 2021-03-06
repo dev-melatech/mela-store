@@ -8,9 +8,9 @@ npm run build-bundle
 
 npm pack
 
-cp mela-store-0.1.0.tgz ~/melatech/melamart/
+cp mela-store-0.1.0.tgz ~/melatech/melamart-online/frontend-nuxt/
 
-cd ~/melatech/melamart/
+cd ~/melatech/melamart-online/frontend-nuxt/
 
 npm i mela-store-0.1.0.tgz
 

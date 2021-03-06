@@ -1,20 +1,43 @@
 <template>
-  <div class="product-wrap" :class="classes">
-    <div class="position-relative product-img">
-      <img :src="product.image_link" alt="" class="w-100" />
-      <product-actions :product="product" />
+  <div
+    class="melastore-product-wrap rounded position-relative"
+    :class="classes"
+  >
+    <!--product image-->
+    <div class="position-relative melastore-product-img rounded">
+      <img
+        :src="product.image_link"
+        :alt="product.title"
+        class="w-100 rounded"
+      />
     </div>
-    <div class="product-details mt-2">
+    <div class="melastore-product-details mt-2">
       <b-row>
         <b-col cols="12">
-          {{ product.title }}
-          <span class="product-price d-block">${{ product.price }}</span>
+          <!--product title-->
+          <slot name="product-title" :item="product">
+            <span>{{ product.title }}</span>
+          </slot>
+          <!--product price-->
+          <span class="melastore-product-price d-block"
+            >{{ currency }}{{ product.price | formatNumber }}</span
+          >
         </b-col>
       </b-row>
     </div>
-    <div class="product-discount" v-if="product.discount">
+    <!--product discount-->
+    <div class="melastore-product-discount" v-if="product.discount">
       <span>%{{ product.discount }}</span>
     </div>
+    <!--product actions-->
+    <product-actions
+      :product="product"
+      hide-delete-button
+      hide-preview-button
+      classes="mt-3"
+      @move-to-cart="$emit('move-to-cart', product)"
+      @move-to-favourites="$emit('move-to-favourites', product)"
+    />
   </div>
 </template>
 
@@ -24,6 +47,10 @@ export default {
   name: "ProductCard",
   components: { ProductActions },
   props: {
+    currency: {
+      type: String,
+      default: "$"
+    },
     product: {
       type: Object,
       default: () => {},
@@ -38,16 +65,22 @@ export default {
 </script>
 
 <style scoped>
-.product-img {
+.melastore-product-wrap {
+  padding: 15px;
+  background-color: white;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+.melastore-product-img {
   overflow: hidden;
   position: relative;
 }
-.product-img:hover img {
+.melastore-product-wrap:hover .melastore-product-img img {
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
 }
-.product-img img {
+.melastore-product-img img {
   transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
@@ -58,7 +91,7 @@ export default {
   width: 100%;
 }
 
-.product-img:before {
+.melastore-product-img:before {
   position: absolute;
   top: 0;
   left: 0;
@@ -77,20 +110,21 @@ export default {
     translate3d(0, 100%, 0);
 }
 
-.product-wrap:hover .product-img:before {
+.melastore-product-wrap:hover .product-img:before {
   -webkit-transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 180deg)
     translate3d(0, -100%, 0);
   transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 180deg)
     translate3d(0, -100%, 0);
 }
-.product-discount {
+.melastore-product-discount {
   position: absolute;
   top: 35px;
-  left: 15px;
-  padding: 5px 10px;
+  left: 0px;
+  padding: 8px 10px;
   background-color: red;
   color: white;
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 700;
   text-align: center;
 }
 /* (1366x768) WXGA Display */
