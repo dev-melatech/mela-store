@@ -20,7 +20,7 @@ import FooterNewsLetter from "@/components/FooterBar/FooterNewsLetter/FooterNews
 import FooterSocials from "@/components/FooterBar/FooterSocials/FooterSocials";
 import FooterBar from "@/components/FooterBar/FooterBar";
 import FooterQuickLinks from "@/components/FooterBar/FooterQuickLinks/FooterQuickLinks";
-
+import PageLoader from "@/components/Loaders/PageLoader";
 // Navigation Bar
 import NavbarToggle from "@/components/NavBar/NavigationBarToggle/NavbarToggle";
 import SideMenu from "@/components/NavBar/SideMenu/SideMenu";
@@ -132,7 +132,8 @@ const MelaStore = {
   NavbarToggle,
   NavbarSearch,
   SideMenu,
-  LoggedInTick
+  LoggedInTick,
+  PageLoader
 };
 
 Object.keys(MelaStore).forEach(name => {
