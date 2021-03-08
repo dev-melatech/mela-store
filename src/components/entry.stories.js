@@ -89,6 +89,7 @@ import NavbarSearch from "@/components/NavBar/NavigationBarSearch/NavbarSearch";
 import CountCircle from "@/components/NavBar/Helpers/CountCircle";
 import SlideInBar from "@/components/NavBar/SlideInBar/SlideInBar";
 import Loader from "@/components/Loaders/Loader";
+import LoggedInTick from "@/components/NavBar/Helpers/LoggedInTick";
 const MelaStore = {
   FooterQuickLinks,
   FooterBar,
@@ -107,7 +108,8 @@ const MelaStore = {
   NavbarSearch,
   NavbarToggle,
   SideMenu,
-  Loader
+  Loader,
+  LoggedInTick
 };
 
 Object.keys(MelaStore).forEach(name => {

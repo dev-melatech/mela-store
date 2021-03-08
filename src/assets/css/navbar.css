@@ -23,12 +23,19 @@
   position: relative;
 }
 .melastore-navbar .navbar-nav .nav-link {
-  /*position: relative;*/
-  /*color: red;*/
+  border-bottom: 3px solid transparent;
+  padding: 10px;
+}
+.melastore-navbar .navbar-nav .nav-link:hover {
+  border-bottom: 3px solid #999;
+}
+.melastore-navbar .nav-links-list svg path {
+  stroke-width: 13px !important;
+  stroke: #333 !important;
 }
 .melastore-navbar .navbar-nav .nav-item {
   position: relative;
-  padding-right: 40px;
+  padding-right: 35px;
 }
 .melastore-navbar .navbar-nav .nav-item:last-child {
   padding-right: 0;
@@ -53,6 +60,9 @@
 /* Normal desktop :991px. */
 
 @media (min-width: 768px) and (max-width: 991px) {
+  .melastore-navbar .navbar-nav .nav-item {
+    padding-right: 25px;
+  }
 }
 
 /* small mobile :576px. */
@@ -63,6 +73,9 @@
 /* extra small mobile 320px. */
 
 @media (max-width: 575px) {
+  .melastore-navbar .navbar-nav .nav-item {
+    padding-right: 25px;
+  }
 }
 
 /* Large Mobile :480px. */

@@ -28,6 +28,7 @@ import NavbarSearch from "@/components/NavBar/NavigationBarSearch/NavbarSearch";
 import CountCircle from "@/components/NavBar/Helpers/CountCircle";
 import SlideInBar from "@/components/NavBar/SlideInBar/SlideInBar";
 import Loader from "@/components/Loaders/Loader";
+import LoggedInTick from "@/components/NavBar/Helpers/LoggedInTick";
 
 // Bootstrap
 import BootstrapVue from "bootstrap-vue";
@@ -130,7 +131,8 @@ const MelaStore = {
   FooterContactUs,
   NavbarToggle,
   NavbarSearch,
-  SideMenu
+  SideMenu,
+  LoggedInTick
 };
 
 Object.keys(MelaStore).forEach(name => {

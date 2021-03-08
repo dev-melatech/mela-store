@@ -1,5 +1,6 @@
 <template>
   <div
+    id="melastoreSlideInBar"
     class="melastore-slide-in-bar"
     ref="melastoreSlideInBar"
     :class="[
@@ -16,16 +17,18 @@
       >
         <font-awesome-icon :icon="['fas', 'chevron-right']" />
       </button>
-      <span v-if="!accountPage">
-        {{ title }}
+      <span v-for="(link, index) in links" :key="index">
+        <slot
+          v-if="title === link.title"
+          :name="`${link.title.toLowerCase()}-header`"
+        ></slot>
       </span>
-      <span v-else class="text-capitalize"> Welcome {{ displayName }} </span>
     </div>
 
     <!--slide in bar content-->
     <div
       ref="melastoreSlideInBarContent"
-      class="melastore-slide-in-bar-content mt-3"
+      class="melastore-slide-in-bar-content"
       :class="contentClasses"
     >
       <div v-for="(link, index) in links" :key="index">
@@ -34,7 +37,7 @@
           :name="link.title.toLowerCase()"
         ></slot>
       </div>
-      <ms-loader ref="loader" />
+      <ms-loader ref="melastoreLoader" />
     </div>
 
     <!--slide in bar footer-->
@@ -63,19 +66,6 @@ export default {
       default: () => [],
       required: true
     },
-    guestAuthLinks: {
-      type: Array,
-      default: () => [],
-      required: true
-    },
-    auth: {
-      type: Boolean,
-      default: false
-    },
-    accountPage: {
-      type: Boolean,
-      default: false
-    },
     isOpen: {
       type: Boolean,
       default: null
@@ -85,10 +75,6 @@ export default {
       default: false
     },
     classes: {
-      type: String,
-      default: ""
-    },
-    displayName: {
       type: String,
       default: ""
     },
@@ -150,13 +136,10 @@ export default {
   background: white;
   position: fixed;
   width: 80%;
-
   top: 0;
   right: -2000px;
   bottom: 0;
   z-index: 100000000;
-  padding: 15px;
-  border-left: 1px solid var(--border-color);
   -webkit-box-shadow: -4px 0px 5px 0px rgb(69, 68, 69);
   -moz-box-shadow: -4px 0px 5px 0px rgba(69, 68, 69, 1);
   box-shadow: -4px 0px 5px 0px rgb(69, 68, 69);
@@ -167,12 +150,11 @@ export default {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 14px;
-  padding: 13px 15px;
-
-  border-radius: 35px;
+  padding: 20px;
 }
 .melastore-slide-in-bar-content {
-  height: 100%;
+  height: 100vh;
+  padding: 15px;
   overflow-y: scroll;
 }
 

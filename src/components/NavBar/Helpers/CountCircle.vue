@@ -1,6 +1,6 @@
 <template>
   <div
-    class="count-circle text-center"
+    class="melastore-count-circle text-center"
     :style="{ backgroundColor: backgroundColor }"
   >
     <span>{{ value }}</span>
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style scoped>
-.count-circle {
+.melastore-count-circle {
   position: relative;
   height: 20px;
   width: 20px;
@@ -53,7 +53,7 @@ export default {
 /* Normal desktop :991px. */
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .count-circle {
+  .melastore-count-circle {
     font-size: 1.4vw;
   }
 }
@@ -61,7 +61,7 @@ export default {
 /* small mobile :576px. */
 
 @media (min-width: 576px) and (max-width: 767px) {
-  .count-circle {
+  .melastore-count-circle {
     font-size: 1.8vw;
   }
 }
@@ -69,7 +69,7 @@ export default {
 /* extra small mobile 320px. */
 
 @media (max-width: 575px) {
-  .count-circle {
+  .melastore-count-circle {
     font-size: 2.8vw;
   }
 }
@@ -77,13 +77,13 @@ export default {
 /* Large Mobile :480px. */
 
 @media only screen and (min-width: 480px) and (max-width: 575px) {
-  .count-circle {
+  .melastore-count-circle {
     font-size: 2.8vw;
   }
 }
 
 @media only screen and (max-width: 575px) and (min-width: 480px) {
-  .count-circle {
+  .melastore-count-circle {
     font-size: 1.8vw;
   }
 }

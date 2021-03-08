@@ -8,7 +8,7 @@
   >
     <b-container>
       <!--navbar toggle-->
-      <ms-navbar-toggle @click="isOpen = !isOpen" />
+      <ms-navbar-toggle @click="isSideMenuOpen = !isSideMenuOpen" />
       <!--navbar brand-->
       <b-navbar-brand href="#">Logo</b-navbar-brand>
       <!--navbar search md|lg-->
@@ -16,7 +16,7 @@
       <!--navbar links-->
       <b-navbar-nav class="ml-auto nav-links-list">
         <b-nav-item
-          v-for="(link, index) in navLinksComputed"
+          v-for="(link, index) in navLinks"
           :key="index"
           @click="toggleSlideInBar(link)"
         >
@@ -29,6 +29,7 @@
           <ms-count-circle
             v-if="link.title !== 'Login' && link.title !== 'Account'"
           />
+          <ms-logged-in-tick v-if="link.title === 'Account' && auth" />
         </b-nav-item>
       </b-navbar-nav>
     </b-container>
@@ -37,7 +38,7 @@
       <ms-navbar-search classes="d-md-none mt-3" />
     </b-container>
     <!--side menu-->
-    <ms-side-menu :is-open="isOpen" @close="toggleMenu(false)">
+    <ms-side-menu :is-open="isSideMenuOpen" @close="toggleMenu(false)">
       <template v-slot:header>
         <h1 class="text-white">
           Header
@@ -57,31 +58,23 @@
       :title="slideInTitle"
       :is-open="isSlideInOpen"
       @toggle-slide-in="toggleSlideInBar"
-      :hide-footer="
-        slideInTitle === 'Login'
-          ? true
-          : slideInTitle === 'Register'
-          ? true
-          : slideInTitle === 'Forgot Password'
-      "
-      display-name="A4anthony"
-      :auth="auth"
-      :links="navLinksComputed"
-      :account-page="auth && slideInTitle === 'Account'"
+      :links="navLinks"
     >
       <!---------------------------------------------------------------------------
                                       CART SLOTS
       ----------------------------------------------------------------------------->
+      <template v-slot:cart-header>
+        <span>Your Shopping Cart</span>
+      </template>
       <template v-slot:cart>
         <ms-shopping-cart
           :products="products"
           label="Cart"
-          @proceed-to-checkout="proceedToCheckout"
           @empty-cart="emptyCart"
           @increase-cart-quantity="increaseCartQuantity"
           @decrease-cart-quantity="decreaseCartQuantity"
           @delete-product="deleteProductFromCart"
-          classes="hide-shadow toggle-bg"
+          classes="melastore-hide-shadow melastore-toggle-bg"
         >
           <!--item link slot-->
           <template v-slot:product-link="{ item }">
@@ -93,14 +86,14 @@
       </template>
       <template v-slot:cart-footer>
         <!--proceed to checkout button-->
-        <button
-          class="btn proceed-to-checkout-btn w-100"
-          @click="proceedToCheckout"
-        >
+        <button class="btn melastore-proceed-to-checkout-btn w-100">
           Proceed to checkout ($4,000)
         </button>
         <!--empty cart button-->
-        <button class="btn empty-cart--btn w-100 mt-3" @click="emptyCart">
+        <button
+          class="btn melastore-empty-cart-btn w-100 mt-3"
+          @click="emptyCart"
+        >
           <font-awesome-icon :icon="['fas', 'trash-alt']" />
           Empty Cart
         </button>
@@ -108,13 +101,16 @@
       <!---------------------------------------------------------------------------
                                     FAVOURITES SLOTS
       ----------------------------------------------------------------------------->
+      <template v-slot:favourites-header>
+        <span>Favourites</span>
+      </template>
       <template v-slot:favourites>
         <ms-favourites
           :products="products"
           label="Favourites"
           @delete-product="deleteProductFromFavourites"
           @move-to-cart="moveToCart"
-          classes="hide-shadow toggle-bg"
+          classes="melastore-hide-shadow melastore-toggle-bg"
         >
           <!--item link slot-->
           <template v-slot:product-link="{ item }">
@@ -126,39 +122,22 @@
       </template>
       <template v-slot:favourites-footer>
         <!--empty favourites button-->
-        <button class="btn empty-cart--btn w-100" @click="emptyFavourites">
+        <button
+          class="btn melastore-empty-cart-btn w-100"
+          @click="emptyFavourites"
+        >
           <font-awesome-icon :icon="['fas', 'trash-alt']" />
           Empty Favourites
         </button>
       </template>
       <!---------------------------------------------------------------------------
-                                      LOGIN SLOTS
-      ----------------------------------------------------------------------------->
-      <template v-slot:login v-if="!auth">
-        <ms-login
-          v-if="slideInTitle === 'Login' && !auth"
-          ref="melastoreLogin"
-          @login="login"
-          @show-register-form="showRegisterForm"
-          @show-forgot-password-form="showForgotPasswordForm"
-        />
-        <ms-forgot-password
-          v-if="slideInTitle === 'Forgot Password' && !auth"
-          ref="melastoreForgotPassword"
-          @send-password-reset-link="sendPasswordResetLink"
-          @show-login-form="showLoginForm"
-        />
-        <ms-register
-          v-if="slideInTitle === 'Register' && !auth"
-          @register="register"
-          @show-login-form="showLoginForm"
-        />
-      </template>
-      <!---------------------------------------------------------------------------
                                 ACCOUNT SLOTS
       ----------------------------------------------------------------------------->
-      <template v-slot:account v-if="auth">
-        <div v-if="auth">
+      <template v-slot:account-header>
+        <span class="text-capitalize">Welcome A4anthony</span>
+      </template>
+      <template v-slot:account>
+        <div>
           <ul>
             <li v-for="link in 5" :key="link">
               <a :href="`/link-${link}`">Link {{ link }}</a>
@@ -173,20 +152,40 @@
           />
         </div>
       </template>
-      <template v-slot:account-footer v-if="auth">
-        <button class="btn logout-btn w-100" @click="logout">
+      <template v-slot:account-footer>
+        <a
+          v-if="!auth"
+          href="/"
+          class="btn melastore-login-btn w-100 mb-3"
+          @click="logout"
+        >
+          Login
+        </a>
+        <a
+          v-if="!auth"
+          href="/"
+          class="btn melastore-register-btn w-100"
+          @click="logout"
+        >
+          Register
+        </a>
+        <button
+          v-if="auth"
+          class="btn melastore-logout-btn w-100"
+          @click="logout"
+        >
           Logout
         </button>
       </template>
     </ms-slide-in-bar>
     <!--full screen overlay-->
     <div
-      class="melatech-ui-full-screen"
-      :class="isOpen || isSlideInOpen ? 'visible' : 'hidden'"
+      class="melastore-full-screen"
+      :class="isSideMenuOpen || isSlideInOpen ? 'visible' : 'hidden'"
       @click="
         [
           isSlideInOpen && toggleSlideInBar({ title: slideInTitle }),
-          isOpen && toggleMenu(false)
+          isSideMenuOpen && toggleMenu(false)
         ]
       "
     ></div>
@@ -202,25 +201,6 @@ export default {
   computed: {
     products() {
       return config.getProducts();
-    },
-    navLinksComputed() {
-      let links = this.navLinks;
-      if (this.auth) {
-        links.push({
-          title: "Account",
-          icon: require(`!html-loader!../../../../static/svgs/user.svg`),
-          path: "",
-          content_classes: "account"
-        });
-      } else {
-        links.push({
-          title: "Login",
-          icon: require(`!html-loader!../../../../static/svgs/user.svg`),
-          path: "/account/login"
-        });
-      }
-
-      return links;
     }
   },
   mounted() {
@@ -229,10 +209,9 @@ export default {
   props: {},
   data() {
     return {
-      isOpen: false,
-      isSlideInOpen: false,
+      isSideMenuOpen: false,
+      isSlideInOpen: null,
       slideInTitle: "",
-      authTitle: "Login",
       auth: false,
       navLinks: [
         {
@@ -246,23 +225,19 @@ export default {
           icon: require(`!html-loader!../../../../static/svgs/cart.svg`),
           path: "/cart",
           content_classes: "cart"
-        }
-      ],
-      guestAuthLinks: [
-        {
-          title: "Register",
-          path: "/account/register"
         },
         {
-          title: "Forgot Password",
-          path: "/account/forgot-password"
+          title: "Account",
+          icon: require(`!html-loader!../../../../static/svgs/user.svg`),
+          path: "",
+          content_classes: "account"
         }
       ]
     };
   },
   methods: {
-    toggleMenu(isOpen) {
-      this.isOpen = isOpen;
+    toggleMenu(isSideMenuOpen) {
+      this.isSideMenuOpen = isSideMenuOpen;
     },
     toggleSlideInBar(link = null) {
       this.isSlideInOpen = !this.isSlideInOpen;
@@ -274,49 +249,16 @@ export default {
       }
     },
     toggleLoader() {
-      this.$refs.melastoreSlideInBar.$refs.loader.toggleLoader();
+      this.$refs.melastoreSlideInBar.$refs.melastoreLoader.toggleLoader();
       const that = this;
       setTimeout(function() {
-        that.$refs.melastoreSlideInBar.$refs.loader.toggleLoader();
-      }, 1000);
-    },
-    showRegisterForm() {
-      this.toggleLoader();
-      this.slideInTitle = "Register";
-      window.history.pushState("", "", `/account/register`);
-    },
-    showLoginForm() {
-      this.toggleLoader();
-      this.slideInTitle = "Login";
-      window.history.pushState("", "", `/account/login`);
-    },
-    showForgotPasswordForm() {
-      this.toggleLoader();
-      this.slideInTitle = "Forgot Password";
-      window.history.pushState("", "", `/account/forgot-password`);
-    },
-    login(user) {
-      setTimeout(function() {
-        alert(`Should log user in \n\n ${JSON.stringify(user)}`);
+        that.$refs.melastoreSlideInBar.$refs.melastoreLoader.toggleLoader();
       }, 1000);
     },
     logout() {
       setTimeout(function() {
         alert(`Should logout user`);
       }, 1000);
-    },
-    register(user) {
-      setTimeout(function() {
-        alert(`Should register user in \n\n ${JSON.stringify(user)}`);
-      }, 1000);
-    },
-    sendPasswordResetLink(email) {
-      setTimeout(function() {
-        alert(`Should send password reset email to \n\n ${email}`);
-      }, 1000);
-    },
-    proceedToCheckout() {
-      alert("Should proceed to check out");
     },
     emptyCart() {
       alert("Should empty cart");

@@ -32,11 +32,7 @@
             :placeholder="password.placeholder"
           ></b-form-input>
           <!--forgot password-->
-          <slot name="forgot-password-redirect">
-            <span class="forgot-password-btn" @click="showForgotPasswordForm">
-              Forgot Password?
-            </span>
-          </slot>
+          <slot name="forgot-password-redirect"> </slot>
           <!--toggle password-->
           <span
             v-if="!showPassword"
@@ -58,13 +54,8 @@
         :show-spinner="showSpinner"
       />
 
-      <span class="mt-2 text-center w-100 d-inline-block"
-        >Not yet registered?
-        <slot name="register-redirect">
-          <span @click="showRegisterForm" class="show-register-form-btn">
-            Register
-          </span>
-        </slot>
+      <span class="mt-2 text-center w-100 d-inline-block">
+        <slot name="register-redirect"> </slot>
       </span>
     </template>
   </account-container>
