@@ -1,6 +1,4 @@
-import CarouselLander from "@/components/Loaders/CarouselLander";
-// import { action } from "@storybook/addon-actions";
-import NavigationBar from "@/components/NavBar/NavigationBar/NavigationBar";
+import CarouselLander from "@/components/Landers/CarouselLander";
 export default {
   component: CarouselLander,
   title: "E-commerce/Landers/Carousel Lander",
@@ -13,12 +11,12 @@ export default {
 };
 
 const Template = (args, { argTypes }) => ({
-  components: { CarouselLander, NavigationBar },
+  components: {},
   props: Object.keys(argTypes),
   template:
     "<div>" +
-    "<navigation-bar></navigation-bar>" +
-    "<carousel-lander :landerImages='landerImages' :interval='interval' :autoplay='autoplay'/>" +
+    "<ms-navigation-bar></ms-navigation-bar>" +
+    "<ms-carousel-lander :landerImages='landerImages' :interval='interval' :autoplay='autoplay'/>" +
     "</div>",
   data() {
     return {};

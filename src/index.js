@@ -9,7 +9,7 @@ import ShoppingCart from "@/components/Shopping Cart/ShoppingCart";
 import InlineSvg from "@/components/InlineSVG/InlineSvg";
 import NavBarSearch from "@/components/NavBar/NavigationBarSearch/NavbarSearch";
 import Info from "@/components/Info/Info";
-import CarouselLander from "@/components/Loaders/CarouselLander";
+import CarouselLander from "@/components/Landers/CarouselLander";
 import ProductActions from "@/components/Products/ProductActions/ProductActions";
 import ProductCard from "@/components/Products/ProductCard";
 import Products from "@/components/Products/Products";

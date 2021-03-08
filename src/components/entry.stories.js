@@ -80,6 +80,7 @@ import Register from "@/components/Register/Register";
 import ForgotPassword from "@/components/ForgotPassword/ForgotPassword";
 import ShoppingCart from "@/components/Shopping Cart/ShoppingCart";
 import Favourites from "@/components/Favourites/Favourites";
+import CarouselLander from "@/components/Landers/CarouselLander";
 
 // Navigation Bar
 import NavigationBar from "@/components/NavBar/NavigationBar/NavigationBar";
@@ -109,7 +110,8 @@ const MelaStore = {
   NavbarToggle,
   SideMenu,
   Loader,
-  LoggedInTick
+  LoggedInTick,
+  CarouselLander
 };
 
 Object.keys(MelaStore).forEach(name => {
